@@ -1,4 +1,4 @@
 directhrm
 =========
 
-DirectHRM
+DirectHRM (Human Resources Management)
