@@ -11,9 +11,7 @@ import java.io.Serializable;
 public class Admin implements Serializable
 {
     private int id;
-    
     private String adminUserName;
-    
     private String adminPassword;
 
     public Admin(String adminUserName, String adminPassword)

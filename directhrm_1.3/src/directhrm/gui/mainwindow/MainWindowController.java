@@ -9,7 +9,7 @@ package directhrm.gui.mainwindow;
 public class MainWindowController 
 {
     private static MainWindowController instance;
-    
+ 
     MainWindow view;
 
     public static MainWindowController getInstance() 
@@ -30,9 +30,5 @@ public class MainWindowController
     {
         view = new MainWindow();
     }
-    
-    
-    
-    
-    
+  
 }

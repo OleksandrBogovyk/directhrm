@@ -19,7 +19,7 @@ public class DbConnectionFactory
     private final String driverClassName = "com.mysql.jdbc.Driver";
     private final String databasePath = "jdbc:mysql://localhost:3306/hrm";
     private final String userName = "root";
-    private final String password = "root";
+    private final String password = "mysqlroot";
 
     public static DbConnectionFactory getInstance() 
     {

@@ -35,8 +35,7 @@ public class RegisterAdminUserWindowModel
         
         RegisterAdminUserWindowModel model = new RegisterAdminUserWindowModel();
         model.registerNewAdminUser("Admin", "admin");
-        model.registerNewAdminUser("Hasantha", "admin_ha");
-        model.registerNewAdminUser("Oleksandr", "admin_ol");
+        
     }
     
 }
