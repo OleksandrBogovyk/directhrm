@@ -96,6 +96,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem39 = new javax.swing.JMenuItem();
 
         aboutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         aboutLabel.setText("DirectHRM (HR Management System) v1.25");
@@ -170,12 +171,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Organizations", jPanel3);
 
-        jMenu1.setText("Файл");
+        jMenu1.setText("File");
 
-        jMenuItem8.setText("Открыть");
+        jMenuItem8.setText("Open");
         jMenu1.add(jMenuItem8);
 
         jMenuItem9.setText("Сохранить");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem9);
 
         jMenuItem10.setText("Сохранить как...");
@@ -187,7 +193,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu8.setText("Правка");
+        jMenu8.setText("Edit");
 
         jMenuItem34.setText("Редактирование");
         jMenu8.add(jMenuItem34);
@@ -201,10 +207,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
-        jMenu9.setText("Вид");
+        jMenu9.setText("View");
         jMenuBar1.add(jMenu9);
 
-        jMenu4.setText("Сотрудники");
+        jMenu4.setText("Persons");
 
         jMenuItem22.setText("Добавление сотрудника");
         jMenu4.add(jMenuItem22);
@@ -236,7 +242,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu3.setText("Отделы");
+        jMenu3.setText("Departments");
 
         jMenuItem19.setText("Создать отдел");
         jMenu3.add(jMenuItem19);
@@ -253,10 +259,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu12.setText("Организации");
+        jMenu12.setText("Organizations");
         jMenuBar1.add(jMenu12);
 
-        jMenu5.setText("Операции");
+        jMenu5.setText("Operations");
 
         jMenuItem7.setText("Календарь");
         jMenu5.add(jMenuItem7);
@@ -279,7 +285,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Отчеты");
+        jMenu6.setText("Reports");
 
         jMenuItem32.setText("График отпусков");
         jMenu6.add(jMenuItem32);
@@ -295,7 +301,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu2.setText("Сервис");
+        jMenu2.setText("Seervice");
 
         jMenu10.setText("Администрирование");
 
@@ -341,18 +347,26 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu7.setText("Справка");
+        jMenu7.setText("Help");
 
-        jMenuItem5.setText("О программе");
+        jMenuItem5.setText("Help");
         jMenu7.add(jMenuItem5);
 
-        jMenuItem6.setText("Лицензия");
+        jMenuItem6.setText("About");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
             }
         });
         jMenu7.add(jMenuItem6);
+
+        jMenuItem39.setText("License");
+        jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem39ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem39);
 
         jMenuBar1.add(jMenu7);
 
@@ -367,7 +381,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -400,6 +414,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem38ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem38ActionPerformed
+
+    private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem39ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,6 +506,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem36;
     private javax.swing.JMenuItem jMenuItem37;
     private javax.swing.JMenuItem jMenuItem38;
+    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
