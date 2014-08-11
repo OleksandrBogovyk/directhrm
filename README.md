@@ -1,1 +1,1 @@
-DirectHRM (Human Resources Management), 2014
+DirectHRM (Human Resources Management System), 2014
