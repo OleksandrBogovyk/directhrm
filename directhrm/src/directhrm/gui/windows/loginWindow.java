@@ -7,7 +7,7 @@
 package directhrm.gui.windows;
 
 import com.mysql.jdbc.Connection;
-import directhrm.db.dbManager;
+import com.sun.glass.events.KeyEvent;
 import java.awt.Component;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,18 +41,31 @@ public class loginWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         label_name = new javax.swing.JLabel();
-        label_password = new javax.swing.JLabel();
         loginField = new javax.swing.JTextField();
+        label_password = new javax.swing.JLabel();
+        passwordField = new javax.swing.JPasswordField();
         cancelButton = new javax.swing.JButton();
         enterButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        dbField = new javax.swing.JComboBox();
+        dbServerField = new javax.swing.JComboBox();
         label_dbserver = new javax.swing.JLabel();
         label_greeting = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
+        portField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        changeBox1 = new javax.swing.JCheckBox();
+        dbPasswordField = new javax.swing.JPasswordField();
+        dbUserField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Авторизация");
+        setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         label_name.setText("Имя пользователя:");
 
@@ -72,8 +85,9 @@ public class loginWindow extends javax.swing.JFrame {
             }
         });
 
-        dbField.setEditable(true);
-        dbField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "127.0.0.1" }));
+        dbServerField.setEditable(true);
+        dbServerField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "127.0.0.1" }));
+        dbServerField.setToolTipText("");
 
         label_dbserver.setText("Сервер БД:");
 
@@ -81,35 +95,61 @@ public class loginWindow extends javax.swing.JFrame {
         label_greeting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_greeting.setText("Добро пожаловать в систему DirectHRM");
 
+        portField.setText("3306");
+        portField.setEnabled(false);
+
+        jLabel1.setText("Порт БД:");
+
+        jLabel3.setText("Пароль БД:");
+
+        changeBox1.setText("Изменить порт");
+        changeBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Пользователь БД:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_greeting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_password, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label_dbserver, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_name, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(label_name, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordField)
-                            .addComponent(loginField)
-                            .addComponent(dbField, 0, 178, Short.MAX_VALUE))
-                        .addGap(11, 11, 11))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enterButton))
-                    .addComponent(jSeparator1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(passwordField)
+                                .addComponent(loginField)
+                                .addComponent(dbServerField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(portField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addGap(79, 79, 79))
+                                .addComponent(changeBox1))
+                            .addComponent(dbPasswordField)
+                            .addComponent(dbUserField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(cancelButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(enterButton))
+                            .addComponent(jSeparator1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(label_greeting, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -130,15 +170,29 @@ public class loginWindow extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dbField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dbServerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_dbserver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(portField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(changeBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dbUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(dbPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(enterButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -150,26 +204,34 @@ public class loginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-        /*
-        dbManager connection = new dbManager();
-        connection.setName(loginField.getText());
-        connection.setPassword(passwordField.getSelectedText());
-        */
-        
-        String admname = loginField.getText();
-        String password = passwordField.getText();
-        
-        try {
+
+        if (loginField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frame,
+                "Поля не могут быть пустыми. Пожалуйста, попробуйте ещё раз.",
+                "Ошибка",
+                JOptionPane.ERROR_MESSAGE);
+        }
+            try {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         String URL = "jdbc:mysql://localhost:3306/hrms";
         Connection conn = (Connection) DriverManager.getConnection(URL,"root","mysqlroot");
         Statement stm = conn.createStatement();
         ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\""+loginField.getText()+"\"");
         while(rst.next()){
-                admname = rst.getString("admin_name");
-                System.out.println(admname);
-                password = rst.getString("admin_password");
-                System.out.println(password);
+                String adm = rst.getString("admin_name");
+                String pwd = rst.getString("admin_password");
+                System.out.println(adm+" "+pwd);
+                if (adm.equals(loginField.getText()) && pwd.equals(passwordField.getText())) {
+                    mainWindow program = new mainWindow();
+                    program.setVisible(true);
+                    loginWindow.this.setVisible(false);
+                    loginWindow.this.dispose();
+                    } else {
+                    JOptionPane.showMessageDialog(frame,
+                "Ошибка авторизации. Пожалуйста, попробуйте ещё раз.",
+                "Ошибка",
+                JOptionPane.ERROR_MESSAGE);
+                }
             }
             stm.close();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
@@ -177,20 +239,22 @@ public class loginWindow extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (admname.equals(loginField.getText()) && password.equals(passwordField.getText())) {
-            mainWindow program = new mainWindow();
-            program.setVisible(true);
-            loginWindow.this.setVisible(false);
-            loginWindow.this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(frame,
-                "Ошибка авторизации. Пожалуйста, попробуйте ещё раз.",
-                "Ошибка",
-                JOptionPane.ERROR_MESSAGE);
-        }
-
     }//GEN-LAST:event_enterButtonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            System.out.println("Enter Button pressed.");
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void changeBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBox1ActionPerformed
+        if (changeBox1.isSelected()) {
+            portField.setEnabled(true);
+        } else {
+            portField.setEnabled(false);
+        }
+    }//GEN-LAST:event_changeBox1ActionPerformed
+    
 
     /**
      * @param args the command line arguments
@@ -229,8 +293,14 @@ public class loginWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox dbField;
+    private javax.swing.JCheckBox changeBox1;
+    private javax.swing.JPasswordField dbPasswordField;
+    private javax.swing.JComboBox dbServerField;
+    private javax.swing.JTextField dbUserField;
     private javax.swing.JButton enterButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_dbserver;
     private javax.swing.JLabel label_greeting;
@@ -238,5 +308,6 @@ public class loginWindow extends javax.swing.JFrame {
     private javax.swing.JLabel label_password;
     private javax.swing.JTextField loginField;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField portField;
     // End of variables declaration//GEN-END:variables
 }
