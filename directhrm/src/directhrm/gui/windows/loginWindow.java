@@ -209,7 +209,7 @@ public class loginWindow extends javax.swing.JFrame {
 
         if (loginField.getText().isEmpty() && passwordField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frame,
-                "Поля не могут быть пустыми. Пожалуйста, попробуйте ещё раз.",
+                "Поля не могут быть пустыми! Пожалуйста, попробуйте ещё раз.",
                 "Ошибка",
                 JOptionPane.ERROR_MESSAGE);
         }
@@ -238,7 +238,7 @@ public class loginWindow extends javax.swing.JFrame {
                     loginWindow.this.dispose();
                     } else {
                     JOptionPane.showMessageDialog(frame,
-                "Ошибка авторизации. Пожалуйста, попробуйте ещё раз.",
+                "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.",
                 "Ошибка",
                 JOptionPane.ERROR_MESSAGE);
                 }
