@@ -7,8 +7,10 @@
 package directhrm.gui.windows;
 
 import com.mysql.jdbc.Connection;
-import com.sun.glass.events.KeyEvent;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -218,10 +220,18 @@ public class loginWindow extends javax.swing.JFrame {
         Statement stm = conn.createStatement();
         ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\""+loginField.getText()+"\"");
         while(rst.next()){
-                String adm = rst.getString("admin_name");
-                String pwd = rst.getString("admin_password");
-                System.out.println(adm+" "+pwd);
-                if (adm.equals(loginField.getText()) && pwd.equals(passwordField.getText())) {
+                String dbadm = rst.getString("admin_name");
+                String dbpwd = rst.getString("admin_password");
+                System.out.println(dbadm+" "+dbpwd);
+                MessageDigest md = MessageDigest.getInstance("SHA1");
+                    StringBuilder salt = new StringBuilder("Zxczxc123");
+                        String hashpwd = salt.append(passwordField.getText()).toString();
+                        md.update(hashpwd.getBytes()); 
+                        byte[] output = md.digest();
+                    String outpwd = bytesToHex(output);
+                    
+                    
+                if (dbadm.equals(loginField.getText()) && dbpwd.equals(outpwd)) {
                     mainWindow program = new mainWindow();
                     program.setVisible(true);
                     loginWindow.this.setVisible(false);
@@ -236,11 +246,12 @@ public class loginWindow extends javax.swing.JFrame {
             stm.close();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             System.out.println(ex);
-        } catch (SQLException ex) {
+        } catch (SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_enterButtonActionPerformed
-
+    
+    
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
             System.out.println("Enter Button pressed.");
@@ -310,4 +321,14 @@ public class loginWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField portField;
     // End of variables declaration//GEN-END:variables
+
+    public static String bytesToHex(byte[] b) {
+      char hexDigit[] = {'0', '1', '2', '3', '4', '5', '6', '7',
+                         '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+      StringBuffer buf = new StringBuffer();
+      for (int j=0; j<b.length; j++) {
+         buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
+         buf.append(hexDigit[b[j] & 0x0f]);
+      } return buf.toString();
+    }
 }
