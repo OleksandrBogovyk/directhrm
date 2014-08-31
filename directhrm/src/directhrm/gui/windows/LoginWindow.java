@@ -23,13 +23,13 @@ import javax.swing.JOptionPane;
  *
  * @author ABogovik
  */
-public class loginWindow extends javax.swing.JFrame {
+public class LoginWindow extends javax.swing.JFrame {
     private Component frame;
 
     /**
      * Creates new form loginWindow
      */
-    public loginWindow() {
+    public LoginWindow() {
         initComponents();
     }
 
@@ -130,14 +130,13 @@ public class loginWindow extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(passwordField)
-                                .addComponent(loginField)
-                                .addComponent(dbServerField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(portField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                    .addGap(79, 79, 79))
-                                .addComponent(changeBox1))
+                            .addComponent(passwordField)
+                            .addComponent(loginField)
+                            .addComponent(dbServerField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(portField, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                .addGap(79, 79, 79))
+                            .addComponent(changeBox1)
                             .addComponent(dbPasswordField)
                             .addComponent(dbUserField, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
@@ -202,7 +201,7 @@ public class loginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        loginWindow.this.dispose();
+        LoginWindow.this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
@@ -217,37 +216,37 @@ public class loginWindow extends javax.swing.JFrame {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         String URL = "jdbc:mysql://localhost:3306/hrms";
         Connection conn = (Connection) DriverManager.getConnection(URL,"root","mysqlroot");
-        Statement stm = conn.createStatement();
-        ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\""+loginField.getText()+"\"");
-        while(rst.next()){
-                String dbadm = rst.getString("admin_name");
-                String dbpwd = rst.getString("admin_password");
-                System.out.println(dbadm+" "+dbpwd);
-                MessageDigest md = MessageDigest.getInstance("SHA1");
+            try (Statement stm = conn.createStatement()) {
+                ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\""+loginField.getText()+"\"");
+                while(rst.next()){
+                    String dbadm = rst.getString("admin_name");
+                    String dbpwd = rst.getString("admin_password");
+                    System.out.println(dbadm+" "+dbpwd);
+                    MessageDigest md = MessageDigest.getInstance("SHA1");
                     StringBuilder salt = new StringBuilder("Zxczxc123");
-                        String hashpwd = salt.append(passwordField.getText()).toString();
-                        md.update(hashpwd.getBytes()); 
-                        byte[] output = md.digest();
+                    String hashpwd = salt.append(passwordField.getText()).toString();
+                    md.update(hashpwd.getBytes());
+                    byte[] output = md.digest();
                     String outpwd = bytesToHex(output);
                     
                     
-                if (dbadm.equals(loginField.getText()) && dbpwd.equals(outpwd)) {
-                    mainWindow program = new mainWindow();
-                    program.setVisible(true);
-                    loginWindow.this.setVisible(false);
-                    loginWindow.this.dispose();
+                    if (dbadm.equals(loginField.getText()) && dbpwd.equals(outpwd)) {
+                        MainWindow program = new MainWindow();
+                        program.setVisible(true);
+                        LoginWindow.this.setVisible(false);
+                        LoginWindow.this.dispose();
                     } else {
-                    JOptionPane.showMessageDialog(frame,
-                "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.",
-                "Ошибка",
-                JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(frame,
+                                "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.",
+                                "Ошибка",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
-            stm.close();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             System.out.println(ex);
         } catch (SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(loginWindow.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_enterButtonActionPerformed
     
@@ -284,20 +283,20 @@ public class loginWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new loginWindow().setVisible(true);
+                new LoginWindow().setVisible(true);
             }
         });  
     }

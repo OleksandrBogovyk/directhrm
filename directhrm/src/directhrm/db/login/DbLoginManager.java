@@ -4,19 +4,31 @@
  * and open the template in the editor.
  */
 
-package directhrm.db;
+package directhrm.db.login;
 
-import com.mysql.jdbc.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author ABogovik
  */
-public class dbManager {
+public class DbLoginManager {
+    public int opstatus;
+    
+    public int DbLoginTo(String logname, String logpassword) {
+        if (logname.isEmpty() && logpassword.isEmpty()) {
+            opstatus = 1;
+            //Check
+            System.out.println(logname+" "+logpassword);
+            return opstatus;
+        }
+        return 0;
+          
+    
+    }
+    
+}
+
+    /*
     public String logname, logpassword, loghost, logport;
     
     public void setName(String newname) {
@@ -34,6 +46,8 @@ public class dbManager {
     public void setPort(String newport) {
         this.logport = newport;
     }
+    */
+    
     /*
     public void logInto(String logname, String logpassword, String loghost, String logport) throws SQLException {
                 try {
@@ -50,6 +64,5 @@ public class dbManager {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             System.out.println(ex);
         }
-    }
     */
-}
+
