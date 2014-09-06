@@ -64,7 +64,8 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Авторизация");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("directhrm/gui/windows/Bundle"); // NOI18N
+        setTitle(bundle.getString("LoginWindow.title")); // NOI18N
         setResizable(false);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -72,18 +73,18 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
-        label_name.setText("Имя пользователя:");
+        label_name.setText(bundle.getString("LoginWindow.label_name.text")); // NOI18N
 
-        label_password.setText("Пароль:");
+        label_password.setText(bundle.getString("LoginWindow.label_password.text")); // NOI18N
 
-        cancelButton.setText("Отмена");
+        cancelButton.setText(bundle.getString("LoginWindow.cancelButton.text")); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
 
-        enterButton.setText("Войти");
+        enterButton.setText(bundle.getString("LoginWindow.enterButton.text")); // NOI18N
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterButtonActionPerformed(evt);
@@ -92,37 +93,37 @@ public class LoginWindow extends javax.swing.JFrame {
 
         dbServerField.setEditable(true);
         dbServerField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "127.0.0.1" }));
-        dbServerField.setToolTipText("");
+        dbServerField.setToolTipText(bundle.getString("LoginWindow.dbServerField.toolTipText")); // NOI18N
 
-        label_dbserver.setText("Сервер БД:");
+        label_dbserver.setText(bundle.getString("LoginWindow.label_dbserver.text")); // NOI18N
 
         label_greeting.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         label_greeting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_greeting.setText("Добро пожаловать в систему DirectHRM");
+        label_greeting.setText(bundle.getString("LoginWindow.label_greeting.text")); // NOI18N
 
-        portField.setText("3306");
+        portField.setText(bundle.getString("LoginWindow.portField.text")); // NOI18N
         portField.setEnabled(false);
 
         dbPasswordField.setEnabled(false);
 
-        dbUserField.setText("root");
+        dbUserField.setText(bundle.getString("LoginWindow.dbUserField.text")); // NOI18N
         dbUserField.setEnabled(false);
 
-        jRadioButton1.setText("Порт:");
+        jRadioButton1.setText(bundle.getString("LoginWindow.jRadioButton1.text")); // NOI18N
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Пользователь БД:");
+        jRadioButton2.setText(bundle.getString("LoginWindow.jRadioButton2.text")); // NOI18N
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Пароль БД:");
+        jRadioButton3.setText(bundle.getString("LoginWindow.jRadioButton3.text")); // NOI18N
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -130,10 +131,10 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel1.setText("Параметры подключения к БД");
+        jLabel1.setText(bundle.getString("LoginWindow.jLabel1.text")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel3.setText("Параметры пользователя");
+        jLabel3.setText(bundle.getString("LoginWindow.jLabel3.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
