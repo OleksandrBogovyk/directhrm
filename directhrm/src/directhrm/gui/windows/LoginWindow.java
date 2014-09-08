@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package directhrm.gui.windows;
 
 import com.mysql.jdbc.Connection;
+import directhrm.Application;
+import directhrm.db.DbManager;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.security.MessageDigest;
@@ -25,6 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class LoginWindow extends javax.swing.JFrame {
     private Component frame;
+	private Application application;
+	
 
     /**
      * Creates new form loginWindow
@@ -32,6 +30,11 @@ public class LoginWindow extends javax.swing.JFrame {
     public LoginWindow() {
         initComponents();
     }
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+	
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -251,48 +254,40 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
 
-        if (loginField.getText().isEmpty() && passwordField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frame,
-                "Поля не могут быть пустыми! Пожалуйста, попробуйте ещё раз.",
-                "Ошибка",
-                JOptionPane.ERROR_MESSAGE);
-        }
-            try {
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        String URL = "jdbc:mysql://localhost:3306/hrms";
-        Connection conn = (Connection) DriverManager.getConnection(URL,"root","mysqlroot");
-            try (Statement stm = conn.createStatement()) {
-                ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\""+loginField.getText()+"\"");
-                while(rst.next()){
-                    String dbadm = rst.getString("admin_name");
-                    String dbpwd = rst.getString("admin_password");
-                    System.out.println(dbadm+" "+dbpwd);
-                    MessageDigest md = MessageDigest.getInstance("SHA1");
-                    StringBuilder salt = new StringBuilder("Zxczxc123");
-                    String hashpwd = salt.append(passwordField.getText()).toString();
-                    md.update(hashpwd.getBytes());
-                    byte[] output = md.digest();
-                    String outpwd = bytesToHex(output);
-                    
-                    
-                    if (dbadm.equals(loginField.getText()) && dbpwd.equals(outpwd)) {
-                        MainWindow program = new MainWindow();
-                        program.setVisible(true);
-                        LoginWindow.this.setVisible(false);
-                        LoginWindow.this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(frame,
-                                "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.",
-                                "Ошибка",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
-            System.out.println(ex);
-        } catch (SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+		String server = dbServerField.getSelectedItem().toString();
+		String port = portField.getText();
+		String database = "hrms";
+		String login = loginField.getText();
+		String password = new String( passwordField.getPassword() );
+		if (login.isEmpty() && password.isEmpty()) {
+			JOptionPane.showMessageDialog(frame,
+					"Поля не могут быть пустыми! Пожалуйста, попробуйте ещё раз.",
+					"Ошибка",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		DbManager dbManager = application.getDbManager();
+		
+		try {
+			String response = dbManager.tryLogin(
+					server, port, database, login, password);
+			if( !"".equals( response ) ) {
+				JOptionPane.showMessageDialog(
+						frame, response, "Ошибка", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			LoginWindow.this.setVisible(false);
+			LoginWindow.this.dispose();
+			application.showMainWindow();
+		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NoSuchAlgorithmException ex) {
+			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println(ex);
+			JOptionPane.showMessageDialog(frame,
+					"Не удалось установить связь с сервером базы данных! "
+							+ "Пожалуйста, попробуйте ещё раз.",
+					"Ошибка",
+					JOptionPane.ERROR_MESSAGE);
+		}
     }//GEN-LAST:event_enterButtonActionPerformed
     
     

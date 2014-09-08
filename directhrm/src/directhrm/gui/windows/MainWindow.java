@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package directhrm.gui.windows;
+
+import directhrm.Application;
 
 /**
  *
@@ -18,6 +14,11 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
     }
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+	
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -835,12 +836,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
             public void run() {
                 new MainWindow().setVisible(true);
             }
         });
     }
 
+	private Application application;
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
