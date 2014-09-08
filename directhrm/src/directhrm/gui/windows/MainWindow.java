@@ -1,6 +1,7 @@
 package directhrm.gui.windows;
 
 import directhrm.Application;
+import javax.swing.JTree;
 
 /**
  *
@@ -18,7 +19,10 @@ public class MainWindow extends javax.swing.JFrame {
 	public void setApplication(Application application) {
 		this.application = application;
 	}
-	
+
+	public JTree getTreeStruct() {
+		return treeStruct;
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +63,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        treeStruct = new javax.swing.JTree();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -395,8 +399,8 @@ public class MainWindow extends javax.swing.JFrame {
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        treeStruct.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(treeStruct);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Информация"));
 
@@ -943,6 +947,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JTree treeStruct;
     // End of variables declaration//GEN-END:variables
 }

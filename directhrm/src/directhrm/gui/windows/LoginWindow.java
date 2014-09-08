@@ -278,6 +278,8 @@ public class LoginWindow extends javax.swing.JFrame {
 			}
 			LoginWindow.this.setVisible(false);
 			LoginWindow.this.dispose();
+			
+			application.initControllers();
 			application.showMainWindow();
 		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NoSuchAlgorithmException ex) {
 			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
