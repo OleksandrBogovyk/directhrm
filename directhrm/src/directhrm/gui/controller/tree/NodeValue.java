@@ -41,6 +41,18 @@ public class NodeValue {
 		return "Структура";
 	}
 
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
 	
 	private Organization organization;
 	private Department department;

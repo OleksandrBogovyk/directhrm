@@ -7,9 +7,15 @@ import directhrm.db.DbPersonManager;
 import directhrm.entity.Department;
 import directhrm.entity.Organization;
 import directhrm.entity.Person;
+import java.awt.CardLayout;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JPanel;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
@@ -43,10 +49,56 @@ public class ControllerStructTree {
 			}
 		}
 		
+		treeStruct = application.getMainWindow().getTreeStruct();
 		StructTreeModel treeModel = new StructTreeModel(application, root);
-		JTree treeStruct = application.getMainWindow().getTreeStruct();
 		treeStruct.setModel(treeModel);
+		TreeSelectionModel selectionModel = treeStruct.getSelectionModel();
+		selectionModel.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		treeStruct.setCellRenderer( new CellRenderer() );
+		
+		TreeSelectionListener tsl = new TreeSelectionListener() {
+			@Override
+			public void valueChanged(TreeSelectionEvent e) {
+				treeNodeSelected();
+			}
+		};
+		selectionModel.addTreeSelectionListener(tsl);
+		
+	}
+	
+	private void treeNodeSelected() {
+		JPanel panelCard = application.getMainWindow().getPanelStructNodeCard();
+		CardLayout cardLayout = (CardLayout)panelCard.getLayout();
+		TreeNode<NodeValue> selectedNode = getSelectedNode();
+		if( selectedNode == null ) {
+			cardLayout.show(panelCard, "empty");
+			return;
+		}
+		NodeValue nodeValue = selectedNode.getValue();
+		if( nodeValue.getOrganization() != null ) {
+			cardLayout.show(panelCard, "organization");
+			return;
+		}
+		if( nodeValue.getDepartment()!= null ) {
+			cardLayout.show(panelCard, "department");
+			return;
+		}
+		if( nodeValue.getPerson()!= null ) {
+			cardLayout.show(panelCard, "person");
+			return;
+		}
+		cardLayout.show(panelCard, "empty");
 	}
 
+	public TreeNode<NodeValue>  getSelectedNode() {
+		TreePath treePath = treeStruct.getSelectionPath();
+		if( treePath == null )
+			return null;
+		TreeNode<NodeValue> node = 
+			(TreeNode<NodeValue>)treePath.getLastPathComponent();
+		return node;
+	}
+	
 	private Application application;
+	private JTree treeStruct;
 }
