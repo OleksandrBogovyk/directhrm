@@ -5,10 +5,10 @@ import static directhrm.gui.windows.LoginWindow.bytesToHex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.sql.DataSource;
 
 /**
@@ -16,6 +16,13 @@ import javax.sql.DataSource;
  * @author andre
  */
 public class DbManager {
+
+	public static Date fetchDate(ResultSet rs, String colname) throws SQLException {
+		java.sql.Date date = rs.getDate(colname);
+		if( date == null )
+			return null;
+		return new Date( date.getTime() ); 
+	}
 
 	public DataSource getDataSource() {
 		return dataSource;
@@ -25,6 +32,9 @@ public class DbManager {
 		return departmentManager;
 	}
 
+	public DbPersonManager getPersonManager() {
+		return personManager;
+	}
 	
 	
 	public String tryLogin(
@@ -66,6 +76,7 @@ public class DbManager {
 			}
 			
 			departmentManager = new DbDepartmentManager(dataSource);
+			personManager = new DbPersonManager(dataSource);
 			
 			return "";
 		}
@@ -73,4 +84,5 @@ public class DbManager {
 	
 	private DataSource dataSource;
 	private DbDepartmentManager departmentManager;
+	private DbPersonManager personManager;
 }

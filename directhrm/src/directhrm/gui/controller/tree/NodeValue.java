@@ -21,6 +21,11 @@ public class NodeValue {
 		this.department = department;
 	}
 
+	public NodeValue(Person person) {
+		this.person = person;
+	}
+
+	
 	@Override
 	public String toString() {
 		if( organization != null ) {

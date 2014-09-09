@@ -1,6 +1,8 @@
 package directhrm.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -8,6 +10,15 @@ import java.util.Date;
  */
 public class Person {
 
+	public static List<Person> getDepartmentPersons(List<Person> list, int departmentId) {
+		List<Person> result = new ArrayList<>();
+		for(Person p : list) {
+			if( p.getDepartmentId() == departmentId )
+				result.add(p);
+		}
+		return result;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -48,11 +59,11 @@ public class Person {
 		this.birthDate = birthDate;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -72,43 +83,43 @@ public class Person {
 		this.ident = ident;
 	}
 
-	public char getDriver() {
+	public String getDriver() {
 		return driver;
 	}
 
-	public void setDriver(char driver) {
+	public void setDriver(String driver) {
 		this.driver = driver;
 	}
 
-	public char getMilitary() {
+	public String getMilitary() {
 		return military;
 	}
 
-	public void setMilitary(char military) {
+	public void setMilitary(String military) {
 		this.military = military;
 	}
 
-	public char getMartial() {
-		return martial;
+	public String getMarital() {
+		return marital;
 	}
 
-	public void setMartial(char martial) {
-		this.martial = martial;
+	public void setMarital(String marital) {
+		this.marital = marital;
 	}
 
-	public char getDiploma() {
+	public String getDiploma() {
 		return diploma;
 	}
 
-	public void setDiploma(char diploma) {
+	public void setDiploma(String diploma) {
 		this.diploma = diploma;
 	}
 
-	public char getJobber() {
+	public String getJobber() {
 		return jobber;
 	}
 
-	public void setJobber(char jobber) {
+	public void setJobber(String jobber) {
 		this.jobber = jobber;
 	}
 
@@ -120,6 +131,22 @@ public class Person {
 		this.tabId = tabId;
 	}
 
+	public String getWork() {
+		return work;
+	}
+
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
 	
 	
 	private int id;
@@ -127,14 +154,17 @@ public class Person {
 	private String middleName = "";
 	private String lastName = "";
 	private Date birthDate;
-	private char gender;
+	private String gender;
 	private String citizenship = "";
 	private String ident = "";
-	private char driver;
-	private char military;
-	private char martial;
-	private char diploma;
-	private char jobber;
+	private String driver;
+	private String military;
+	private String marital;
+	private String diploma;
+	private String jobber;
+	private String work;
 	private int tabId;
+	
+	private int departmentId;
 	
 }
