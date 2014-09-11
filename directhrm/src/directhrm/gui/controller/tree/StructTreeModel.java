@@ -1,6 +1,7 @@
 package directhrm.gui.controller.tree;
 
 import directhrm.Application;
+import directhrm.entity.Organization;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -103,8 +104,8 @@ public class StructTreeModel implements TreeModel {
 		}
 	}
 	
-	public void updateNode(TreeNode<NodeValue> node, NodeValue ra) {
-		node.setValue(ra);
+	public void updateNode(TreeNode<NodeValue> node, NodeValue newValue) {
+		node.setValue(newValue);
 
 		TreeNode<NodeValue> parent = node.getParent();
 		int index = node.indexOfSelf();
@@ -162,6 +163,20 @@ public class StructTreeModel implements TreeModel {
 		
 		TreePath treePath = new TreePath(array);
 		return treePath;
+	}
+	
+	// -------------------------------------------------------------------------
+	
+	public void updateOrganization(Organization o) {
+		List<TreeNode<NodeValue>> descendants = root.getDescendants();
+		for(TreeNode<NodeValue> node : descendants) {
+			NodeValue value = node.getValue();
+			if( value.getOrganization() == null )
+				continue;
+			if( value.getOrganization().getId() != o.getId() )
+				continue;
+			updateNode(node, new NodeValue(o));
+		}
 	}
 	
 	// ===== Attributes ========================================================

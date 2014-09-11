@@ -1,10 +1,12 @@
 package directhrm;
 
 import directhrm.db.DbManager;
+import directhrm.gui.controller.ControllerStruct;
 import directhrm.gui.controller.tree.ControllerStructTree;
 import directhrm.gui.windows.LoginWindow;
 import directhrm.gui.windows.MainWindow;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,17 +36,21 @@ public class Application {
 	}
 
 	public void initControllers() throws SQLException {
-		controllerStructTree = new ControllerStructTree( this );
-		controllerStructTree.init();
-		
+		controllerStruct = new ControllerStruct(this);
+		controllerStruct.init();
 	}
 	public void showMainWindow() {
 		mainWindow.setVisible(true);
 	}
 	
+	public void showErrorMessage() {
+		JOptionPane.showMessageDialog(
+				mainWindow, "Возникла ошибка во время выполнения операции", 
+				"Ошибка", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	private MainWindow mainWindow = new MainWindow();
 	
-	private ControllerStructTree controllerStructTree;
-	
+	ControllerStruct controllerStruct;
 	private DbManager dbManager = new DbManager();
 }

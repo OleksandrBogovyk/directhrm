@@ -16,10 +16,11 @@ import javax.sql.DataSource;
  */
 public class DbPersonManager {
 
-	public DbPersonManager(DataSource dataSource) {
+	public DbPersonManager(DbManager dbManager, DataSource dataSource) {
+		this.dbManager = dbManager;
 		this.dataSource = dataSource;
 	}
-	
+
 	public List<Person> loadPersonList() throws SQLException {
 		List<Person> list = new ArrayList<>();
 		Connection conn = null;
@@ -66,5 +67,6 @@ public class DbPersonManager {
 		
 	}
 	
+	private DbManager dbManager;
 	private DataSource dataSource;
 }

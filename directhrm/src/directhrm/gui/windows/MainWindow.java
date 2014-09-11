@@ -1,8 +1,10 @@
 package directhrm.gui.windows;
 
 import directhrm.Application;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 
 /**
@@ -26,6 +28,19 @@ public class MainWindow extends javax.swing.JFrame {
 		return treeStruct;
 	}
 
+	public JButton getButtonStructSave() {
+		return buttonStructSave;
+	}
+
+	public JButton getButtonStructDiscard() {
+		return buttonStructDiscard;
+	}
+
+	public JButton getButtonStructExport() {
+		return buttonStructExport;
+	}
+
+	
 	public JPanel getPanelStructNodeCard() {
 		return panelStructNodeCard;
 	}
@@ -44,6 +59,18 @@ public class MainWindow extends javax.swing.JFrame {
 
 	public JTabbedPane getTabbedPanePerson() {
 		return tabbedPanePerson;
+	}
+
+	public JTextField getFieldOrganizationName() {
+		return fieldOrganizationName;
+	}
+
+	public JTextField getFieldDepartmentName() {
+		return fieldDepartmentName;
+	}
+
+	public JTextField getFieldDepartmentPlace() {
+		return fieldDepartmentPlace;
 	}
 	
 
@@ -90,9 +117,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jButton15 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
+        buttonStructSave = new javax.swing.JButton();
+        buttonStructDiscard = new javax.swing.JButton();
+        buttonStructExport = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         panelStructNodeCard = new javax.swing.JPanel();
         tabbedPanePerson = new javax.swing.JTabbedPane();
@@ -102,12 +129,12 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         panelDepartment = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        fieldDepartmentName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fieldDepartmentPlace = new javax.swing.JTextField();
         panelOrganization = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        fieldOrganizationName = new javax.swing.JTextField();
         panelEmpty = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -439,14 +466,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton15.setText("Сохранить");
+        buttonStructSave.setText("Сохранить");
 
-        jButton18.setText("Отменить");
+        buttonStructDiscard.setText("Отменить");
 
-        jButton19.setText("Экспорт");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        buttonStructExport.setText("Экспорт");
+        buttonStructExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                buttonStructExportActionPerformed(evt);
             }
         });
 
@@ -458,11 +485,11 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton15)
+                .addComponent(buttonStructSave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonStructDiscard)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton19)
+                .addComponent(buttonStructExport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton20)
                 .addContainerGap())
@@ -472,9 +499,9 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15)
-                    .addComponent(jButton18)
-                    .addComponent(jButton19)
+                    .addComponent(buttonStructSave)
+                    .addComponent(buttonStructDiscard)
+                    .addComponent(buttonStructExport)
                     .addComponent(jButton20))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -552,12 +579,12 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(panelDepartmentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(panelDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                    .addComponent(jTextField3))
+                    .addComponent(fieldDepartmentName, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                    .addComponent(fieldDepartmentPlace))
                 .addContainerGap())
         );
         panelDepartmentLayout.setVerticalGroup(
@@ -566,11 +593,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldDepartmentPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(552, Short.MAX_VALUE))
         );
 
@@ -586,7 +613,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                .addComponent(fieldOrganizationName, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelOrganizationLayout.setVerticalGroup(
@@ -595,7 +622,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldOrganizationName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(583, Short.MAX_VALUE))
         );
 
@@ -916,25 +943,28 @@ public class MainWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem29ActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void buttonStructExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStructExportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_buttonStructExportActionPerformed
         
 
 	private Application application;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonStructDiscard;
+    private javax.swing.JButton buttonStructExport;
+    private javax.swing.JButton buttonStructSave;
+    private javax.swing.JTextField fieldDepartmentName;
+    private javax.swing.JTextField fieldDepartmentPlace;
+    private javax.swing.JTextField fieldOrganizationName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
@@ -1022,9 +1052,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panelDepartment;
     private javax.swing.JPanel panelEmpty;

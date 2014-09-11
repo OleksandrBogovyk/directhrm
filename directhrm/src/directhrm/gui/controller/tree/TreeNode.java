@@ -110,7 +110,16 @@ public class TreeNode<E> {
 		}
 		return list;
 	}
-
+	
+	public List<TreeNode<E>> getDescendants() {
+		List<TreeNode<E>> list = new ArrayList<>();
+		list.add(this);
+		for(TreeNode<E> c : children)
+			list.addAll( c.getDescendants() );
+		
+		return list;
+	}
+	
 	public TreePath getTreePath() {
 		if( parent == null )
 			return new TreePath(this);

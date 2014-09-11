@@ -1,6 +1,7 @@
 package directhrm.db;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import directhrm.gui.controller.ControllerStruct;
 import static directhrm.gui.windows.LoginWindow.bytesToHex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +9,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 /**
@@ -17,6 +22,12 @@ import javax.sql.DataSource;
  */
 public class DbManager {
 
+	public static String fetchNotNullString(ResultSet rs, String colname) throws SQLException {
+		String str = rs.getString(colname);
+		if( str == null )
+			str = "";
+		return str; 
+	}
 	public static Date fetchDate(ResultSet rs, String colname) throws SQLException {
 		java.sql.Date date = rs.getDate(colname);
 		if( date == null )
@@ -75,14 +86,34 @@ public class DbManager {
 				}
 			}
 			
-			departmentManager = new DbDepartmentManager(dataSource);
-			personManager = new DbPersonManager(dataSource);
+			departmentManager = new DbDepartmentManager(this, dataSource);
+			personManager = new DbPersonManager(this, dataSource);
 			
 			return "";
+		}
+	}
+	
+	public void addDbEventListener(DbEventListener l) {
+		listeners.add( l );
+	}
+	public void removeDbEventListener(DbEventListener l) {
+		listeners.remove( l );
+	}
+	public void notifyListeners(List<DbEvent> events) {
+		for(DbEvent e : events) {
+			for(DbEventListener l : listeners) {
+				try {
+					l.dbEventHappened(e);
+				} catch (RuntimeException ex) {
+				Logger.getLogger(DbManager.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
 		}
 	}
 	
 	private DataSource dataSource;
 	private DbDepartmentManager departmentManager;
 	private DbPersonManager personManager;
+	
+	private List<DbEventListener> listeners = new ArrayList<>();
 }
