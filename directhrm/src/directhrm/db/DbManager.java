@@ -1,7 +1,6 @@
 package directhrm.db;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import directhrm.gui.controller.ControllerStruct;
 import static directhrm.gui.windows.LoginWindow.bytesToHex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -35,6 +34,12 @@ public class DbManager {
 		return new Date( date.getTime() ); 
 	}
 
+	public static java.sql.Date createSqlDate(Date date) {
+		if( date == null )
+			return null;
+		return new java.sql.Date( date.getTime() );
+	}
+	
 	public DataSource getDataSource() {
 		return dataSource;
 	}

@@ -71,32 +71,45 @@ public class ControllerStruct {
 	}
 
 	private void structTreeNodeSelected() {
+		if( ignoreTreeSelection )
+			return;
 		if( activeNode != null && activeNode.isDirty() ) {
 			int response = JOptionPane.showConfirmDialog(
 					application.getMainWindow(), "Сохранить последние изменения?", "Внимание", 
-					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if( response == JOptionPane.CANCEL_OPTION ) {
+				restoreSelection();
+				return;
+			}
 			if( response == JOptionPane.YES_OPTION ) {
 				try {
-					activeNode.saveEditions();
+					boolean saved = activeNode.saveEditions();
+					if( !saved ) {
+						restoreSelection();
+						return;
+					}
 				} catch (SQLException ex) {
-					// TODO При таком подходе в случае Exception пользователю не 
-					// дается шанс исправить ситуацию. Он просто уведомляется,
-					// что его изменения пропали. В будущем желательно ситуацию улучшить
-					// (вернуться в дереве на узел с активной информацией)
+					restoreSelection();
 					Logger.getLogger(ControllerStruct.class.getName()).log(Level.SEVERE, null, ex);
 					JOptionPane.showMessageDialog(
 							application.getMainWindow(), "Возникла ошибка при попытке сохранить информацию", 
 							"Ошибка", JOptionPane.ERROR_MESSAGE);
+					return;
 				}
 			}
 		} 
-		TreeNode<NodeValue> selectedNode = controllerStructTree.getSelectedNode();
+		selectedNode = controllerStructTree.getSelectedNode();
 		activeNode = setActiveCard(selectedNode);
 		if( activeNode != null )
 			activeNode.setValue( selectedNode );
 		buttonSave.setEnabled( activeNode != null );
 		buttonDiscard.setEnabled( activeNode != null );
 		buttonExport.setEnabled( activeNode != null );
+	}
+	private void restoreSelection() {
+		ignoreTreeSelection = true;
+		controllerStructTree.selectNode(selectedNode);
+		ignoreTreeSelection = false;
 	}
 
 	public ControllerStructNode setActiveCard( 
@@ -149,6 +162,8 @@ public class ControllerStruct {
 	
 	private ControllerStructTree controllerStructTree;
 	private ControllerStructNode activeNode;
+	private TreeNode<NodeValue> selectedNode;
+	private boolean ignoreTreeSelection = false;
 	
 	private JButton buttonSave;
 	private JButton buttonDiscard;

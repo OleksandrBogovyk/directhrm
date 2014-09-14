@@ -1,6 +1,8 @@
 package directhrm.db;
 
+import directhrm.entity.Department;
 import directhrm.entity.Organization;
+import directhrm.entity.Person;
 
 /**
  *
@@ -9,7 +11,9 @@ import directhrm.entity.Organization;
 public class DbEvent {
 
 	public static enum DbEventType {
-		ORGANIZATION_INSERTED, ORGANIZAION_UPDATED, ORGANIZATION_DELETED
+		ORGANIZATION_INSERTED, ORGANIZAION_UPDATED, ORGANIZATION_DELETED,
+		DEPARTMENT_INSERTED, DEPARTMENT_UPDATED, DEPARTMENT_DELETED,
+		PERSON_INSERTED, PERSON_UPDATED, PERSON_DELETED,
 	};
 	
 	public static DbEvent createOrganizationUpdated(Organization o) {
@@ -19,6 +23,20 @@ public class DbEvent {
 		return event;
 	}
 
+	public static DbEvent createDepartmentUpdated(Department d) {
+		DbEvent event = new DbEvent();
+		event.type = DbEventType.DEPARTMENT_UPDATED;
+		event.department = d;
+		return event;
+	}
+
+	public static DbEvent createPersonUpdated(Person p) {
+		DbEvent event = new DbEvent();
+		event.type = DbEventType.PERSON_UPDATED;
+		event.person = p;
+		return event;
+	}
+	
 	public DbEventType getType() {
 		return type;
 	}
@@ -27,8 +45,16 @@ public class DbEvent {
 		return organization;
 	}
 
-	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
 	
 	private DbEventType type;
 	private Organization organization;
+	private Department department;
+	private Person person;
 }

@@ -20,7 +20,7 @@ abstract public class ControllerStructNode {
 	
 	abstract public void discardEditions();
 
-	abstract public void saveEditions() throws SQLException;
+	abstract public boolean saveEditions() throws SQLException;
 
 	public ControllerStructNode(Application application) {
 		this.application = application;
@@ -53,6 +53,18 @@ abstract public class ControllerStructNode {
 		} );
 	}
 
+	protected void testFieldLength(
+			String fieldName, JTextField textField, int maxLength, 
+			StringBuilder sbMessage) 
+	{
+		if( textField.getText().length() > maxLength ) {
+			sbMessage.append( String.format(
+					"Слишком длинное значение поля '%s'. "
+					+ "Максимально допустимое число символов: %d\n", 
+					fieldName, maxLength) );
+		}
+	}
+	
 	protected Application application;
 	protected MainWindow mainWindow;
 	protected DbManager dbManager;

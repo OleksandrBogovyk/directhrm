@@ -10,8 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -48,14 +46,22 @@ public class ControllerOrganization extends ControllerStructNode {
 
 	
 	@Override
-	public void saveEditions() throws SQLException {
-		// TODO validate values
+	public boolean saveEditions() throws SQLException {
+		StringBuilder sbMessage = new StringBuilder();
+		testFieldLength("Название организации", fieldName, 60, sbMessage);
+		if( sbMessage.length() > 0 ) {
+			JOptionPane.showMessageDialog(
+					mainWindow, sbMessage, "Внимание", 
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		Organization o = new Organization();
 		o.setId( organization.getId() );
 		o.setName( fieldName.getText() );
 		dbManager.getDepartmentManager().updateOrganization( o );
 		this.organization = o;
 		setDirty(false);
+		return true;
 	}
 
 	@Override
@@ -70,4 +76,5 @@ public class ControllerOrganization extends ControllerStructNode {
 	
 	private Organization organization;
 	private JTextField fieldName;
+
 }

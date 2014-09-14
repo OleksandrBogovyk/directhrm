@@ -152,7 +152,81 @@ public class DbDepartmentManager {
 		}
 		
 	}
+	public Department loadDepartment(int id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			ps = conn.prepareStatement(
+					"SELECT department_name, department_place, organization_id "
+					+ "FROM department WHERE id = ?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			if( !rs.next() )
+				return null;
+			Department d = new Department();
+			d.setId( id );
+			d.setName( DbManager.fetchNotNullString(rs, "department_name") );
+			d.setPlace(DbManager.fetchNotNullString(rs, "department_place") );
+			d.setOrganizationId( rs.getInt("organization_id") );
+			
+			return d;
+		} finally {
+			if( rs != null )
+				rs.close();
+			if( ps != null )
+				ps.close();
+			if( conn != null )
+				conn.close();
+		}
+	}
 	
+	public void updateDepartment(Department department) 
+	throws SQLException
+	{
+		Connection conn = null;
+		try {
+			List<DbEvent> events = new ArrayList<>();
+			conn = dataSource.getConnection();
+			conn.setAutoCommit(false);
+			updateDepartment(conn, department, events);
+			conn.commit();
+			dbManager.notifyListeners(events);
+		} catch (SQLException | RuntimeException e) {
+			if( conn != null )
+				conn.rollback();
+			throw e;
+		} finally {
+			if( conn != null )
+				conn.close();
+		}
+	}
+	public void updateDepartment(
+			Connection conn, Department department, List<DbEvent> events) 
+	throws SQLException
+	{
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement(
+					"UPDATE department SET "
+					+ "department_name = ?, department_place = ?, organization_id = ? "
+					+ "WHERE id = ?");
+			ps.setString(1, department.getName());
+			ps.setString(2, department.getPlace());
+			ps.setInt(3, department.getOrganizationId());
+			ps.setInt(4, department.getId());
+			ps.executeUpdate();
+			DbEvent event = DbEvent.createDepartmentUpdated(department);
+			events.add(event);
+		} finally {
+			if( ps != null )
+				ps.close();
+		}
+	}
+
 	private DbManager dbManager;
 	private DataSource dataSource;
 }

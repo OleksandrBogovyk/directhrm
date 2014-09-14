@@ -71,6 +71,15 @@ public class ControllerStructTree implements DbEventListener {
 			(TreeNode<NodeValue>)treePath.getLastPathComponent();
 		return node;
 	}
+	
+	public void selectNode(TreeNode<NodeValue> node) {
+		if( node == null ) {
+			treeStruct.clearSelection();
+			return;
+		}
+		TreePath path = treeModel.createPath(node);
+		treeStruct.setSelectionPath(path);
+	}
 
 	@Override
 	public void dbEventHappened(DbEvent event) {

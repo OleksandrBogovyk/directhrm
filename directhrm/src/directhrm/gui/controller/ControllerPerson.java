@@ -16,7 +16,8 @@ public class ControllerPerson extends ControllerStructNode {
 	}
 
 	@Override
-	public void saveEditions() throws SQLException {
+	public boolean saveEditions() throws SQLException {
+		return true;
 	}
 
 	@Override
