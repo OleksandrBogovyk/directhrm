@@ -19,8 +19,8 @@ public class ControllerDepartment extends ControllerStructNode {
 
 	public ControllerDepartment(Application application) {
 		super(application);
-		fieldName = mainWindow.getFieldDepartmentName();
-		fieldPlace = mainWindow.getFieldDepartmentPlace();
+		//fieldName = mainWindow.getFieldDepartmentName();
+		//fieldPlace = mainWindow.getFieldDepartmentPlace();
 		listenTextField(fieldName);
 		listenTextField(fieldPlace);
 	}

@@ -2,7 +2,6 @@ package directhrm;
 
 import directhrm.db.DbManager;
 import directhrm.gui.controller.ControllerStruct;
-import directhrm.gui.controller.tree.ControllerStructTree;
 import directhrm.gui.windows.LoginWindow;
 import directhrm.gui.windows.MainWindow;
 import java.sql.SQLException;
