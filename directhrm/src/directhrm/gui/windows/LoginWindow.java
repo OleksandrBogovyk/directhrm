@@ -29,6 +29,14 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+		
+		java.io.File f = new java.io.File("debian.ini");
+		if( f.exists() ) {
+			loginField.setText("root");
+			passwordField.setText("hsdyt-db");
+			dbServerField.insertItemAt("10.100.100.54", 0);
+			dbServerField.setSelectedIndex(0);
+		}
     }
 
 	public void setApplication(Application application) {

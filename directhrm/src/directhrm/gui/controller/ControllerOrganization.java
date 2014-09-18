@@ -19,7 +19,7 @@ public class ControllerOrganization extends ControllerStructNode {
 
 	public ControllerOrganization(Application application) {
 		super(application);
-		fieldName = mainWindow.getFieldOrganizationName();
+		//fieldName = mainWindow.getFieldOrganizationName();
 		listenTextField(fieldName);
 	}
 

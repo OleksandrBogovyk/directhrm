@@ -2,7 +2,6 @@ package directhrm;
 
 import directhrm.db.DbManager;
 import directhrm.gui.controller.ControllerStruct;
-import directhrm.gui.controller.tree.ControllerStructTree;
 import directhrm.gui.windows.LoginWindow;
 import directhrm.gui.windows.MainWindow;
 import java.sql.SQLException;
@@ -30,12 +29,19 @@ public class Application {
 		return mainWindow;
 	}
 
+	public ControllerStruct getControllerStruct() {
+		return controllerStruct;
+	}
 	
 	public DbManager getDbManager() {
 		return dbManager;
 	}
 
 	public void initControllers() throws SQLException {
+		mainWindow = new MainWindow();
+		mainWindow.setApplication(this);
+		mainWindow.init();
+
 		controllerStruct = new ControllerStruct(this);
 		controllerStruct.init();
 	}
@@ -51,6 +57,6 @@ public class Application {
 	
 	private MainWindow mainWindow = new MainWindow();
 	
-	ControllerStruct controllerStruct;
+	private ControllerStruct controllerStruct;
 	private DbManager dbManager = new DbManager();
 }

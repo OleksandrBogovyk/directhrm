@@ -1,7 +1,9 @@
 package directhrm.gui.controller.tree;
 
 import directhrm.Application;
+import directhrm.entity.Department;
 import directhrm.entity.Organization;
+import directhrm.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -88,11 +90,11 @@ public class StructTreeModel implements TreeModel {
 			addChild(parent, c);
 	}
 	
-	public void addChild(TreeNode<NodeValue> node, NodeValue child) {
+	public TreeNode<NodeValue> addChild(TreeNode<NodeValue> node, NodeValue child) {
 		int index = node.getChildCount();
-		addChild(node, child, index);
+		return addChild(node, child, index);
 	}
-	public void addChild(
+	public TreeNode<NodeValue> addChild(
 			TreeNode<NodeValue> node, NodeValue child, int index) 
 	{
 		TreeNode<NodeValue> childNode = new TreeNode<>( child, -1 );
@@ -102,6 +104,18 @@ public class StructTreeModel implements TreeModel {
 		for(TreeModelListener l : listeners) {
 			l.treeNodesInserted(event);
 		}
+		return childNode;
+	}
+	public TreeNode<NodeValue> addChild(
+			TreeNode<NodeValue> node, TreeNode<NodeValue> childNode, int index) 
+	{
+		node.addChild(childNode, index);
+		
+		TreeModelEvent event = createEvent(node, index, childNode);
+		for(TreeModelListener l : listeners) {
+			l.treeNodesInserted(event);
+		}
+		return childNode;
 	}
 	
 	public void updateNode(TreeNode<NodeValue> node, NodeValue newValue) {
@@ -167,16 +181,76 @@ public class StructTreeModel implements TreeModel {
 	
 	// -------------------------------------------------------------------------
 	
+	public void insertOrganization(Organization o) {
+		TreeNode<NodeValue> newNode = new TreeNode<>(new NodeValue(o), 0);
+		String newNodeStr = newNode.toString();
+		int index = -1;
+		for(int i=0, count = root.getChildCount(); i < count; i++) {
+			String str = root.getChild(i).toString();
+			if( Util.STRING_CYR_COMPARATOR.compare(newNodeStr, str) <= 0 ) {
+				index = i;
+				break;
+			}
+		}
+		if( index < 0 )
+			index = root.getChildCount();
+		addChild(root, newNode, index);
+	}
 	public void updateOrganization(Organization o) {
+		TreeNode<NodeValue> node = findOrganization(o.getId());
+		if( node == null )
+			return;
+		updateNode(node, new NodeValue(o));
+	}
+
+	public void insertDepartment(Department d) {
+		TreeNode<NodeValue> nodeParent = findOrganization(d.getOrganizationId());
+		if( nodeParent == null )
+			return;
+		TreeNode<NodeValue> newNode = new TreeNode<>(new NodeValue(d), 0);
+		String newNodeStr = newNode.toString();
+		int index = -1;
+		for(int i=0, count = nodeParent.getChildCount(); i < count; i++) {
+			String str = nodeParent.getChild(i).toString();
+			if( Util.STRING_CYR_COMPARATOR.compare(newNodeStr, str) <= 0 ) {
+				index = i;
+				break;
+			}
+		}
+		if( index < 0 )
+			index = nodeParent.getChildCount();
+		addChild(nodeParent, newNode, index);
+	}
+	public void updateDepartment(Department d) {
+		TreeNode<NodeValue> node = findDepartment(d.getId());
+		if( node == null )
+			return;
+		updateNode(node, new NodeValue(d));
+	}
+
+	private TreeNode<NodeValue> findOrganization(int id) {
 		List<TreeNode<NodeValue>> descendants = root.getDescendants();
 		for(TreeNode<NodeValue> node : descendants) {
 			NodeValue value = node.getValue();
 			if( value.getOrganization() == null )
 				continue;
-			if( value.getOrganization().getId() != o.getId() )
+			if( value.getOrganization().getId() != id )
 				continue;
-			updateNode(node, new NodeValue(o));
+			return node;
 		}
+		return null;
+	}
+	private TreeNode<NodeValue> findDepartment(int id) {
+		List<TreeNode<NodeValue>> descendants = root.getDescendants();
+		for(TreeNode<NodeValue> node : descendants) {
+			NodeValue value = node.getValue();
+			if( value.getDepartment()== null )
+				continue;
+			if( value.getDepartment().getId() != id )
+				continue;
+			return node;
+		}
+		return null;
 	}
 	
 	// ===== Attributes ========================================================

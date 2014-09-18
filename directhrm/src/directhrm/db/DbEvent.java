@@ -11,18 +11,30 @@ import directhrm.entity.Person;
 public class DbEvent {
 
 	public static enum DbEventType {
-		ORGANIZATION_INSERTED, ORGANIZAION_UPDATED, ORGANIZATION_DELETED,
+		ORGANIZATION_INSERTED, ORGANIZATION_UPDATED, ORGANIZATION_DELETED,
 		DEPARTMENT_INSERTED, DEPARTMENT_UPDATED, DEPARTMENT_DELETED,
 		PERSON_INSERTED, PERSON_UPDATED, PERSON_DELETED,
 	};
 	
+	public static DbEvent createOrganizationInserted(Organization o) {
+		DbEvent event = new DbEvent();
+		event.type = DbEventType.ORGANIZATION_INSERTED;
+		event.organization = o;
+		return event;
+	}
 	public static DbEvent createOrganizationUpdated(Organization o) {
 		DbEvent event = new DbEvent();
-		event.type = DbEventType.ORGANIZAION_UPDATED;
+		event.type = DbEventType.ORGANIZATION_UPDATED;
 		event.organization = o;
 		return event;
 	}
 
+	public static DbEvent createDepartmentInserted(Department d) {
+		DbEvent event = new DbEvent();
+		event.type = DbEventType.DEPARTMENT_INSERTED;
+		event.department = d;
+		return event;
+	}
 	public static DbEvent createDepartmentUpdated(Department d) {
 		DbEvent event = new DbEvent();
 		event.type = DbEventType.DEPARTMENT_UPDATED;

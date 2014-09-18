@@ -83,8 +83,17 @@ public class ControllerStructTree implements DbEventListener {
 
 	@Override
 	public void dbEventHappened(DbEvent event) {
-		if( event.getType() == DbEvent.DbEventType.ORGANIZAION_UPDATED ) {
+		if( event.getType() == DbEvent.DbEventType.ORGANIZATION_INSERTED ) {
+			treeModel.insertOrganization( event.getOrganization() );
+		}
+		if( event.getType() == DbEvent.DbEventType.ORGANIZATION_UPDATED ) {
 			treeModel.updateOrganization( event.getOrganization() );
+		}
+		if( event.getType() == DbEvent.DbEventType.DEPARTMENT_INSERTED ) {
+			treeModel.insertDepartment( event.getDepartment() );
+		}
+		if( event.getType() == DbEvent.DbEventType.DEPARTMENT_UPDATED ) {
+			treeModel.updateDepartment( event.getDepartment() );
 		}
 	}
 	

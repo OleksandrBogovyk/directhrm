@@ -28,4 +28,9 @@ public class ControllerPerson extends ControllerStructNode {
 	public void discardEditions() {
 	}
 
+	public void setValue(NodeValue value) {
+		if( value == null ) {
+			
+		}
+	}
 }

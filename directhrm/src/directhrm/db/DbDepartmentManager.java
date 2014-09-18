@@ -79,6 +79,60 @@ public class DbDepartmentManager {
 				conn.close();
 		}
 	}
+
+	public void saveOrganization(Organization organization) 
+	throws SQLException
+	{
+		if( organization.getId() == 0 )
+			insertOrganization(organization);
+		else
+			updateOrganization(organization);
+	}
+	
+	public void insertOrganization(Organization organization) 
+	throws SQLException
+	{
+		Connection conn = null;
+		try {
+			List<DbEvent> events = new ArrayList<>();
+			conn = dataSource.getConnection();
+			conn.setAutoCommit(false);
+			insertOrganization(conn, organization, events);
+			conn.commit();
+			dbManager.notifyListeners(events);
+		} catch (SQLException | RuntimeException e) {
+			if( conn != null )
+				conn.rollback();
+			throw e;
+		} finally {
+			if( conn != null )
+				conn.close();
+		}
+	}
+	public void insertOrganization(
+			Connection conn, Organization organization, List<DbEvent> events) 
+	throws SQLException
+	{
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement(
+					"INSERT INTO organization (organization_name) VALUES (?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, organization.getName());
+			ps.executeUpdate();
+		    ResultSet rs = ps.getGeneratedKeys();
+		    if (rs.next()) {
+				organization.setId( rs.getInt(1) );
+		    }
+		    rs.close();
+			DbEvent event = DbEvent.createOrganizationInserted(organization);
+			events.add(event);
+		} finally {
+			if( ps != null )
+				ps.close();
+		}
+	}
 	
 	public void updateOrganization(Organization organization) 
 	throws SQLException
@@ -182,7 +236,64 @@ public class DbDepartmentManager {
 				conn.close();
 		}
 	}
+
+	public void saveDepartment(Department department) 
+	throws SQLException
+	{
+		if( department.getId() == 0 )
+			insertDepartment(department);
+		else
+			updateDepartment(department);
+	}
 	
+	public void insertDepartment(Department department) 
+	throws SQLException
+	{
+		Connection conn = null;
+		try {
+			List<DbEvent> events = new ArrayList<>();
+			conn = dataSource.getConnection();
+			conn.setAutoCommit(false);
+			insertDepartment(conn, department, events);
+			conn.commit();
+			dbManager.notifyListeners(events);
+		} catch (SQLException | RuntimeException e) {
+			if( conn != null )
+				conn.rollback();
+			throw e;
+		} finally {
+			if( conn != null )
+				conn.close();
+		}
+	}
+	public void insertDepartment(
+			Connection conn, Department department, List<DbEvent> events) 
+	throws SQLException
+	{
+		PreparedStatement ps = null;
+		
+		try {
+			ps = conn.prepareStatement(
+					"INSERT INTO department "
+					+ "(department_name, department_place, organization_id) "
+					+ "VALUES (?,?,?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, department.getName());
+			ps.setString(2, department.getPlace());
+			ps.setInt(3, department.getOrganizationId());
+			ps.executeUpdate();
+		    ResultSet rs = ps.getGeneratedKeys();
+		    if (rs.next()) {
+				department.setId( rs.getInt(1) );
+		    }
+		    rs.close();
+			DbEvent event = DbEvent.createDepartmentInserted(department);
+			events.add(event);
+		} finally {
+			if( ps != null )
+				ps.close();
+		}
+	}
 	public void updateDepartment(Department department) 
 	throws SQLException
 	{
