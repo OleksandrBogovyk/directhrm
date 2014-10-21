@@ -7,8 +7,10 @@ import directhrm.gui.action.ActionDepartmentEdit;
 import directhrm.gui.action.ActionOrganizationCreate;
 import directhrm.gui.action.ActionOrganizationDelete;
 import directhrm.gui.action.ActionOrganizationEdit;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JTree;
+import javax.swing.SpinnerDateModel;
 
 /**
  *
@@ -98,7 +100,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jSpinner1 = new javax.swing.JSpinner();
+        Date phdate = new Date();
+        SpinnerDateModel df = new SpinnerDateModel(phdate,null,null,java.util.Calendar.YEAR);
+        jSpinner1 = new javax.swing.JSpinner(df);
         jButton15 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -408,7 +412,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        jSpinner1.setModel(df);
 
         jButton15.setText("...");
 
@@ -425,13 +429,13 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckBox1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton18)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
