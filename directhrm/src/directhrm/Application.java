@@ -5,6 +5,8 @@ import directhrm.gui.controller.ControllerStruct;
 import directhrm.gui.windows.LoginWindow;
 import directhrm.gui.windows.MainWindow;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +16,23 @@ import javax.swing.JOptionPane;
 public class Application {
 
 	public static void main(String[] args) {
+            try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Application.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {    
+                Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+                Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+                Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+               
         java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
             public void run() {
@@ -22,7 +41,8 @@ public class Application {
 				loginWindow.setApplication(application);
                 loginWindow.setVisible(true);
             }
-        });  
+        });
+        
 	}
 
 	public MainWindow getMainWindow() {
