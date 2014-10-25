@@ -123,11 +123,11 @@ public class Person {
 		this.jobber = jobber;
 	}
 
-	public int getTabId() {
+	public Integer getTabId() {
 		return tabId;
 	}
 
-	public void setTabId(int tabId) {
+	public void setTabId(Integer tabId) {
 		this.tabId = tabId;
 	}
 
@@ -154,16 +154,16 @@ public class Person {
 	private String middleName = "";
 	private String lastName = "";
 	private Date birthDate;
-	private String gender;
+	private String gender = "";
 	private String citizenship = "";
 	private String ident = "";
-	private String driver;
-	private String military;
-	private String marital;
-	private String diploma;
-	private String jobber;
-	private String work;
-	private int tabId;
+	private String driver = "";
+	private String military = "";
+	private String marital = "";
+	private String diploma = "";
+	private String jobber = "";
+	private String work = "";
+	private Integer tabId;
 	
 	private int departmentId;
 	

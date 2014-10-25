@@ -45,13 +45,16 @@ public class DbPersonManager {
 				p.setName(rs.getString("person_name") );
 				p.setMiddleName(rs.getString("person_middlename") );
 				p.setBirthDate( DbManager.fetchDate(rs, "person_dob") );
+				p.setGender( rs.getString("person_gender") );
+				p.setCitizenship(rs.getString("person_citizenship") );
+				p.setIdent(rs.getString("person_ident") );
 				p.setDriver( rs.getString("person_driver") );
 				p.setMilitary(rs.getString("person_military") );
 				p.setMarital(rs.getString("person_marital") );
 				p.setDiploma(rs.getString("person_diploma") );
-				p.setJobber(rs.getString("person_driver") );
-				p.setWork( rs.getString("person_driver") );
-				p.setTabId(rs.getInt("person_tabno") );
+				p.setJobber(rs.getString("person_jobber") );
+				p.setWork( rs.getString("person_work") );
+				p.setTabId( DbManager.fetchInteger(rs, "person_tabno") );
 				p.setDepartmentId(rs.getInt("department_id") );
 				list.add(p);
 			}
