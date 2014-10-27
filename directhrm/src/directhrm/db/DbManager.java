@@ -1,7 +1,6 @@
 package directhrm.db;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import static directhrm.gui.windows.LoginWindow.bytesToHex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -45,6 +44,17 @@ public class DbManager {
 			return null;
 		return new java.sql.Date( date.getTime() );
 	}
+
+        private static String bytesToHex(byte[] b) {
+            char hexDigit[] = { '0', '1', '2', '3', '4', '5', '6', '7',
+                                '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+            StringBuilder buf = new StringBuilder();
+                for (int j=0; j<b.length; j++) {
+                buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
+                buf.append(hexDigit[b[j] & 0x0f]);
+                } 
+            return buf.toString();
+        }
 	
 	public DataSource getDataSource() {
 		return dataSource;
@@ -86,13 +96,14 @@ public class DbManager {
 				String dbpwd = rst.getString("admin_password");
 				System.out.println(dbadm + " " + dbpwd);
 				MessageDigest md = MessageDigest.getInstance("SHA1");
-				StringBuilder salt = new StringBuilder("Zxczxc123");
+				// Изменить соль на "D!rect*Hrm_"
+                                StringBuilder salt = new StringBuilder("Zxczxc123");
 				String hashpwd = salt.append(dbPassword).toString();
 				md.update(hashpwd.getBytes());
 				byte[] output = md.digest();
 				String outpwd = bytesToHex(output);
 
-				if (dbadm.equals(dbUser) && !dbpwd.equals(outpwd)) {
+				if (!dbadm.equals(dbUser) && !dbpwd.equals(outpwd)) {
 					return "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.";
 				}
 			}
