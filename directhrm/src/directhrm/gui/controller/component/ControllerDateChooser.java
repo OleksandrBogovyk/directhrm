@@ -55,10 +55,14 @@ public class ControllerDateChooser extends ControllerComponent {
 	public void clearValue() {
 		setValue(null); 
 	}
+
+	public void setDateChangeListener(DateChangeListener dateChangeListener) {
+		this.dateChangeListener = dateChangeListener;
+	}
 	
 	public void setValue(Date date) {
 		ignoreEdition = true;
-		dateChooser.setDate(date);;
+		dateChooser.setDate(date);
 		ignoreEdition = false;
 	}
 	
@@ -66,10 +70,13 @@ public class ControllerDateChooser extends ControllerComponent {
 		if( ignoreEdition )
 			return;
 		markDirty();
+		if( dateChangeListener != null )
+			dateChangeListener.dateChanged();
 	}
 
 	private JDateChooser dateChooser;
 	private boolean ignoreEdition = false;
+	private DateChangeListener dateChangeListener;
 
 	private PropertyChangeListener pcl = new PropertyChangeListener() {
 		@Override
