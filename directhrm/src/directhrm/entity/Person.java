@@ -107,12 +107,12 @@ public class Person {
 		this.marital = marital;
 	}
 
-	public String getDiploma() {
-		return diploma;
+	public String getHighEducation() {
+		return highEducation;
 	}
 
-	public void setDiploma(String diploma) {
-		this.diploma = diploma;
+	public void setHighEducation(String highEducation) {
+		this.highEducation = highEducation;
 	}
 
 	public String getJobber() {
@@ -147,6 +147,46 @@ public class Person {
 		this.departmentId = departmentId;
 	}
 
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public PersonPosition getPosition() {
+		return position;
+	}
+
+	public void setPosition(PersonPosition position) {
+		this.position = position;
+	}
+
+	public Diploma getDiploma() {
+		return diploma;
+	}
+
+	public void setDiploma(Diploma diploma) {
+		this.diploma = diploma;
+	}
+
+	public Passport getPassport() {
+		return passport;
+	}
+
+	public void setPassport(Passport passport) {
+		this.passport = passport;
+	}
+
 	
 	
 	private int id;
@@ -160,11 +200,16 @@ public class Person {
 	private String driver = "";
 	private String military = "";
 	private String marital = "";
-	private String diploma = "";
+	private String highEducation = "";
 	private String jobber = "";
 	private String work = "";
 	private Integer tabId;
 	
 	private int departmentId;
 	
+	private Contact contact = new Contact();
+	private Contract contract = new Contract();
+	private PersonPosition position = new PersonPosition();
+	private Diploma diploma = new Diploma();
+	private Passport passport = new Passport();
 }
