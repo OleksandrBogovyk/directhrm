@@ -32,6 +32,12 @@ public class DbManager {
 			return null;
 		return new Date( date.getTime() ); 
 	}
+	public static Integer fetchInteger(ResultSet rs, String colname) throws SQLException {
+		int i = rs.getInt(colname);
+		if( rs.wasNull() )
+			return null;
+		return i; 
+	}
 
 	public static java.sql.Date createSqlDate(Date date) {
 		if( date == null )
