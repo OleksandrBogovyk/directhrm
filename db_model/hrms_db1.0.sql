@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `hrms` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `hrms` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `hrms`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: localhost    Database: hrms
+-- Host: 127.0.0.1    Database: hrms
 -- ------------------------------------------------------
 -- Server version	5.6.15-log
 
@@ -27,9 +27,12 @@ DROP TABLE IF EXISTS `admin_tb`;
 CREATE TABLE `admin_tb` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `admin_name` varchar(45) NOT NULL,
+  `admin_fullname` varchar(45) NOT NULL,
   `admin_password` char(40) NOT NULL,
+  `admin_register` datetime DEFAULT CURRENT_TIMESTAMP,
+  `admin_last` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +41,7 @@ CREATE TABLE `admin_tb` (
 
 LOCK TABLES `admin_tb` WRITE;
 /*!40000 ALTER TABLE `admin_tb` DISABLE KEYS */;
-INSERT INTO `admin_tb` VALUES (1,'Admin','319203f211d7e4e5b2d3d2e0cae0644145cfcb6f');
+INSERT INTO `admin_tb` VALUES (1,'Admin','Администратор','319203f211d7e4e5b2d3d2e0cae0644145cfcb6f','2014-10-24 11:24:49','2014-10-27 11:45:24'),(2,'obogovyk','Боговик Александр','e558ba89c53a1a6b5c327d1b0fc8313a45a7e3f8','2014-10-27 11:45:24','2014-11-11 15:28:30'),(3,'yakandre','Якивчук Андрей','34b92ed65511a0f620b3fabb1ee3198a37309829','2014-10-27 16:01:09',NULL);
 /*!40000 ALTER TABLE `admin_tb` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,8 +54,7 @@ DROP TABLE IF EXISTS `bonus`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bonus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `bonus_grade` char(1) NOT NULL,
-  `bonus_sum` float unsigned NOT NULL,
+  `bonus_grade` float unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,7 +65,7 @@ CREATE TABLE `bonus` (
 
 LOCK TABLES `bonus` WRITE;
 /*!40000 ALTER TABLE `bonus` DISABLE KEYS */;
-INSERT INTO `bonus` VALUES (1,'A',325.74),(2,'B',437.52),(3,'C',520),(4,'D',565.15),(5,'E',605.25),(6,'F',661.24),(7,'G',705.89);
+INSERT INTO `bonus` VALUES (1,325.74),(2,437.52),(3,520),(4,565.15),(5,266.37);
 /*!40000 ALTER TABLE `bonus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,14 +82,14 @@ CREATE TABLE `contact` (
   `contact_address` varchar(45) NOT NULL,
   `zipcode` varchar(5) NOT NULL,
   `contact_phone` varchar(17) NOT NULL,
-  `contact_phone2` varchar(17) NOT NULL,
+  `contact_phone2` varchar(17) DEFAULT NULL,
   `contact_email` varchar(25) NOT NULL,
   `contact_email2` varchar(25) DEFAULT NULL,
-  `contact_internalnum` varchar(17) DEFAULT NULL,
+  `contact_intnum` varchar(17) DEFAULT NULL,
   `skype` varchar(25) DEFAULT NULL,
   `notes` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +98,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'Днепропетровск','ул. Олеся Гончара, 19','49000','(0562) 39-57-00','(067) 399-14-21','symbolplus@gmail.com',NULL,NULL,'symbolplus@skype.com','Организация: Днепр'),(2,'Киев','ул. Красноармейская','01001','(044) 372-16-57','(050) 547-19-20','fortuna-ua@ukr.net',NULL,NULL,'fortunaua@skype.com',''),(3,'Харьков','ул. Артема, 48','61000','(057) 134-48-79','','',NULL,NULL,NULL,NULL),(4,'Донецк','ул. Первомайская, 76','83000','(062) 237-78-77','','',NULL,NULL,NULL,NULL),(5,'Днепропетровск','пр. Карла Маркса, 49','49000','(067) 374-17-56','','',NULL,NULL,NULL,NULL),(6,'Киев','ул. Крещатик, 24','01001','(044) 356-23-48','','',NULL,NULL,NULL,NULL),(7,'Львов','ул. Галицкая, 17','79000','(095) 298-88-71','','',NULL,NULL,NULL,NULL);
+INSERT INTO `contact` VALUES (1,'Днепропетровск','ул. Олеся Гончара, 19','49000','(0562) 39-57-00','(067) 399-14-21','symbolplus@gmail.com',NULL,NULL,'symbolplus@skype.com',NULL),(2,'Киев','ул. Красноармейская','01001','(044) 372-16-57','(050) 547-19-20','fortuna-ua@ukr.net',NULL,NULL,'fortunaua@skype.com',NULL),(3,'Харьков','ул. Артема, 48','61000','(057) 134-48-79',NULL,'',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +114,7 @@ CREATE TABLE `contract` (
   `contract_number` varchar(10) NOT NULL,
   `contract_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +123,7 @@ CREATE TABLE `contract` (
 
 LOCK TABLES `contract` WRITE;
 /*!40000 ALTER TABLE `contract` DISABLE KEYS */;
-INSERT INTO `contract` VALUES (1,'12078991','2013-08-01'),(2,'12078992','2013-08-02'),(3,'12078993','2013-08-10'),(4,'12078994','2013-08-10');
+INSERT INTO `contract` VALUES (1,'12078991','2013-08-01'),(2,'12078992','2013-08-02'),(3,'12078993','2013-08-10');
 /*!40000 ALTER TABLE `contract` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +151,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'Финансовый','2 этаж, к. 4',1),(2,'Отдел кадров','к. 26',2),(3,'Отдел кадров','1 этаж, к. 1',1),(4,'Служба безопасности','1 этаж, прох',1),(5,'Юридический','к. 34',2),(6,'IT','к. 29',2);
+INSERT INTO `department` VALUES (1,'Финансовый','2 этаж, к. 4',NULL),(2,'АХО','к. 26',NULL),(3,'Отдел кадров','1 этаж, к. 1',NULL),(4,'Служба безопасности','1 этаж, прох',NULL),(5,'Юридический','к. 34',NULL),(6,'IT-отдел','к. 29',NULL);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +206,7 @@ CREATE TABLE `errand` (
 
 LOCK TABLES `errand` WRITE;
 /*!40000 ALTER TABLE `errand` DISABLE KEYS */;
-INSERT INTO `errand` VALUES (2,'2013-03-01','2013-03-14',1);
+INSERT INTO `errand` VALUES (1,'2013-03-01','2013-03-14',1);
 /*!40000 ALTER TABLE `errand` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +309,6 @@ CREATE TABLE `person` (
   `person_name` varchar(45) NOT NULL,
   `person_middlename` varchar(45) NOT NULL,
   `person_dob` date NOT NULL,
-  `person_age` smallint(5) unsigned NOT NULL,
   `person_gender` enum('M','F') NOT NULL,
   `person_citizenship` varchar(25) NOT NULL,
   `person_ident` varchar(10) NOT NULL,
@@ -353,7 +354,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01',45,'M','Украина','1234567891','B','Y','W','Y','N','25',41201,310,NULL,NULL,6,NULL,1,3,NULL,NULL),(2,'Калинина','Анна','Павловна','1978-12-10',36,'F','Украина','1234567892','N','N','H','Y','N','16',41202,117,NULL,NULL,NULL,NULL,1,3,NULL,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15',33,'F','Украина','1234567893','B','N','N','Y','N','12',41203,122,NULL,NULL,NULL,NULL,2,1,NULL,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03',33,'M','Украина','1234567894','B','Y','W','Y','N','10',41204,123,NULL,NULL,NULL,NULL,1,2,NULL,NULL),(5,'Куличенко','Анна','Павловна','1982-11-12',32,'F','Украина','1234567895','N','N','H','Y','N','10',41205,110,NULL,NULL,NULL,NULL,2,1,NULL,NULL),(6,'Кузьменко','Александр','Викторович','1987-10-15',27,'M','Украина','1234567896','N','N','N','Y','N','7',41206,223,NULL,NULL,NULL,NULL,3,2,NULL,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02',34,'M','Украина','1234567897','C','Y','W','Y','N','12',41207,224,NULL,NULL,NULL,NULL,2,3,NULL,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09',31,'F','Украина','1234567898','B','N','H','Y','N','11',41208,227,NULL,NULL,NULL,NULL,2,2,NULL,NULL),(9,'Боговик','Александр','Александрович','1986-07-06',28,'M','Украина','1234567899','B','N','W','Y','N','9',41209,311,NULL,NULL,NULL,NULL,3,3,NULL,NULL),(10,'Шульга','Екатерина','Сергеевна','1985-03-04',29,'F','Украина','1234567810','B','N','H','Y','N','7',41210,228,NULL,NULL,NULL,NULL,3,2,NULL,NULL),(11,'Макаров','Игорь','Иванович','1987-06-11',27,'M','Россия','1234567811','B','Y','N','N','Y','7',41211,230,NULL,NULL,NULL,NULL,1,3,NULL,NULL),(12,'Зайцев','Даниил','Олегович','1977-09-01',37,'M','Украина','1234567812','C','Y','W','Y','N','14',41212,231,NULL,NULL,NULL,NULL,2,1,NULL,NULL),(13,'Синегубова','Марина','Валериевна','1976-03-22',38,'F','Украина','1234567813','B','N','H','Y','N','15',41213,232,NULL,NULL,NULL,NULL,2,2,NULL,NULL),(14,'Антонова','Наталья','Петровна','1979-10-01',35,'F','Украина','1234567814','B','N','H','Y','N','16',41214,405,NULL,NULL,NULL,NULL,1,3,NULL,NULL),(15,'Ильинский','Иван','Сергеевич','1973-04-29',41,'M','Белоруссия','1234567815','B','Y','W','Y','Y','17',41215,405,NULL,NULL,NULL,NULL,1,2,NULL,NULL);
+INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01','M','Украина','1234567891','B','Y','W','Y','N','25',41201,310,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Калинина','Анна','Павловна','1978-12-10','F','Украина','1234567892','N','N','H','Y','N','16',41202,117,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15','F','Украина','1234567893','B','N','N','Y','N','12',41203,122,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03','M','Украина','1234567894','B','Y','W','Y','N','10',41204,123,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'Куличенко','Анна','Павловна','1982-11-12','F','Украина','1234567895','N','N','H','Y','N','10',41205,110,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'Кузьменко','Александр','Викторович','1987-10-15','M','Россия','1234567896','N','N','N','Y','N','7',41206,223,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02','M','Украина','1234567897','C','Y','W','Y','N','12',41207,224,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09','F','Украина','1234567898','B','N','H','Y','N','11',41208,227,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'Боговик','Александр','Александрович','1986-07-06','M','Украина','1234567899','B','N','W','Y','N','9',41209,311,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,'Шульга','Екатерина','Сергеевна','1985-03-04','F','Украина','1234567810','B','N','H','Y','N','7',41210,228,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,6 +368,7 @@ DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `photo_value` blob,
+  `photo_upload` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -396,7 +398,7 @@ CREATE TABLE `position` (
   PRIMARY KEY (`id`),
   KEY `fk_position_person1_idx` (`person_id`),
   CONSTRAINT `fk_position_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +407,7 @@ CREATE TABLE `position` (
 
 LOCK TABLES `position` WRITE;
 /*!40000 ALTER TABLE `position` DISABLE KEYS */;
-INSERT INTO `position` VALUES (1,'Бухгалтер','2013-08-01',NULL,2),(2,'Программист','2013-08-02',NULL,9),(3,'Менеджер','2013-08-03',NULL,12),(4,'Юрист-Консультант','2013-08-03',NULL,10),(5,'Охранник','2013-08-05',NULL,5),(6,'Старший охранник','2013-08-10',NULL,1),(7,'Водитель погрузчика','2013-08-10',NULL,15),(8,'Инженер-технолог','2013-08-12',NULL,8),(9,'Администратор БД','2013-08-25',NULL,6);
+INSERT INTO `position` VALUES (1,'Бухгалтер','2013-08-01',NULL,NULL),(2,'Программист','2013-08-02',NULL,NULL),(3,'Менеджер','2013-08-03',NULL,NULL),(4,'Юрист-Консультант','2013-08-03',NULL,NULL),(5,'Охранник','2013-08-05',NULL,NULL),(6,'Старший охранник','2013-08-10',NULL,NULL),(7,'Водитель погрузчика','2013-08-10',NULL,NULL),(8,'Инженер-технолог','2013-08-12',NULL,NULL),(9,'Администратор БД','2013-08-25',NULL,NULL),(10,'Специалист отдела АХО','2013-10-12',NULL,NULL);
 /*!40000 ALTER TABLE `position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -433,7 +435,7 @@ CREATE TABLE `salary` (
 
 LOCK TABLES `salary` WRITE;
 /*!40000 ALTER TABLE `salary` DISABLE KEYS */;
-INSERT INTO `salary` VALUES (1,2500,'2014-10-21',NULL),(2,2750,'2014-06-09',NULL),(3,3000,'2014-02-14',NULL),(4,3250,'2014-12-08',NULL),(5,4100,'2014-05-05',NULL),(6,4780,'2014-06-01',NULL);
+INSERT INTO `salary` VALUES (1,2500,'2014-10-21',NULL),(2,2750,'2014-06-09',NULL),(3,3000,'2014-02-14',NULL),(4,3250,'2014-12-08',NULL),(5,3550,'2014-05-05',NULL);
 /*!40000 ALTER TABLE `salary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -525,4 +527,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-31 16:37:36
+-- Dump completed on 2014-11-10 15:33:14
