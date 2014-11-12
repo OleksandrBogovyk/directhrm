@@ -939,21 +939,13 @@
                       <Component id="buttonStructSave" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="buttonStructDiscard" linkSize="1" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <EmptySpace pref="762" max="32767" attributes="0"/>
-=======
                       <EmptySpace pref="684" max="32767" attributes="0"/>
->>>>>>> ed76dfb2a44e9413d7a99b5add54eaaf3ae6deae
                       <Component id="buttonStructExport" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
-<<<<<<< HEAD
-                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-=======
                   <Component id="jScrollPane3" alignment="0" pref="1112" max="32767" attributes="0"/>
->>>>>>> ed76dfb2a44e9413d7a99b5add54eaaf3ae6deae
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
