@@ -1,11 +1,17 @@
 package directhrm.gui.windows;
 
 import directhrm.Application;
+import directhrm.db.ConnectProperties;
 import directhrm.db.DbManager;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,20 +23,42 @@ import javax.swing.JOptionPane;
 public class LoginWindow extends javax.swing.JFrame {
     private Component frame;
 	private Application application;
-	
+	private File fileProperties;
+	private Properties savedProperties = new Properties();
 
     /**
      * Creates new form loginWindow
      */
     public LoginWindow() {
         initComponents();
+		String homeDir = System.getProperty("user.home");
+		fileProperties = new File(homeDir + "/directhrm.properties");
 		
-		java.io.File f = new java.io.File("debian.ini");
-		if( f.exists() ) {
-			loginField.setText("root");
-			passwordField.setText("hsdyt-db");
-			dbServerField.insertItemAt("10.100.100.54", 0);
-			dbServerField.setSelectedIndex(0);
+		if( fileProperties.exists() ) {
+			try {
+				FileInputStream fis = new FileInputStream(fileProperties);
+				savedProperties.load(fis);
+				fis.close();
+				dbServerField.setSelectedItem( savedProperties.getProperty("server", "") );
+				loginField.setText( savedProperties.getProperty("user", "") );
+				String password = savedProperties.getProperty("password", "");
+				if( !"".equals(password) )
+					passwordField.setText(password);
+				cbPort.setSelected(savedProperties.getProperty("cbPort", "false").equals("true"));
+				cbPortActionPerformed(null);
+				dbPortField.setText( savedProperties.getProperty("port", "3306") );
+				cbDbUser.setSelected(savedProperties.getProperty("cbDbUser", "false").equals("true"));
+				cbDbUserActionPerformed(null);
+				dbUserField.setText( savedProperties.getProperty("dbUser", "root") );
+				cbDbPassword.setSelected(savedProperties.getProperty("cbDbPassword", "false").equals("true"));
+				cbDbPasswordActionPerformed(null);
+				password = savedProperties.getProperty("dbPassword", "");
+				if( !"".equals(password) )
+					dbPasswordField.setText(password);
+			} catch (IOException ex) {
+				Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+				System.out.println(ex);
+			}	
 		}
     }
 
@@ -66,9 +94,9 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        cbPort = new javax.swing.JCheckBox();
+        cbDbUser = new javax.swing.JCheckBox();
+        cbDbPassword = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -127,24 +155,24 @@ public class LoginWindow extends javax.swing.JFrame {
         jButton1.setText(bundle.getString("LoginWindow.jButton1.text")); // NOI18N
         jButton1.setEnabled(false);
 
-        jCheckBox1.setText(bundle.getString("LoginWindow.jCheckBox1.text")); // NOI18N
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbPort.setText(bundle.getString("LoginWindow.cbPort.text")); // NOI18N
+        cbPort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cbPortActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText(bundle.getString("LoginWindow.jCheckBox2.text")); // NOI18N
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        cbDbUser.setText(bundle.getString("LoginWindow.cbDbUser.text")); // NOI18N
+        cbDbUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                cbDbUserActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText(bundle.getString("LoginWindow.jCheckBox3.text")); // NOI18N
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        cbDbPassword.setText(bundle.getString("LoginWindow.cbDbPassword.text")); // NOI18N
+        cbDbPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                cbDbPasswordActionPerformed(evt);
             }
         });
 
@@ -175,9 +203,9 @@ public class LoginWindow extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jCheckBox1)
-                                                    .addComponent(jCheckBox2)
-                                                    .addComponent(jCheckBox3))
+                                                    .addComponent(cbPort)
+                                                    .addComponent(cbDbUser)
+                                                    .addComponent(cbDbPassword))
                                                 .addGap(11, 11, 11)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(dbPasswordField)
@@ -248,15 +276,15 @@ public class LoginWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dbPortField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1))
+                            .addComponent(cbPort))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dbUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox2))
+                            .addComponent(cbDbUser))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dbPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox3))
+                            .addComponent(cbDbPassword))
                         .addGap(11, 11, 11)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -278,9 +306,6 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
 
-		String server = dbServerField.getSelectedItem().toString();
-		String port = dbPortField.getText();
-		String database = "hrms";
 		String login = loginField.getText();
 		String password = new String( passwordField.getPassword() );
 		if (login.isEmpty() && password.isEmpty()) {
@@ -290,16 +315,34 @@ public class LoginWindow extends javax.swing.JFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		String database = "hrms";
+		ConnectProperties cp = new ConnectProperties();
+		cp.setServer( dbServerField.getSelectedItem().toString() );
+		cp.setDatabase(database);
+		cp.setUser( login );
+		cp.setPassword(password);
+		if( cbPort.isSelected() )
+			cp.setPort(dbPortField.getText());
+		else
+			cp.setPort("3306");
+		if( cbDbUser.isSelected() )
+			cp.setDbUser(dbUserField.getText());
+		else
+			cp.setDbUser("root");
+		if( cbDbPassword.isSelected() )
+			cp.setDbPassword( new String(dbPasswordField.getPassword()));
+		else
+			cp.setDbPassword("");
 		DbManager dbManager = application.getDbManager();
 		
 		try {
-			String response = dbManager.tryLogin(
-					server, port, database, login, password);
+			String response = dbManager.tryLogin( cp );
 			if( !"".equals( response ) ) {
 				JOptionPane.showMessageDialog(
 						frame, response, "Ошибка", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+
 			LoginWindow.this.setVisible(false);
 			LoginWindow.this.dispose();
 			
@@ -314,6 +357,25 @@ public class LoginWindow extends javax.swing.JFrame {
 					"Ошибка",
 					JOptionPane.ERROR_MESSAGE);
 		}
+
+		try {
+			savedProperties.setProperty("server", cp.getServer());
+			savedProperties.setProperty("user", cp.getUser());
+			savedProperties.setProperty("cbPort", cbPort.isSelected() ? "true" : "false");
+			savedProperties.setProperty("port", cp.getPort());
+			savedProperties.setProperty("cbDbUser", cbDbUser.isSelected() ? "true" : "false");
+			savedProperties.setProperty("dbUser", cp.getDbUser());
+			savedProperties.setProperty("cbDbPassword", cbDbPassword.isSelected() ? "true" : "false");
+			if( !fileProperties.exists() )
+				fileProperties.createNewFile();
+			FileOutputStream fos = new FileOutputStream(fileProperties);
+			savedProperties.store(fos, "");
+			fos.close();
+		} catch (IOException ex) {
+			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println(ex);
+		}	
+		
     }//GEN-LAST:event_enterButtonActionPerformed
     
     
@@ -323,41 +385,41 @@ public class LoginWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()) {
+    private void cbPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPortActionPerformed
+        if (cbPort.isSelected()) {
             dbPortField.setEnabled(true);
         } else {
             dbPortField.setEnabled(false);
         }
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_cbPortActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        if (jCheckBox2.isSelected()) {
+    private void cbDbUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDbUserActionPerformed
+        if (cbDbUser.isSelected()) {
             dbUserField.setEnabled(true);
         } else {
             dbUserField.setEnabled(false);
         }
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_cbDbUserActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        if (jCheckBox3.isSelected()) {
+    private void cbDbPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDbPasswordActionPerformed
+        if (cbDbPassword.isSelected()) {
             dbPasswordField.setEnabled(true);
         } else {
             dbPasswordField.setEnabled(false);
         }
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_cbDbPasswordActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox cbDbPassword;
+    private javax.swing.JCheckBox cbDbUser;
+    private javax.swing.JCheckBox cbPort;
     private javax.swing.JPasswordField dbPasswordField;
     private javax.swing.JTextField dbPortField;
     private javax.swing.JComboBox dbServerField;
     private javax.swing.JTextField dbUserField;
     private javax.swing.JButton enterButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

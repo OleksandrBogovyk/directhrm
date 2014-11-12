@@ -1,9 +1,9 @@
 package directhrm.db;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,20 +45,20 @@ public class DbManager {
 		return new java.sql.Date( date.getTime() );
 	}
 
-        private static String bytesToHex(byte[] b) {
-            char hexDigit[] = { '0', '1', '2', '3', '4', '5', '6', '7',
-                                '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-            StringBuilder buf = new StringBuilder();
-                for (int j=0; j<b.length; j++) {
-                buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
-                buf.append(hexDigit[b[j] & 0x0f]);
-                } 
+    private static String bytesToHex(byte[] b) {
+        char hexDigit[] = { '0', '1', '2', '3', '4', '5', '6', '7',
+                            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        StringBuilder buf = new StringBuilder();
+            for (int j=0; j<b.length; j++) {
+            buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
+            buf.append(hexDigit[b[j] & 0x0f]);
+            } 
             return buf.toString();
         }
 	
-	public DataSource getDataSource() {
-		return dataSource;
-	}
+//	public DataSource getDataSource() {
+//		return dataSource;
+//	}
 
 	public DbDepartmentManager getDepartmentManager() {
 		return departmentManager;
@@ -69,50 +69,46 @@ public class DbManager {
 	}
 	
 	
-	public String tryLogin(
-			String server, String port, String database,
-			String dbUser, String dbPassword) 
+	public String tryLogin(ConnectProperties prop) 
 	throws ClassNotFoundException, InstantiationException, IllegalAccessException, 
 	SQLException, NoSuchAlgorithmException 
 	{
-		//if( true )
-		//	return ""; // For debug reason
-		String url = String.format(
-				"jdbc:mysql://%s:%s/%s", server, port, database);
-		MysqlDataSource ds = new MysqlDataSource();
-		ds.setURL( url );
-		ds.setUser(dbUser);
-		ds.setPassword(dbPassword);
-		dataSource = ds;
+        Class.forName("com.mysql.jdbc.Driver");
+
+		url = String.format("jdbc:mysql://%s:%s/%s", 
+				prop.getServer(), prop.getPort(), prop.getDatabase());
+		dbUser = prop.getDbUser();
+		dbPassword = prop.getDbPassword();
 		
-		Connection conn = dataSource.getConnection();
-		//Class.forName("com.mysql.jdbc.Driver").newInstance();
-		//String URL = "jdbc:mysql://localhost:3306/hrms";
-		//Connection conn = (Connection) DriverManager.getConnection(URL, "root", "mysqlroot");
+		Connection conn = getConnection();
 		try (Statement stm = conn.createStatement()) {
-			ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\"" + dbUser + "\"");
+			ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\"" + prop.getUser() + "\"");
 			while (rst.next()) {
 				String dbadm = rst.getString("admin_name");
 				String dbpwd = rst.getString("admin_password");
 				System.out.println(dbadm + " " + dbpwd);
 				MessageDigest md = MessageDigest.getInstance("SHA1");
 				// Изменить соль на "D!rect*Hrm_"
-                                StringBuilder salt = new StringBuilder("Zxczxc123");
-				String hashpwd = salt.append(dbPassword).toString();
+                StringBuilder salt = new StringBuilder("Zxczxc123");
+				String hashpwd = salt.append(prop.getPassword()).toString();
 				md.update(hashpwd.getBytes());
 				byte[] output = md.digest();
 				String outpwd = bytesToHex(output);
 
-				if (!dbadm.equals(dbUser) && !dbpwd.equals(outpwd)) {
+				if (!dbadm.equals(prop.getPassword()) && !dbpwd.equals(outpwd)) {
 					return "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.";
 				}
 			}
 			
-			departmentManager = new DbDepartmentManager(this, dataSource);
-			personManager = new DbPersonManager(this, dataSource);
+			departmentManager = new DbDepartmentManager(this);
+			personManager = new DbPersonManager(this);
 			
 			return "";
 		}
+	}
+	
+	public Connection getConnection() throws SQLException {
+		return DriverManager.getConnection(url, dbUser, dbPassword);
 	}
 	
 	public void addDbEventListener(DbEventListener l) {
@@ -132,6 +128,10 @@ public class DbManager {
 			}
 		}
 	}
+
+	private String url;
+	private String dbUser;
+	private String dbPassword;
 	
 	private DataSource dataSource;
 	private DbDepartmentManager departmentManager;

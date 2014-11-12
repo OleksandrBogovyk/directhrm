@@ -12,10 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import javax.sql.DataSource;
 
 /**
  *
@@ -23,9 +20,8 @@ import javax.sql.DataSource;
  */
 public class DbPersonManager {
 
-	public DbPersonManager(DbManager dbManager, DataSource dataSource) {
+	public DbPersonManager(DbManager dbManager) {
 		this.dbManager = dbManager;
-		this.dataSource = dataSource;
 	}
 
 	public List<Person> loadPersonList() throws SQLException {
@@ -41,7 +37,7 @@ public class DbPersonManager {
 				+ "FROM person "
 				+ "ORDER BY person_lastname, person_name, person_middlename";
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(query);
 			while( rs.next() ) {
@@ -81,7 +77,7 @@ public class DbPersonManager {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			String query = 
 					"SELECT person_lastname, person_name, person_middlename, "
 					+ "person_dob, person_gender, person_citizenship, person_ident, "
@@ -224,7 +220,7 @@ public class DbPersonManager {
 		Connection conn = null;
 		try {
 			List<DbEvent> events = new ArrayList<>();
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			conn.setAutoCommit(false);
 			updatePerson(conn, person, events);
 			conn.commit();
@@ -281,5 +277,4 @@ public class DbPersonManager {
 	}
 	
 	private DbManager dbManager;
-	private DataSource dataSource;
 }
