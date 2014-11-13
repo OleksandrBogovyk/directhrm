@@ -17,9 +17,8 @@ import javax.sql.DataSource;
  */
 public class DbDepartmentManager {
 
-	public DbDepartmentManager(DbManager dbManager, DataSource dataSource) {
+	public DbDepartmentManager(DbManager dbManager) {
 		this.dbManager = dbManager;
-		this.dataSource = dataSource;
 	}
 	
 	public List<Organization> loadOrganizationList() throws SQLException {
@@ -29,7 +28,7 @@ public class DbDepartmentManager {
 		ResultSet rs = null;
 		
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(
 					"SELECT id, organization_name "
@@ -58,7 +57,7 @@ public class DbDepartmentManager {
 		ResultSet rs = null;
 		
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			ps = conn.prepareStatement(
 					"SELECT organization_name FROM organization WHERE id = ?");
 			ps.setInt(1, id);
@@ -95,7 +94,7 @@ public class DbDepartmentManager {
 		Connection conn = null;
 		try {
 			List<DbEvent> events = new ArrayList<>();
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			conn.setAutoCommit(false);
 			insertOrganization(conn, organization, events);
 			conn.commit();
@@ -140,7 +139,7 @@ public class DbDepartmentManager {
 		Connection conn = null;
 		try {
 			List<DbEvent> events = new ArrayList<>();
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			conn.setAutoCommit(false);
 			updateOrganization(conn, organization, events);
 			conn.commit();
@@ -181,7 +180,7 @@ public class DbDepartmentManager {
 		ResultSet rs = null;
 		
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(
 					"SELECT id, department_name, department_place, organization_id "
@@ -212,7 +211,7 @@ public class DbDepartmentManager {
 		ResultSet rs = null;
 		
 		try {
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			ps = conn.prepareStatement(
 					"SELECT department_name, department_place, organization_id "
 					+ "FROM department WHERE id = ?");
@@ -252,7 +251,7 @@ public class DbDepartmentManager {
 		Connection conn = null;
 		try {
 			List<DbEvent> events = new ArrayList<>();
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			conn.setAutoCommit(false);
 			insertDepartment(conn, department, events);
 			conn.commit();
@@ -300,7 +299,7 @@ public class DbDepartmentManager {
 		Connection conn = null;
 		try {
 			List<DbEvent> events = new ArrayList<>();
-			conn = dataSource.getConnection();
+			conn = dbManager.getConnection();
 			conn.setAutoCommit(false);
 			updateDepartment(conn, department, events);
 			conn.commit();
@@ -339,5 +338,4 @@ public class DbDepartmentManager {
 	}
 
 	private DbManager dbManager;
-	private DataSource dataSource;
 }

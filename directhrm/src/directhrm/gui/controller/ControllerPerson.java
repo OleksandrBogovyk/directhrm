@@ -4,10 +4,10 @@ import directhrm.Application;
 import directhrm.entity.Person;
 import directhrm.gui.controller.component.ControllerComboBox;
 import directhrm.gui.controller.component.ControllerComponent;
-import directhrm.gui.controller.component.ControllerDateChooser;
 import directhrm.gui.controller.component.ControllerRadioButtons;
 import directhrm.gui.controller.component.ControllerTextArea;
 import directhrm.gui.controller.component.ControllerTextField;
+import directhrm.gui.controller.component.ControllerTextFieldDate;
 import directhrm.gui.controller.component.ControllerTextFieldInteger;
 import directhrm.gui.controller.component.DateChangeListener;
 import directhrm.gui.controller.tree.NodeValue;
@@ -44,7 +44,7 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldTableId = new ControllerTextFieldInteger( mainWindow.getFieldTableId());
 		listControllers.add(fieldTableId);
 		
-		dcBirthday = new ControllerDateChooser( mainWindow.getDateChooserBirthday() );
+		dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
 		dcBirthday.setDateChangeListener( new DateChangeListener() {
 			@Override
 			public void dateChanged() {
@@ -80,7 +80,7 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldPassportSnum = new ControllerTextField( mainWindow.getFieldPassportNum() );
 		listControllers.add(fieldPassportSnum);
 		
-		dcPassportDate = new ControllerDateChooser( mainWindow.getDateChooserPassportDate() );
+		dcPassportDate = new ControllerTextFieldDate( mainWindow.getFieldPassportDate() );
 		listControllers.add(dcPassportDate);
 		
 		fieldPassportIssue = new ControllerTextField( mainWindow.getFieldPassportGiven() );
@@ -188,7 +188,7 @@ public class ControllerPerson extends ControllerStructNode {
 	}
 	
 	private void setCmbAgeValue() {
-		Date date = mainWindow.getDateChooserBirthday().getDate();
+		Date date = dcBirthday.getDate();
 		if( date == null )
 			return;
 		Date now = new Date();
@@ -211,7 +211,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldName;
 	private ControllerTextField fieldMiddleName;
 	private ControllerTextFieldInteger fieldTableId;
-	private ControllerDateChooser dcBirthday;
+	private ControllerTextFieldDate dcBirthday;
 	private ControllerRadioButtons rbGender;
 	private ControllerComboBox cmbCitizenship;
 	private ControllerRadioButtons rbHighEducation;
@@ -222,7 +222,7 @@ public class ControllerPerson extends ControllerStructNode {
 
 	private ControllerTextField fieldIdent;
 	private ControllerTextField fieldPassportSnum;
-	private ControllerDateChooser dcPassportDate;
+	private ControllerTextFieldDate dcPassportDate;
 	private ControllerTextField fieldPassportIssue;
 	private ControllerTextArea areaDescription;
 

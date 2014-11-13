@@ -52,5 +52,5 @@ public class ControllerTextField extends ControllerComponent {
 	}
 	
 	protected JTextField textField;
-	private boolean ignoreEdition = false;
+	protected boolean ignoreEdition = false;
 }
