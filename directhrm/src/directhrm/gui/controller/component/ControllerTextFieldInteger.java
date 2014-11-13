@@ -24,6 +24,8 @@ public class ControllerTextFieldInteger extends ControllerTextField {
 	@Override
 	protected void onTextEdited() {
 		super.onTextEdited();
+		if( ignoreEdition )
+			return;
 		String text = textField.getText();
 		try {
 			Integer.parseInt(text);
