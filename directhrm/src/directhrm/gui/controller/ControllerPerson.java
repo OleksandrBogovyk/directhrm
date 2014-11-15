@@ -44,7 +44,7 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldTableId = new ControllerTextFieldInteger( mainWindow.getFieldTableId());
 		listControllers.add(fieldTableId);
 		
-		dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
+		//dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
 		dcBirthday.setDateChangeListener( new DateChangeListener() {
 			@Override
 			public void dateChanged() {
@@ -62,8 +62,8 @@ public class ControllerPerson extends ControllerStructNode {
 		listControllers.add(cmbCitizenship);
 
 		rbHighEducation = new ControllerRadioButtons();
-		rbHighEducation.addRadioButton( mainWindow.getRbHighEducationYes(), "Y");
-		rbHighEducation.addRadioButton( mainWindow.getRbHighEducationNo(), "N");
+		//rbHighEducation.addRadioButton( mainWindow.getRbHighEducationYes(), "Y");
+		//rbHighEducation.addRadioButton( mainWindow.getRbHighEducationNo(), "N");
 		listControllers.add(rbHighEducation);
 		
 		fieldDiplomaName = new ControllerTextField( mainWindow.getFieldSpeciality() );
@@ -80,7 +80,7 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldPassportSnum = new ControllerTextField( mainWindow.getFieldPassportNum() );
 		listControllers.add(fieldPassportSnum);
 		
-		dcPassportDate = new ControllerTextFieldDate( mainWindow.getFieldPassportDate() );
+		//dcPassportDate = new ControllerTextFieldDate( mainWindow.getFieldPassportDate() );
 		listControllers.add(dcPassportDate);
 		
 		fieldPassportIssue = new ControllerTextField( mainWindow.getFieldPassportGiven() );
@@ -90,8 +90,8 @@ public class ControllerPerson extends ControllerStructNode {
 		listControllers.add(areaDescription);
 
 		rbMilitary = new ControllerRadioButtons();
-		rbMilitary.addRadioButton( mainWindow.getRbArmyYes(), "Y");
-		rbMilitary.addRadioButton( mainWindow.getRbArmyNo(), "N");
+		//rbMilitary.addRadioButton( mainWindow.getRbArmyYes(), "Y");
+		//rbMilitary.addRadioButton( mainWindow.getRbArmyNo(), "N");
 		listControllers.add(rbMilitary);
 
 		cmbContactCity = new ControllerComboBox( mainWindow.getCmbAddressCity() );
@@ -200,7 +200,7 @@ public class ControllerPerson extends ControllerStructNode {
 			age++;
 			calendar.add(GregorianCalendar.YEAR, 1);
 		}
-		cmbAge.setSelectedItem( String.valueOf(age) );
+		//cmbAge.setSelectedItem( String.valueOf(age) );
 	}
 	
 	private Person person;
@@ -236,5 +236,5 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldSkype;
 	private ControllerTextField fieldInternalNum;
 	
-	private JComboBox<String> cmbAge = mainWindow.getCmbAge();
+	//private JComboBox<String> cmbAge = mainWindow.getCmbAge();
 }
