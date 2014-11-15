@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `hrms` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `hrms` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `hrms`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
@@ -37,7 +37,7 @@ CREATE TABLE `about` (
 
 LOCK TABLES `about` WRITE;
 /*!40000 ALTER TABLE `about` DISABLE KEYS */;
-INSERT INTO `about` VALUES (1,'Краткая характеристика сотрудника');
+INSERT INTO `about` VALUES (1,'Кузьменко Александр Викторович, 1988 года рождения является сотрудником  ООО «Моя компания» с 2013 года по настоящее время. Трудолюбие и высокая работоспособность так же являются отличительными чертами Александра Викторовича. ');
 /*!40000 ALTER TABLE `about` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ CREATE TABLE `contract` (
   `contract_number` varchar(10) NOT NULL,
   `contract_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `department` (
   PRIMARY KEY (`id`),
   KEY `fk_department_organization1_idx` (`organization_id`),
   CONSTRAINT `fk_department_organization1` FOREIGN KEY (`organization_id`) REFERENCES `organization` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,8 +190,9 @@ DROP TABLE IF EXISTS `diploma`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diploma` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `diploma_name` varchar(60) NOT NULL,
+  `diploma_value` varchar(60) NOT NULL,
   `diploma_year` year(4) NOT NULL,
+  `diploma_fstudy` enum('дневная','заочная') NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_diploma_person1_idx` (`person_id`),
@@ -224,7 +225,7 @@ CREATE TABLE `errand` (
   PRIMARY KEY (`id`),
   KEY `fk_errand_person1_idx` (`person_id`),
   CONSTRAINT `fk_errand_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,10 +247,11 @@ DROP TABLE IF EXISTS `experience`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `experience` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `experience_company` varchar(45) NOT NULL,
   `experience_dbegin` date NOT NULL,
   `experience_dend` date NOT NULL,
   `experience_position` varchar(45) NOT NULL,
-  `experience_company` varchar(45) NOT NULL,
+  `experience_freason` varchar(45) NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_experience_person1_idx` (`person_id`),
@@ -585,4 +587,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-14  0:49:25
+-- Dump completed on 2014-11-15 21:40:10
