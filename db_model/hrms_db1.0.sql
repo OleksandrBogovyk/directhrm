@@ -190,7 +190,7 @@ DROP TABLE IF EXISTS `diploma`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diploma` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `diploma_value` varchar(60) NOT NULL,
+  `diploma_spec` varchar(60) NOT NULL,
   `diploma_year` year(4) NOT NULL,
   `diploma_fstudy` enum('дневная','заочная') NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
@@ -248,10 +248,11 @@ DROP TABLE IF EXISTS `experience`;
 CREATE TABLE `experience` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `experience_company` varchar(45) NOT NULL,
+  `experience_position` varchar(45) NOT NULL,
   `experience_dbegin` date NOT NULL,
   `experience_dend` date NOT NULL,
-  `experience_position` varchar(45) NOT NULL,
   `experience_freason` varchar(45) NOT NULL,
+  `experience_years` smallint(6) NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_experience_person1_idx` (`person_id`),
@@ -371,7 +372,7 @@ CREATE TABLE `person` (
   `person_gender` enum('M','F') NOT NULL,
   `person_citizenship` varchar(15) NOT NULL,
   `person_marital` enum('H','W','N') NOT NULL,
-  `person_military` enum('Y','N') NOT NULL,
+  `person_army` varchar(45) NOT NULL,
   `person_driver` enum('A','B','C','D','N') NOT NULL,
   `person_diploma` enum('Y','N') NOT NULL,
   `person_ident` varchar(12) NOT NULL,
@@ -417,7 +418,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01','M','Украина','W','Y','D','Y','1234567891','N','41201',2,1,0,NULL,1,2,1,NULL,3,NULL),(2,'Калинина','Анна','Павловна','1978-12-10','F','Россия','H','N','B','Y','1234567892','Y','41202',5,1,0,NULL,2,2,3,2,5,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15','F','Украина','N','N','B','Y','1234567893','N','41203',4,1,0,NULL,1,2,1,NULL,4,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03','M','Молдова','W','Y','B','Y','1234567894','N','41204',3,2,0,NULL,1,1,2,NULL,6,NULL),(5,'Куличенко','Алена','Павловна','1982-11-12','F','Украина','H','N','N','Y','1234567895','N','41205',1,2,0,NULL,3,3,3,NULL,9,NULL),(6,'Кузьменко','Алексей','Викторович','1987-10-15','M','Россия','N','N','C','N','1234567896','Y','41206',6,2,0,NULL,3,4,4,1,8,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02','M','Украина','W','Y','C','Y','1234567897','N','41207',8,2,0,NULL,2,3,1,NULL,7,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09','F','Украина','H','N','N','Y','1234567898','N','41208',7,1,0,NULL,3,2,3,NULL,10,NULL),(9,'Боговик','Александр','Александрович','1986-07-06','M','Украина','W','N','B','Y','1234567899','N','41209',10,2,0,NULL,3,4,4,NULL,11,NULL),(10,'Шульга','Екатерина','Сергеевна','1985-03-04','F','Украина','H','N','B','Y','1234567810','N','41210',9,1,0,NULL,1,3,3,NULL,12,NULL);
+INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01','M','Украина','W','Служил','D','Y','1234567891','N','41201',2,1,0,NULL,1,2,1,NULL,3,NULL),(2,'Калинина','Анна','Павловна','1978-12-10','F','Россия','H','Не военнообязанный(ая)','B','Y','1234567892','Y','41202',5,1,0,NULL,2,2,3,2,5,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15','F','Украина','N','Не военнообязанный(ая)','B','Y','1234567893','N','41203',4,1,0,NULL,1,2,1,NULL,4,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03','M','Молдова','W','Освобожден (по здоровью)','B','Y','1234567894','N','41204',3,2,0,NULL,1,1,2,NULL,6,NULL),(5,'Куличенко','Алена','Павловна','1982-11-12','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567895','N','41205',1,2,0,NULL,3,3,3,NULL,9,NULL),(6,'Кузьменко','Алексей','Викторович','1987-10-15','M','Россия','N','Военная кафдра','C','N','1234567896','Y','41206',6,2,0,NULL,3,4,4,1,8,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02','M','Украина','W','По возрасту (не служил)','C','Y','1234567897','N','41207',8,2,0,NULL,2,3,1,NULL,7,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567898','N','41208',7,1,0,NULL,3,2,3,NULL,10,NULL),(9,'Боговик','Александр','Александрович','1986-07-06','M','Украина','W','Освобожден (по здоровью)','B','Y','1234567899','N','41209',10,2,0,NULL,3,4,4,NULL,11,NULL),(10,'Шульга','Екатерина','Сергеевна','1987-03-04','F','Украина','H','Не военнообязанный(ая)','B','Y','1234567810','N','41210',9,1,0,NULL,1,3,3,NULL,12,NULL);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -587,4 +588,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-15 21:40:10
+-- Dump completed on 2014-11-16  0:40:45

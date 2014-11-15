@@ -1114,13 +1114,14 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(cbMarital))
                             .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField8)
-                                    .addComponent(jComboBox5, 0, 107, Short.MAX_VALUE))))))
+                                    .addComponent(jComboBox5, 0, 97, Short.MAX_VALUE)
+                                    .addComponent(jTextField8))))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1199,7 +1200,7 @@ public class MainWindow extends javax.swing.JFrame {
         fieldIdent.setText("1234567890");
         fieldIdent.setToolTipText("Идентификационный код");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Служил", "Освобожден (по здоровью)", "Военная кафедра", "Другое" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Служил", "Освобожден (по здоровью)", "Военная кафедра", "Не военнообязанный(ая)", "Другое" }));
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox3ItemStateChanged(evt);
@@ -1244,7 +1245,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel32.setText("мобильный");
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel31.setText("Дом.");
+        jLabel31.setText("домашний");
 
         jLabel27.setText("Почта (личная):");
 
@@ -1704,7 +1705,7 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)))
                             .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.LEADING)
@@ -2164,7 +2165,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-        if (jComboBox3.getSelectedIndex() == 3){
+        if (jComboBox3.getSelectedIndex() == 4){
             jTextField1.setEnabled(true);
         } else {
             jTextField1.setEnabled(false);
