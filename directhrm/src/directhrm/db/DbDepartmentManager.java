@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.sql.DataSource;
 
 /**
  *
@@ -49,7 +48,6 @@ public class DbDepartmentManager {
 			if( conn != null )
 				conn.close();
 		}
-		
 	}
 	public Organization loadOrganization(int id) throws SQLException {
 		Connection conn = null;

@@ -32,7 +32,7 @@ public class LoginWindow extends javax.swing.JFrame {
     public LoginWindow() {
         initComponents();
 		String homeDir = System.getProperty("user.home");
-		fileProperties = new File(homeDir + "/directhrm.properties");
+		fileProperties = new File(homeDir+"/directhrm.properties");
 		
 		if( fileProperties.exists() ) {
 			try {
@@ -305,7 +305,6 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-
 		String login = loginField.getText();
 		String password = new String( passwordField.getPassword() );
 		if (login.isEmpty() && password.isEmpty()) {
@@ -368,9 +367,9 @@ public class LoginWindow extends javax.swing.JFrame {
 			savedProperties.setProperty("cbDbPassword", cbDbPassword.isSelected() ? "true" : "false");
 			if( !fileProperties.exists() )
 				fileProperties.createNewFile();
-			FileOutputStream fos = new FileOutputStream(fileProperties);
-			savedProperties.store(fos, "");
-			fos.close();
+                    try (FileOutputStream fos = new FileOutputStream(fileProperties)) {
+                        savedProperties.store(fos, "");
+                    }
 		} catch (IOException ex) {
 			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
 			System.out.println(ex);
@@ -381,7 +380,7 @@ public class LoginWindow extends javax.swing.JFrame {
     
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            System.out.println("Enter Button pressed.");
+        System.out.println("Enter Button pressed.");
         }
     }//GEN-LAST:event_formKeyPressed
 
