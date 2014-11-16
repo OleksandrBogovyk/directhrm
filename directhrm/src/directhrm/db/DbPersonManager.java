@@ -32,7 +32,7 @@ public class DbPersonManager {
 		String query = 
 				"SELECT id, person_lastname, person_name, person_middlename, "
 				+ "person_dob, person_gender, person_citizenship, person_ident, "
-				+ "person_driver, person_military, person_marital, person_diploma, "
+				+ "person_driver, person_marital, person_diploma, "
 				+ "person_jobber, person_tabno, department_id "
 				+ "FROM person "
 				+ "ORDER BY person_lastname, person_name, person_middlename";
@@ -51,7 +51,6 @@ public class DbPersonManager {
 				p.setCitizenship(rs.getString("person_citizenship") );
 				p.setIdent(rs.getString("person_ident") );
 				p.setDriver( rs.getString("person_driver") );
-				p.setMilitary(rs.getString("person_military") );
 				p.setMarital(rs.getString("person_marital") );
 				p.setHighEducation(rs.getString("person_diploma") );
 				p.setJobber(rs.getString("person_jobber") );

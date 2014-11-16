@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -27,11 +26,11 @@ public class ControllerPerson extends ControllerStructNode {
 
 	public ControllerPerson(Application application) {
 		super(application);
-		//initFieldControllers();
+		initFieldControllers();
 		
 		setValue( (NodeValue)null );
 	}
-        /*
+        
 	private void initFieldControllers() {
 		fieldLastName = new ControllerTextField( mainWindow.getFieldLastName() );
 		listControllers.add(fieldLastName);
@@ -45,13 +44,13 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldTableId = new ControllerTextFieldInteger( mainWindow.getFieldTableId());
 		listControllers.add(fieldTableId);
 		
-		//dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
-		dcBirthday.setDateChangeListener( new DateChangeListener() {
-			@Override
-			public void dateChanged() {
-				setCmbAgeValue();
-			}
-		} );
+		dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
+//		dcBirthday.setDateChangeListener( new DateChangeListener() {
+//			@Override
+//			public void dateChanged() {
+//				setCmbAgeValue();
+//			}
+//		} );
 		listControllers.add( dcBirthday );
 		
 		rbGender = new ControllerRadioButtons();
@@ -70,18 +69,13 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldDiplomaName = new ControllerTextField( mainWindow.getFieldSpeciality() );
 		listControllers.add(fieldDiplomaName);
 		
-		rbJobber = new ControllerRadioButtons();
-		rbJobber.addRadioButton(mainWindow.getRbJobberNo(), "N");
-		rbJobber.addRadioButton(mainWindow.getRbJobberYes(), "Y");
-		listControllers.add(rbJobber);
-		
 		fieldIdent = new ControllerTextField( mainWindow.getFieldIdent() );
 		listControllers.add( fieldIdent );
 		
 		fieldPassportSnum = new ControllerTextField( mainWindow.getFieldPassportNum() );
 		listControllers.add(fieldPassportSnum);
 		
-		//dcPassportDate = new ControllerTextFieldDate( mainWindow.getFieldPassportDate() );
+		dcPassportDate = new ControllerTextFieldDate( mainWindow.getFieldPassportDate() );
 		listControllers.add(dcPassportDate);
 		
 		fieldPassportIssue = new ControllerTextField( mainWindow.getFieldPassportGiven() );
@@ -89,11 +83,6 @@ public class ControllerPerson extends ControllerStructNode {
 
 		areaDescription = new ControllerTextArea( mainWindow.getAreaDescription() );
 		listControllers.add(areaDescription);
-
-		rbMilitary = new ControllerRadioButtons();
-		//rbMilitary.addRadioButton( mainWindow.getRbArmyYes(), "Y");
-		//rbMilitary.addRadioButton( mainWindow.getRbArmyNo(), "N");
-		listControllers.add(rbMilitary);
 
 		cmbContactCity = new ControllerComboBox( mainWindow.getCmbAddressCity() );
 		listControllers.add(cmbContactCity);
@@ -113,9 +102,6 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldEmail1 = new ControllerTextField( mainWindow.getFieldEmail() );
 		listControllers.add(fieldEmail1);
 
-		fieldEmail2 = new ControllerTextField( mainWindow.getFieldWorkEmail() );
-		listControllers.add(fieldEmail2);
-
 		fieldSkype = new ControllerTextField( mainWindow.getFieldSkype() );
 		listControllers.add(fieldSkype);
 
@@ -124,7 +110,7 @@ public class ControllerPerson extends ControllerStructNode {
 
 		//cmbAge.setEnabled(false);
 	}
-        */
+        
 	@Override
 	public boolean saveEditions() throws SQLException {
 		return true;
@@ -165,10 +151,8 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbCitizenship.setValue( person.getCitizenship() );
 		rbHighEducation.setValue( person.getHighEducation() );
 		fieldDiplomaName.setValue( person.getDiploma().getName() );
-		rbJobber.setValue( person.getJobber() );
 
 		fieldIdent.setValue( person.getIdent() );
-		rbMilitary.setValue( person.getMilitary() );
 		fieldPassportSnum.setValue( person.getPassport().getSnum() );
 		dcPassportDate.setValue( person.getPassport().getDate() );
 		fieldPassportIssue.setValue( person.getPassport().getIssue());
@@ -181,28 +165,27 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldPhone1.setValue( person.getContact().getPhone() );
 		fieldPhone2.setValue( person.getContact().getPhone2() );
 		fieldEmail1.setValue( person.getContact().getEmail() );
-		fieldEmail2.setValue( person.getContact().getEmail2() );
 		fieldSkype.setValue( person.getContact().getSkype() );
 		fieldInternalNum.setValue( person.getContact().getInternalnum() );
 
-		setCmbAgeValue();
+		//setCmbAgeValue();
 	}
 	
-	private void setCmbAgeValue() {
-		Date date = dcBirthday.getDate();
-		if( date == null )
-			return;
-		Date now = new Date();
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTime(date);
-		calendar.add(GregorianCalendar.YEAR, 1);
-		int age = 0;
-		while( calendar.getTime().getTime() < now.getTime() ) {
-			age++;
-			calendar.add(GregorianCalendar.YEAR, 1);
-		}
-		//cmbAge.setSelectedItem( String.valueOf(age) );
-	}
+//	private void setCmbAgeValue() {
+//		Date date = dcBirthday.getDate();
+//		if( date == null )
+//			return;
+//		Date now = new Date();
+//		GregorianCalendar calendar = new GregorianCalendar();
+//		calendar.setTime(date);
+//		calendar.add(GregorianCalendar.YEAR, 1);
+//		int age = 0;
+//		while( calendar.getTime().getTime() < now.getTime() ) {
+//			age++;
+//			calendar.add(GregorianCalendar.YEAR, 1);
+//		}
+//		//cmbAge.setSelectedItem( String.valueOf(age) );
+//	}
 	
 	private Person person;
 	
@@ -216,10 +199,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerRadioButtons rbGender;
 	private ControllerComboBox cmbCitizenship;
 	private ControllerRadioButtons rbHighEducation;
-	private ControllerRadioButtons rbJobber;
 	private ControllerTextField fieldDiplomaName;
-
-	private ControllerRadioButtons rbMilitary;
 
 	private ControllerTextField fieldIdent;
 	private ControllerTextField fieldPassportSnum;
@@ -233,7 +213,6 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldPhone1;
 	private ControllerTextField fieldPhone2;
 	private ControllerTextField fieldEmail1;
-	private ControllerTextField fieldEmail2;
 	private ControllerTextField fieldSkype;
 	private ControllerTextField fieldInternalNum;
 	

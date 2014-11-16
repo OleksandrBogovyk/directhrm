@@ -1299,13 +1299,13 @@
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
                                                               <Component id="jComboBox5" pref="97" max="32767" attributes="0"/>
-                                                              <Component id="jTextField8" max="32767" attributes="0"/>
+                                                              <Component id="fieldGraduationYear" max="32767" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="jTextField15" min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="fieldBirthday" min="-2" pref="71" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -1336,7 +1336,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldBirthday" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1367,7 +1367,7 @@
                                       <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="fieldSpeciality" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldGraduationYear" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -1523,12 +1523,12 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField8">
+                        <Component class="javax.swing.JTextField" name="fieldGraduationYear">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="0000"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField15">
+                        <Component class="javax.swing.JTextField" name="fieldBirthday">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="00.00.0000"/>
                           </Properties>
@@ -1572,7 +1572,7 @@
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="1" attributes="0">
                                                       <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jTextField2" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      <Component id="fieldPassportDate" min="-2" pref="75" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="102" attributes="0">
@@ -1653,7 +1653,7 @@
                                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="fieldPassportNum" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="fieldPassportGiven" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldPassportDate" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1939,7 +1939,7 @@
                             <Property name="text" type="java.lang.String" value="Skype"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField2">
+                        <Component class="javax.swing.JTextField" name="fieldPassportDate">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="00.00.0000"/>
                           </Properties>
@@ -2064,9 +2064,6 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="&#x41f;&#x43e; &#x434;&#x43e;&#x433;&#x43e;&#x432;&#x43e;&#x440;&#x443; &#x2116;"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbByContractActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel24">
                           <Properties>
@@ -2194,7 +2191,7 @@
                                               <Component id="jTextField6" linkSize="46" pref="100" max="32767" attributes="0"/>
                                               <Component id="jSpinner3" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField9" max="32767" attributes="0"/>
+                                              <Component id="fieldInternalNumber" max="32767" attributes="0"/>
                                               <Component id="jTextField18" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -2254,7 +2251,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldInternalNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2283,12 +2280,12 @@
                             <Property name="text" type="java.lang.String" value="&#x41a;&#x430;&#x431;&#x438;&#x43d;&#x435;&#x442;:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField9">
+                        <Component class="javax.swing.JTextField" name="fieldInternalNumber">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="4024"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldInternalNumberActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField10">

@@ -70,14 +70,6 @@ public class MainWindow extends javax.swing.JFrame {
 		return buttonStructExport;
 	}
         
-	//public JCheckBox getCbArmyCaphedra() {
-	//	return cbArmyCaphedra;
-	//}
-
-	//public JCheckBox getCbArmyFree() {
-	//	return cbArmyFree;
-	//}
-        
 	public JCheckBox getCbByContract() {
 		return cbByContract;
 	}
@@ -86,37 +78,13 @@ public class MainWindow extends javax.swing.JFrame {
 		return cbMarital;
 	}
 
-	//public JCheckBox getCbSick() {
-	//	return cbSick;
-	//}
-
-	//public JCheckBox getCbState() {
-	//	return cbState;
-	//}
-
-	//public JCheckBox getCbVacation() {
-	//	return cbVacation;
-	//}
-
 	public JComboBox getCmbAddressCity() {
 		return cmbAddressCity;
 	}
-        /*
-	public JComboBox getCmbAge() {
-		return cmbAge;
-	}
         
-	//public JComboBox getCmbBonus() {
-	//	return cmbBonus;
-	//}
-
 	public JComboBox getCmbCitizenship() {
 		return cmbCitizenship;
 	}
-
-	//public JComboBox getCmbDriver() {
-	//	return cmbDriver;
-	//}
 
 	public JComboBox getCmbMarital() {
 		return cmbMarital;
@@ -126,29 +94,25 @@ public class MainWindow extends javax.swing.JFrame {
 		return cmbOrganization;
 	}
 
-	//public JComboBox getCmbScope() {
-	//	return cmbScope;
-	//}
+	public JTextField getFieldBirthday() {
+		return fieldBirthday;
+	}
 
-	//public JTextField getFieldBirthday() {
-	//	return fieldBirthday;
-	//}
+	public JTextField getFieldDateIn() {
+		return fieldDateIn;
+	}
 
-	//public JTextField getFieldDateIn() {
-	//	return fieldDateIn;
-	//}
+	public JTextField getFieldDateOut() {
+		return fieldDateOut;
+	}
 
-	//public JTextField getFieldDateOut() {
-	//	return fieldDateOut;
-	//}
+	public JTextField getFieldGraduationYear() {
+		return fieldGraduationYear;
+	}
 
-	//public JTextField getFieldGraduationYear() {
-	//	return fieldGraduationYear;
-	//}
-
-	//public JTextField getFieldPassportDate() {
-	//	return fieldPassportDate;
-	//}
+	public JTextField getFieldPassportDate() {
+		return fieldPassportDate;
+	}
 
 	//public JTextField getFieldPhotoLoadDate() {
 	//	return fieldPhotoLoadDate;
@@ -163,9 +127,9 @@ public class MainWindow extends javax.swing.JFrame {
 		return fieldAddressStreet;
 	}
 
-	public JTextField getFieldContractNum() {
-		return fieldContractNum;
-	}
+//	public JTextField getFieldContractNum() {
+//		return fieldContractNum;
+//	}
 
 	public JTextField getFieldEmail() {
 		return fieldEmail;
@@ -211,9 +175,9 @@ public class MainWindow extends javax.swing.JFrame {
 		return fieldPosition;
 	}
 
-	public JTextField getFieldRate() {
-		return fieldRate;
-	}
+//	public JTextField getFieldRate() {
+//		return fieldRate;
+//	}
 
 	public JTextField getFieldSkype() {
 		return fieldSkype;
@@ -227,34 +191,34 @@ public class MainWindow extends javax.swing.JFrame {
 		return fieldTableId;
 	}
 
-	public JTextField getFieldWorkDayEnd() {
-		return fieldWorkDayEnd;
-	}
+//	public JTextField getFieldWorkDayEnd() {
+//		return fieldWorkDayEnd;
+//	}
+//
+//	public JTextField getFieldWorkDayStart() {
+//		return fieldWorkDayStart;
+//	}
+//
+//	public JTextField getFieldWorkEmail() {
+//		return fieldWorkEmail;
+//	}
 
-	public JTextField getFieldWorkDayStart() {
-		return fieldWorkDayStart;
-	}
+//	public JTextField getFieldWorkPlace() {
+//		return fieldWorkPlace;
+//	}
+        
+//	public JLabel getLabelPhoto() {
+//		return labelPhoto;
+//	}
 
-	public JTextField getFieldWorkEmail() {
-		return fieldWorkEmail;
-	}
-
-	public JTextField getFieldWorkPlace() {
-		return fieldWorkPlace;
-	}
-        /*
-	public JLabel getLabelPhoto() {
-		return labelPhoto;
-	}
-
-	public JRadioButton getRbArmyNo() {
-		return rbArmyNo;
-	}
-
-	public JRadioButton getRbArmyYes() {
-		return rbArmyYes;
-	}
-        */
+//	public JRadioButton getRbArmyNo() {
+//		return rbArmyNo;
+//	}
+//
+//	public JRadioButton getRbArmyYes() {
+//		return rbArmyYes;
+//	}
+        
 	public JRadioButton getRbFemale() {
 		return rbFemale;
 	}
@@ -383,8 +347,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
+        fieldGraduationYear = new javax.swing.JTextField();
+        fieldBirthday = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -415,7 +379,7 @@ public class MainWindow extends javax.swing.JFrame {
         fieldEmail = new javax.swing.JTextField();
         fieldSkype = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jTextField2 = new javax.swing.JTextField();
+        fieldPassportDate = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         cbByContract = new javax.swing.JCheckBox();
         jLabel24 = new javax.swing.JLabel();
@@ -438,7 +402,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        fieldInternalNumber = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -1066,9 +1030,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "дневная", "заочная" }));
 
-        jTextField8.setText("0000");
+        fieldGraduationYear.setText("0000");
 
-        jTextField15.setText("00.00.0000");
+        fieldBirthday.setText("00.00.0000");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1123,9 +1087,9 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jComboBox5, 0, 97, Short.MAX_VALUE)
-                                            .addComponent(jTextField8)))))
+                                            .addComponent(fieldGraduationYear)))))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fieldBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -1147,7 +1111,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -1173,7 +1137,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(fieldSpeciality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldGraduationYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1260,7 +1224,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jCheckBox1.setText("Skype");
 
-        jTextField2.setText("00.00.0000");
+        fieldPassportDate.setText("00.00.0000");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1289,7 +1253,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel45)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(fieldPassportDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(fieldIdent, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1350,7 +1314,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(fieldPassportNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldPassportGiven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPassportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
@@ -1403,11 +1367,6 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel8.setPreferredSize(new java.awt.Dimension(500, 200));
 
         cbByContract.setText("По договору №");
-        cbByContract.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbByContractActionPerformed(evt);
-            }
-        });
 
         jLabel24.setText("Табельный номер:");
 
@@ -1539,10 +1498,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel36.setText("Кабинет:");
 
-        jTextField9.setText("4024");
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        fieldInternalNumber.setText("4024");
+        fieldInternalNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                fieldInternalNumberActionPerformed(evt);
             }
         });
 
@@ -1601,7 +1560,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(jSpinner3)
                             .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9)
+                            .addComponent(fieldInternalNumber)
                             .addComponent(jTextField18)))
                     .addComponent(jLabel65))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1654,7 +1613,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldInternalNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2126,19 +2085,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void fieldMiddleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldMiddleNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldMiddleNameActionPerformed
-    /*
-    private void cbByContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbByContractActionPerformed
-        if (cbByContract.isSelected()) {
-            fieldContractNum.setEnabled(true);
-            jSpinner8.setEnabled(true);
-            cbState.setSelected(false);
-        } else {
-            fieldContractNum.setEnabled(false);
-            jSpinner8.setEnabled(false);
-            cbState.setSelected(true);
-        }
-    }//GEN-LAST:event_cbByContractActionPerformed
-    */
+    /*    */
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         exitMainWindow();
     }//GEN-LAST:event_jButton17ActionPerformed
@@ -2182,9 +2129,9 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbMaritalActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void fieldInternalNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldInternalNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_fieldInternalNumberActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         
@@ -2289,13 +2236,17 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbOrganization;
     private javax.swing.JTextField fieldAddressIndex;
     private javax.swing.JTextField fieldAddressStreet;
+    private javax.swing.JTextField fieldBirthday;
     private javax.swing.JTextField fieldDateIn;
     private javax.swing.JTextField fieldDateOut;
     private javax.swing.JTextField fieldEmail;
+    private javax.swing.JTextField fieldGraduationYear;
     private javax.swing.JTextField fieldIdent;
+    private javax.swing.JTextField fieldInternalNumber;
     private javax.swing.JTextField fieldLastName;
     private javax.swing.JTextField fieldMiddleName;
     private javax.swing.JTextField fieldName;
+    private javax.swing.JTextField fieldPassportDate;
     private javax.swing.JTextField fieldPassportGiven;
     private javax.swing.JTextField fieldPassportNum;
     private javax.swing.JTextField fieldPhoneHome;
@@ -2477,18 +2428,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem menuItemCreateDepartment;

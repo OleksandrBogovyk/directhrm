@@ -345,14 +345,22 @@ public class LoginWindow extends javax.swing.JFrame {
 			LoginWindow.this.setVisible(false);
 			LoginWindow.this.dispose();
 			
-			application.initControllers();
-			application.showMainWindow();
 		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NoSuchAlgorithmException ex) {
 			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
 			System.out.println(ex);
 			JOptionPane.showMessageDialog(frame,
 					"Не удалось установить связь с сервером базы данных! "
 							+ "Пожалуйста, попробуйте ещё раз.",
+					"Ошибка",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		try {
+			application.initControllers();
+		} catch (SQLException e) {
+			Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println(e);
+			JOptionPane.showMessageDialog(frame,
+					"Ошибка при инициализации приложения.",
 					"Ошибка",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -375,6 +383,7 @@ public class LoginWindow extends javax.swing.JFrame {
 			System.out.println(ex);
 		}	
 		
+		application.showMainWindow();
     }//GEN-LAST:event_enterButtonActionPerformed
     
     
