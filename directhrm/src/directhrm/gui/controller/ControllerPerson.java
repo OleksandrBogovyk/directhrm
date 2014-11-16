@@ -27,10 +27,11 @@ public class ControllerPerson extends ControllerStructNode {
 
 	public ControllerPerson(Application application) {
 		super(application);
-		initFieldControllers();
+		//initFieldControllers();
 		
 		setValue( (NodeValue)null );
 	}
+        /*
 	private void initFieldControllers() {
 		fieldLastName = new ControllerTextField( mainWindow.getFieldLastName() );
 		listControllers.add(fieldLastName);
@@ -123,7 +124,7 @@ public class ControllerPerson extends ControllerStructNode {
 
 		//cmbAge.setEnabled(false);
 	}
-
+        */
 	@Override
 	public boolean saveEditions() throws SQLException {
 		return true;
