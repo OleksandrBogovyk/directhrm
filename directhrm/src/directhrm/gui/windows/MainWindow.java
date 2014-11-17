@@ -264,7 +264,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         adminListWindow = new javax.swing.JDialog();
         jScrollPane5 = new javax.swing.JScrollPane();
-        adminTableList = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         adminAddWindow = new javax.swing.JDialog();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
@@ -291,6 +291,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel62 = new javax.swing.JLabel();
         jComboBox10 = new javax.swing.JComboBox();
         jButton11 = new javax.swing.JButton();
+        licenseWindow = new javax.swing.JDialog();
+        aboutWindow = new javax.swing.JDialog();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -378,8 +380,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         fieldEmail = new javax.swing.JTextField();
         fieldSkype = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
         fieldPassportDate = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         cbByContract = new javax.swing.JCheckBox();
         jLabel24 = new javax.swing.JLabel();
@@ -491,28 +493,15 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
-        adminListWindow.setLocationRelativeTo(null);
-        adminListWindow.setTitle("Все администраторы");
-
-        adminTableList.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Admin", "Administartor", "319203f211d7e4e5b2d3d2e0cae0644145cfcb6f", "2014-10-24 11:24:49"},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Логин", "Имя", "Пароль", "Добавлен"
+                "ID", "Логин", "Полное имя", "Пароль", "Дата регистрации", "Последний вход"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(adminTableList);
+        ));
+        jScrollPane5.setViewportView(jTable2);
 
         javax.swing.GroupLayout adminListWindowLayout = new javax.swing.GroupLayout(adminListWindow.getContentPane());
         adminListWindow.getContentPane().setLayout(adminListWindowLayout);
@@ -520,7 +509,7 @@ public class MainWindow extends javax.swing.JFrame {
             adminListWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminListWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addContainerGap())
         );
         adminListWindowLayout.setVerticalGroup(
@@ -771,6 +760,32 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jButton6)
                     .addComponent(jButton11))
                 .addContainerGap())
+        );
+
+        licenseWindow.setTitle("Лицензия");
+
+        javax.swing.GroupLayout licenseWindowLayout = new javax.swing.GroupLayout(licenseWindow.getContentPane());
+        licenseWindow.getContentPane().setLayout(licenseWindowLayout);
+        licenseWindowLayout.setHorizontalGroup(
+            licenseWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        licenseWindowLayout.setVerticalGroup(
+            licenseWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        aboutWindow.setTitle("О программе");
+
+        javax.swing.GroupLayout aboutWindowLayout = new javax.swing.GroupLayout(aboutWindow.getContentPane());
+        aboutWindow.getContentPane().setLayout(aboutWindowLayout);
+        aboutWindowLayout.setHorizontalGroup(
+            aboutWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        aboutWindowLayout.setVerticalGroup(
+            aboutWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1218,13 +1233,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel27.setText("Почта (личная):");
 
-        fieldEmail.setText("akuzmenko@gmail.com");
-
         fieldSkype.setEnabled(false);
 
-        jCheckBox1.setText("Skype");
-
         fieldPassportDate.setText("00.00.0000");
+
+        jLabel63.setText("Skype:");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1275,26 +1288,31 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(cmbAddressCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldAddressStreet)
+                                    .addComponent(fieldAddressStreet, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel15))))
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldEmail)
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(fieldPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel31)
-                                    .addComponent(fieldSkype, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fieldPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                                .addComponent(jCheckBox1)))
+                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(fieldPhoneMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                            .addComponent(fieldEmail))
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                                .addGap(65, 65, 65)
+                                                .addComponent(jLabel31))
+                                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(fieldPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel63)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(fieldSkype, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1303,9 +1321,6 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(fieldAddressIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
-
-        jPanel7Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {fieldEmail, fieldSkype});
-
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1358,7 +1373,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel27)
                     .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldSkype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jLabel63))
                 .addContainerGap())
         );
 
@@ -1674,7 +1689,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jSeparator12)
                     .addComponent(jScrollPane4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         panelPersonHolderLayout.setVerticalGroup(
             panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1699,7 +1714,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel33)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1996,9 +2011,19 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu8.add(jSeparator1);
 
         jMenuItem2.setText("Лицензия");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem2);
 
         jMenuItem3.setText("О программе");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem3);
 
         jMenuBar1.add(jMenu8);
@@ -2092,6 +2117,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         adminListWindow.pack();
+        adminListWindow.setLocationRelativeTo(null);
         adminListWindow.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -2105,11 +2131,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         adminAddWindow.pack();
+        adminAddWindow.setLocationRelativeTo(null);
         adminAddWindow.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         adminDelRmWindow.pack();
+        adminDelRmWindow.setLocationRelativeTo(null);
         adminDelRmWindow.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -2206,6 +2234,18 @@ public class MainWindow extends javax.swing.JFrame {
             System.out.println("Пароли совпадают");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        licenseWindow.pack();
+        licenseWindow.setLocationRelativeTo(null);
+        licenseWindow.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        aboutWindow.pack();
+        aboutWindow.setLocationRelativeTo(null);
+        aboutWindow.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
         
 
 	private Application application;
@@ -2220,10 +2260,10 @@ public class MainWindow extends javax.swing.JFrame {
 	private ActionDepartmentDelete actionDeleteDepartment;
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog aboutWindow;
     private javax.swing.JDialog adminAddWindow;
     private javax.swing.JDialog adminDelRmWindow;
     private javax.swing.JDialog adminListWindow;
-    private javax.swing.JTable adminTableList;
     private javax.swing.JTextArea areaDescription;
     private javax.swing.JButton buttonStructDiscard;
     private javax.swing.JButton buttonStructExport;
@@ -2267,7 +2307,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox10;
@@ -2335,6 +2374,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
@@ -2423,6 +2463,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -2438,6 +2479,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JDialog licenseWindow;
     private javax.swing.JMenuItem menuItemCreateDepartment;
     private javax.swing.JMenuItem menuItemCreateOrganization;
     private javax.swing.JMenuItem menuItemDeleteDepartment;

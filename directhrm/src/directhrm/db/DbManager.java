@@ -86,7 +86,6 @@ public class DbManager {
 			while (rst.next()) {
 				String dbadm = rst.getString("admin_name");
 				String dbpwd = rst.getString("admin_password");
-				System.out.println(dbadm + " " + dbpwd);
 				MessageDigest md = MessageDigest.getInstance("SHA1");
 				// Изменить соль на "D!rect*Hrm_"
                 StringBuilder salt = new StringBuilder("Zxczxc123");
