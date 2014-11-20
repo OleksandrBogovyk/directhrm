@@ -115,7 +115,7 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldInternalNum = new ControllerTextField( mainWindow.getFieldInternalNumber() );
 		listControllers.add(fieldInternalNum);
 
-		fieldOrganization = new ControllerTextField( mainWindow.getFieldOrganisation());
+		fieldOrganization = new ControllerTextField( mainWindow.getFieldOrganization());
 		listControllers.add(fieldOrganization);
 
 		fieldDepartment = new ControllerTextField( mainWindow.getFieldDepartment());
