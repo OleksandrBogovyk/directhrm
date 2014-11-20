@@ -91,12 +91,12 @@ public class Person {
 		this.driver = driver;
 	}
 
-	public String getMilitary() {
-		return military;
+	public String getArmy() {
+		return army;
 	}
 
-	public void setMilitary(String military) {
-		this.military = military;
+	public void setArmy(String army) {
+		this.army = army;
 	}
 
 	public String getMarital() {
@@ -137,6 +137,14 @@ public class Person {
 
 	public void setWork(String work) {
 		this.work = work;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
 	}
 
 	public int getDepartmentId() {
@@ -198,12 +206,14 @@ public class Person {
 	private String citizenship = "";
 	private String ident = "";
 	private String driver = "";
-	private String military = "";
+	private String army = "";
 	private String marital = "";
 	private String highEducation = "";
 	private String jobber = "";
 	private String work = "";
 	private Integer tabId;
+	
+	private String about = "";
 	
 	private int departmentId;
 	

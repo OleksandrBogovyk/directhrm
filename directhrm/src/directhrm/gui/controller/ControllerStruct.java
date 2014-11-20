@@ -97,7 +97,7 @@ public class ControllerStruct {
 		NodeValue value = selectedNode == null ? null : selectedNode.getValue();
 		if( value != null && value.getPerson() == null )
 			value = null;
-		controllerPerson.setValue( value );
+		controllerPerson.setValue( selectedNode, value );
 		buttonSave.setEnabled( value != null );
 		buttonDiscard.setEnabled( value != null );
 		buttonExport.setEnabled( value != null );

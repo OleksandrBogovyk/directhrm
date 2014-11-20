@@ -8,9 +8,9 @@ import javax.swing.JCheckBox;
  *
  * @author andre
  */
-public class ComtrollerCheckBox extends ControllerComponent {
+public class ControllerCheckBox extends ControllerComponent {
 
-	public ComtrollerCheckBox(JCheckBox checkBox) {
+	public ControllerCheckBox(JCheckBox checkBox) {
 		this.checkBox = checkBox;
 		checkBox.addActionListener( new ActionListener() {
 

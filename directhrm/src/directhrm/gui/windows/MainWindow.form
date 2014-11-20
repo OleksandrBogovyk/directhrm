@@ -2001,10 +2001,10 @@
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jTextField4" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="cmbOrganization" alignment="0" pref="200" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="fieldDepartment" pref="200" max="32767" attributes="0"/>
+                                              <Component id="fieldOrganisation" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -2019,12 +2019,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cmbOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldOrganisation" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldDepartment" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -2089,17 +2089,6 @@
                             <Property name="text" type="java.lang.String" value="&#x41e;&#x440;&#x433;&#x430;&#x43d;&#x438;&#x437;&#x430;&#x446;&#x438;&#x44f;:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="cmbOrganization">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="2">
-                                <StringItem index="0" value="&#x41e;&#x41e;&#x41e; &quot;&#x421;&#x438;&#x43c;&#x432;&#x43e;&#x43b;-&#x41f;&#x43b;&#x44e;&#x441;&quot;"/>
-                                <StringItem index="1" value="&#x41e;&#x41e;&#x41e; &quot;&#x421;&#x43e;&#x444;&#x442;-&#x41c;&#x435;&#x434;&#x438;&#x430;&quot;"/>
-                              </StringArray>
-                            </Property>
-                            <Property name="selectedIndex" type="int" value="1"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel35">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="&#x414;&#x43e;&#x43b;&#x436;&#x43d;&#x43e;&#x441;&#x442;&#x44c;:"/>
@@ -2132,8 +2121,9 @@
                             <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x434;&#x435;&#x43b;:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField5">
+                        <Component class="javax.swing.JTextField" name="fieldDepartment">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x434;&#x435;&#x43b; &#x441;&#x43e;&#x442;&#x440;&#x443;&#x434;&#x43d;&#x438;&#x43a;&#x430;"/>
                           </Properties>
                         </Component>
@@ -2167,6 +2157,11 @@
                               <Font name="Tahoma" size="11" style="2"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="&#x443;&#x432;&#x43e;&#x43b;&#x435;&#x43d;"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="fieldOrganisation">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                         </Component>
                       </SubComponents>

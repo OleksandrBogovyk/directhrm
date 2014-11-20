@@ -1,7 +1,10 @@
 package directhrm.gui.controller;
 
 import directhrm.Application;
+import directhrm.entity.Department;
+import directhrm.entity.Organization;
 import directhrm.entity.Person;
+import directhrm.gui.controller.component.ControllerCheckBox;
 import directhrm.gui.controller.component.ControllerComboBox;
 import directhrm.gui.controller.component.ControllerComponent;
 import directhrm.gui.controller.component.ControllerRadioButtons;
@@ -9,13 +12,10 @@ import directhrm.gui.controller.component.ControllerTextArea;
 import directhrm.gui.controller.component.ControllerTextField;
 import directhrm.gui.controller.component.ControllerTextFieldDate;
 import directhrm.gui.controller.component.ControllerTextFieldInteger;
-import directhrm.gui.controller.component.DateChangeListener;
 import directhrm.gui.controller.tree.NodeValue;
 import directhrm.gui.controller.tree.TreeNode;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -28,10 +28,14 @@ public class ControllerPerson extends ControllerStructNode {
 		super(application);
 		initFieldControllers();
 		
-		setValue( (NodeValue)null );
+		setValue( null, (NodeValue)null );
 	}
         
 	private void initFieldControllers() {
+		
+		areaAbout = new ControllerTextArea( mainWindow.getAreaDescription() );
+		listControllers.add(areaAbout);
+		
 		fieldLastName = new ControllerTextField( mainWindow.getFieldLastName() );
 		listControllers.add(fieldLastName);
 		
@@ -45,12 +49,6 @@ public class ControllerPerson extends ControllerStructNode {
 		listControllers.add(fieldTableId);
 		
 		dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
-//		dcBirthday.setDateChangeListener( new DateChangeListener() {
-//			@Override
-//			public void dateChanged() {
-//				setCmbAgeValue();
-//			}
-//		} );
 		listControllers.add( dcBirthday );
 		
 		rbGender = new ControllerRadioButtons();
@@ -61,6 +59,12 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbCitizenship = new ControllerComboBox( mainWindow.getCmbCitizenship() );
 		listControllers.add(cmbCitizenship);
 
+		cmbMarital = new ControllerComboBox( mainWindow.getCmbMarital() );
+		listControllers.add(cmbMarital);
+		
+		cbMarital = new ControllerCheckBox( mainWindow.getCbMarital() );
+		listControllers.add(cbMarital);
+		
 		rbHighEducation = new ControllerRadioButtons();
 		//rbHighEducation.addRadioButton( mainWindow.getRbHighEducationYes(), "Y");
 		//rbHighEducation.addRadioButton( mainWindow.getRbHighEducationNo(), "N");
@@ -68,6 +72,12 @@ public class ControllerPerson extends ControllerStructNode {
 		
 		fieldDiplomaName = new ControllerTextField( mainWindow.getFieldSpeciality() );
 		listControllers.add(fieldDiplomaName);
+		
+		cmbArmy = new ControllerComboBox( mainWindow.getCmbArmy() );
+		listControllers.add( cmbArmy );
+		
+		cmbDriver = new ControllerComboBox( mainWindow.getCmbDriver() );
+		listControllers.add( cmbDriver );
 		
 		fieldIdent = new ControllerTextField( mainWindow.getFieldIdent() );
 		listControllers.add( fieldIdent );
@@ -80,9 +90,6 @@ public class ControllerPerson extends ControllerStructNode {
 		
 		fieldPassportIssue = new ControllerTextField( mainWindow.getFieldPassportGiven() );
 		listControllers.add(fieldPassportIssue);
-
-		areaDescription = new ControllerTextArea( mainWindow.getAreaDescription() );
-		listControllers.add(areaDescription);
 
 		cmbContactCity = new ControllerComboBox( mainWindow.getCmbAddressCity() );
 		listControllers.add(cmbContactCity);
@@ -108,7 +115,11 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldInternalNum = new ControllerTextField( mainWindow.getFieldInternalNumber() );
 		listControllers.add(fieldInternalNum);
 
-		//cmbAge.setEnabled(false);
+		fieldOrganization = new ControllerTextField( mainWindow.getFieldOrganisation());
+		listControllers.add(fieldOrganization);
+
+		fieldDepartment = new ControllerTextField( mainWindow.getFieldDepartment());
+		listControllers.add(fieldDepartment);
 	}
         
 	@Override
@@ -124,7 +135,7 @@ public class ControllerPerson extends ControllerStructNode {
 	public void discardEditions() {
 	}
 
-	public void setValue(NodeValue value) {
+	public void setValue(TreeNode<NodeValue> node, NodeValue value) {
 		if( value == null ) {
 			person = null;
 			for(ControllerComponent cc : listControllers) {
@@ -142,6 +153,7 @@ public class ControllerPerson extends ControllerStructNode {
 		
 		person = value.getPerson();
 		
+		areaAbout.setValue( person.getAbout() );
 		fieldLastName.setValue( person.getLastName() );
 		fieldName.setValue( person.getName() );
 		fieldMiddleName.setValue( person.getMiddleName() );
@@ -156,9 +168,18 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldPassportSnum.setValue( person.getPassport().getSnum() );
 		dcPassportDate.setValue( person.getPassport().getDate() );
 		fieldPassportIssue.setValue( person.getPassport().getIssue());
-		
-		areaDescription.setValue("");
 
+		boolean bSingle = person.getMarital().equals("N");
+		cbMarital.setValue( bSingle );
+		mainWindow.getCmbMarital().setEnabled( !bSingle );
+		if( !bSingle ) {
+			String marital = person.getMarital().equals("W") ? "Женат" : "Замужем";
+			cmbMarital.setValue( marital );
+		}
+		
+		cmbArmy.setValue( person.getArmy() );
+		cmbDriver.setValue( person.getDriver() );
+		
 		cmbContactCity.setValue( person.getContact().getCity() );
 		fieldZipcode.setValue( person.getContact().getZipcode() );
 		fieldAddress.setValue( person.getContact().getAddress() );
@@ -168,7 +189,31 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldSkype.setValue( person.getContact().getSkype() );
 		fieldInternalNum.setValue( person.getContact().getInternalnum() );
 
-		//setCmbAgeValue();
+		String departmentText = "";
+		TreeNode<NodeValue> nodeDepartment = node.getParent();
+		if( nodeDepartment != null ) {
+			NodeValue valueDepartment = nodeDepartment.getValue();
+			if( valueDepartment != null ) {
+				Department department = valueDepartment.getDepartment();
+				if( department != null )
+					departmentText = department.getName();
+			}
+		}
+		fieldDepartment.setValue( departmentText );
+
+		String organizationText = "";
+		TreeNode<NodeValue> nodeOrganization = nodeDepartment == null ? 
+				null : nodeDepartment.getParent();
+		if( nodeOrganization != null ) {
+			NodeValue valueOrganization = nodeOrganization.getValue();
+			if( valueOrganization != null ) {
+				Organization organization = valueOrganization.getOrganization();
+				if( organization != null )
+					organizationText = organization.getName();
+			}
+		}
+ 		fieldOrganization.setValue( organizationText );
+		
 	}
 	
 //	private void setCmbAgeValue() {
@@ -191,6 +236,7 @@ public class ControllerPerson extends ControllerStructNode {
 	
 	// Field controllers
 	private List<ControllerComponent> listControllers = new ArrayList<>();
+	private ControllerTextArea areaAbout;
 	private ControllerTextField fieldLastName;
 	private ControllerTextField fieldName;
 	private ControllerTextField fieldMiddleName;
@@ -200,12 +246,15 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerComboBox cmbCitizenship;
 	private ControllerRadioButtons rbHighEducation;
 	private ControllerTextField fieldDiplomaName;
+	private ControllerComboBox cmbArmy;
+	private ControllerComboBox cmbDriver;
+	private ControllerComboBox cmbMarital;
+	private ControllerCheckBox cbMarital;
 
 	private ControllerTextField fieldIdent;
 	private ControllerTextField fieldPassportSnum;
 	private ControllerTextFieldDate dcPassportDate;
 	private ControllerTextField fieldPassportIssue;
-	private ControllerTextArea areaDescription;
 
 	private ControllerComboBox cmbContactCity;
 	private ControllerTextField fieldZipcode;
@@ -215,6 +264,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldEmail1;
 	private ControllerTextField fieldSkype;
 	private ControllerTextField fieldInternalNum;
-	
-	//private JComboBox<String> cmbAge = mainWindow.getCmbAge();
+
+	private ControllerTextField fieldOrganization;
+	private ControllerTextField fieldDepartment;
 }
