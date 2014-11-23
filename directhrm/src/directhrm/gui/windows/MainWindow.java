@@ -1,23 +1,34 @@
 package directhrm.gui.windows;
 
 import directhrm.Application;
+import directhrm.db.DbAdminManager;
 import directhrm.gui.action.ActionDepartmentCreate;
 import directhrm.gui.action.ActionDepartmentDelete;
 import directhrm.gui.action.ActionDepartmentEdit;
 import directhrm.gui.action.ActionOrganizationCreate;
 import directhrm.gui.action.ActionOrganizationDelete;
 import directhrm.gui.action.ActionOrganizationEdit;
+import directhrm.db.DbManager;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -505,6 +516,9 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
+        adminListWindow.setTitle("Все администраторы");
+        adminListWindow.setResizable(false);
+
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -521,14 +535,14 @@ public class MainWindow extends javax.swing.JFrame {
             adminListWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminListWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addContainerGap())
         );
         adminListWindowLayout.setVerticalGroup(
             adminListWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminListWindowLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1006,11 +1020,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel8.setText("Дата рождения:");
 
-        fieldName.setText("Александр");
+        fieldName.setText("Имя");
 
-        fieldLastName.setText("Кузьменко");
+        fieldLastName.setText("Фамилия");
 
-        fieldMiddleName.setText("Викторович");
+        fieldMiddleName.setText("Отчество");
         fieldMiddleName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldMiddleNameActionPerformed(evt);
@@ -1042,8 +1056,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel17.setText("Высшее образование:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Среднее", "Среднее специальное", "Высшее (специалист)", "Не полное высшее (бакалавр)" }));
-        jComboBox2.setSelectedIndex(2);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Среднее", "Среднее специальное", "Не полное высшее (бакалавр)", "Высшее (специалист)" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jLabel18.setText("Специальность:");
 
@@ -1056,6 +1074,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel28.setText("форма обучения");
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "дневная", "заочная" }));
+        jComboBox5.setEnabled(false);
 
         fieldGraduationYear.setText("0000");
 
@@ -1295,12 +1314,14 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(cmbAddressCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(88, 88, 88)
+                                        .addComponent(jLabel9))
+                                    .addComponent(cmbAddressCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldAddressStreet, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(fieldAddressStreet)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel15))))
@@ -1308,22 +1329,21 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbDriver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(fieldPhoneMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                                            .addComponent(fieldEmail))
+                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel32)
+                                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(fieldPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(fieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel7Layout.createSequentialGroup()
                                                 .addGap(65, 65, 65)
                                                 .addComponent(jLabel31))
                                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(fieldPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
                                                 .addComponent(jLabel63)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(fieldSkype, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(fieldSkype, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(fieldPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1394,6 +1414,11 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel8.setPreferredSize(new java.awt.Dimension(500, 200));
 
         cbByContract.setText("По договору №");
+        cbByContract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbByContractActionPerformed(evt);
+            }
+        });
 
         jLabel24.setText("Табельный номер:");
 
@@ -1410,7 +1435,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         jCheckBox2.setSelected(true);
         jCheckBox2.setText("Штат");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
 
+        jTextField3.setText("0123456789");
         jTextField3.setEnabled(false);
 
         jTextField4.setText("00.00.0000");
@@ -1435,6 +1466,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel40.setText("уволен");
 
         fieldOrganization.setEditable(false);
+        fieldOrganization.setText("Название организации");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1608,7 +1640,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel50))
                     .addComponent(jLabel66))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField10, jTextField11});
@@ -1701,7 +1733,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jSeparator12)
                     .addComponent(jScrollPane4))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPersonHolderLayout.setVerticalGroup(
             panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2091,6 +2123,31 @@ public class MainWindow extends javax.swing.JFrame {
             System.exit(0);
         }
     }
+    
+    private List<DbAdminManager> loadUserList() throws ClassNotFoundException, SQLException {
+		List<DbAdminManager> userList = new ArrayList<>();
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/hrms","root","mysqlroot");
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT * FROM admin_tb";
+            
+        ResultSet rs;
+        rs = stmt.executeQuery(sql);
+            
+        while(rs.next()){
+            DbAdminManager user = new DbAdminManager();
+            user.setId(rs.getInt("id"));
+            user.setAdminName(rs.getString("admin_name"));
+            user.setAdminFullname(rs.getString("admin_fullname"));
+            user.setAdminPassword(rs.getString("admin_password"));
+            user.setRegisterDate(rs.getTimestamp("admin_register"));
+            user.setLastDate(rs.getTimestamp("admin_last"));
+            
+            userList.add(user);
+        }   
+		return userList;
+	}
+    
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
         exitMainWindow();
     }//GEN-LAST:event_jMenuItem25ActionPerformed
@@ -2128,11 +2185,23 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        adminListWindow.pack();
-        adminListWindow.setLocationRelativeTo(null);
-        adminListWindow.setVisible(true);
+        try {
+            adminListWindow.pack();
+            adminListWindow.setLocationRelativeTo(null);
+            adminListWindow.setVisible(true);
+            
+            DefaultTableModel tableModel = ((DefaultTableModel)jTable2.getModel());
+            tableModel.setRowCount(0);
+            
+            List<DbAdminManager> userList = loadUserList();
+		for( DbAdminManager user : userList ) {
+                    tableModel.addRow(user.getDataBack());
+                }
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);    
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
+    
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
@@ -2258,6 +2327,38 @@ public class MainWindow extends javax.swing.JFrame {
         aboutWindow.setLocationRelativeTo(null);
         aboutWindow.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        if (jComboBox2.getSelectedIndex() > 1) {
+            jComboBox5.setEnabled(true);
+        } else {
+            jComboBox5.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void cbByContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbByContractActionPerformed
+        if (cbByContract.isSelected()) {
+            jCheckBox2.setSelected(false);
+            jTextField3.setEnabled(true);
+            jTextField4.setEnabled(true);
+        } else {
+            jCheckBox2.setSelected(true);
+            jTextField3.setEnabled(false);
+            jTextField4.setEnabled(false);
+        }
+    }//GEN-LAST:event_cbByContractActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        if (jCheckBox2.isSelected()) {
+            cbByContract.setSelected(false);
+            jTextField3.setEnabled(false);
+            jTextField4.setEnabled(false);
+        } else {
+            cbByContract.setSelected(true);
+            jTextField3.setEnabled(true);
+            jTextField4.setEnabled(true);
+        }
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
         
 
 	private Application application;

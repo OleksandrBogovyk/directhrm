@@ -70,10 +70,9 @@ public class DbManager {
 	
 	
 	public String tryLogin(ConnectProperties prop) 
-	throws ClassNotFoundException, InstantiationException, IllegalAccessException, 
-	SQLException, NoSuchAlgorithmException 
-	{
-        Class.forName("com.mysql.jdbc.Driver");
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException, 
+            SQLException, NoSuchAlgorithmException {
+            Class.forName("com.mysql.jdbc.Driver");
 
 		url = String.format("jdbc:mysql://%s:%s/%s", 
 				prop.getServer(), prop.getPort(), prop.getDatabase());
