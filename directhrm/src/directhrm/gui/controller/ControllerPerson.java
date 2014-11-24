@@ -109,9 +109,6 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldEmail1 = new ControllerTextField( mainWindow.getFieldEmail() );
 		listControllers.add(fieldEmail1);
 
-		fieldSkype = new ControllerTextField( mainWindow.getFieldSkype() );
-		listControllers.add(fieldSkype);
-
 		fieldInternalNum = new ControllerTextField( mainWindow.getFieldInternalNumber() );
 		listControllers.add(fieldInternalNum);
 
