@@ -5,17 +5,21 @@
  */
 package directhrm.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Александр
  */
 public class DbAdminManager {
-    public void setId(int id){
-        this.id = id;
-    }
     
     public void setAdminName(String admin_name){
         this.admin_name = admin_name;
@@ -37,10 +41,9 @@ public class DbAdminManager {
         this.admin_last = admin_last;
     }
 
-    public Vector getDataBack(){
+    public Vector getAdminListTable(){
         Vector<Object> rows = new Vector<>();
         
-        rows.add(id);
         rows.add(admin_name);
         rows.add(admin_fullname);
         rows.add(admin_password);
@@ -49,9 +52,15 @@ public class DbAdminManager {
         return rows;  
     }
     
-    // TODO: Перенести loadUserList() сюда! 
+    //
+    public Vector<Object> AdminListComboBox = new Vector<>();
+    //
+    public void loadAdminListComboBox() {
+        //
+    }
     
-    private int id;
+    // TODO: Перенести loadUserList() сюда? 
+    
     private String admin_name;
     private String admin_fullname;
     private String admin_password;
