@@ -1175,10 +1175,10 @@
               <Border info="null"/>
             </Property>
             <Property name="dividerLocation" type="int" value="220"/>
+            <Property name="dividerSize" type="int" value="3"/>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="directhrm/gui/windows/Bundle.properties" key="MainWindow.jSplitPane1.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
-            <Property name="oneTouchExpandable" type="boolean" value="true"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
@@ -1231,19 +1231,17 @@
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator11" alignment="0" min="-2" pref="1054" max="-2" attributes="0"/>
                                   <Component id="jSeparator10" alignment="0" min="-2" pref="1052" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jSeparator12" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jPanel1" pref="520" max="32767" attributes="0"/>
-                                              <Component id="jPanel5" pref="520" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jPanel7" pref="522" max="32767" attributes="0"/>
-                                              <Component id="jPanel3" max="32767" attributes="0"/>
-                                          </Group>
+                                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSeparator12" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jPanel1" pref="520" max="32767" attributes="0"/>
+                                          <Component id="jPanel5" pref="520" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jPanel7" pref="522" max="32767" attributes="0"/>
+                                          <Component id="jPanel3" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

@@ -945,8 +945,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jSplitPane1.setBorder(null);
         jSplitPane1.setDividerLocation(220);
+        jSplitPane1.setDividerSize(3);
         jSplitPane1.setToolTipText(bundle.getString("MainWindow.jSplitPane1.toolTipText")); // NOI18N
-        jSplitPane1.setOneTouchExpandable(true);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("ООО \"Символ-Плюс\"");
@@ -1757,17 +1757,16 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 1052, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator12, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPersonHolderLayout.createSequentialGroup()
-                            .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jScrollPane4)
+                    .addComponent(jSeparator12)
+                    .addGroup(panelPersonHolderLayout.createSequentialGroup()
+                        .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPersonHolderLayout.setVerticalGroup(
@@ -2178,29 +2177,6 @@ public class MainWindow extends javax.swing.JFrame {
             return buf.toString();
         }
     
-    private List<DbAdminManager> loadUserList() throws ClassNotFoundException, SQLException {
-		List<DbAdminManager> userList = new ArrayList<>();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/hrms?useUnicode=true&characterEncoding=utf-8","root","mysqlroot");
-        Statement stmt = conn.createStatement();
-        String sql = "SELECT admin_name, admin_fullname, admin_password, admin_register, admin_last FROM admin_tb";
-            
-        ResultSet rs;
-        rs = stmt.executeQuery(sql);
-            
-        while(rs.next()){
-            DbAdminManager user = new DbAdminManager();
-            user.setAdminName(rs.getString("admin_name"));
-            user.setAdminFullname(rs.getString("admin_fullname"));
-            user.setAdminPassword(rs.getString("admin_password"));
-            user.setRegisterDate(rs.getTimestamp("admin_register"));
-            user.setLastDate(rs.getTimestamp("admin_last"));
-            
-            userList.add(user);
-        }   
-		return userList;
-	}
-    
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
         exitMainWindow();
     }//GEN-LAST:event_jMenuItem25ActionPerformed
@@ -2246,8 +2222,10 @@ public class MainWindow extends javax.swing.JFrame {
             DefaultTableModel tableModel = ((DefaultTableModel)jTable2.getModel());
             tableModel.setRowCount(0);
             
-            List<DbAdminManager> userList = loadUserList();
-		for( DbAdminManager user : userList ) {
+            DbAdminManager ul = new DbAdminManager();
+            List<DbAdminManager> userList = ul.loadUserList();
+		
+                for( DbAdminManager user : userList ) {
                     tableModel.addRow(user.getAdminListTable());
                 }
         } catch (SQLException | ClassNotFoundException ex) {

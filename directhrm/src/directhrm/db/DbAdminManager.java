@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -52,14 +52,36 @@ public class DbAdminManager {
         return rows;  
     }
     
-    //
-    public Vector<Object> AdminListComboBox = new Vector<>();
-    //
-    public void loadAdminListComboBox() {
+    public List<DbAdminManager> loadUserList() throws ClassNotFoundException, SQLException {
+		List<DbAdminManager> userList = new ArrayList<>();
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        // DbManager dm = new DbManager();
+        // Connection conn = dm.getConnection();
+        // !!!!!!!!! ---------------- Отсюда не получает Connection (работает, но выдает ошибку SQL Exception - SEVERE: NULL) ---------------- !!!!!!!!!
+        
+        // !!!!!!!!! ---------------- Напрямую через DriverManager РАБОТАЕТ ---------------- !!!!!!!!!
+
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/hrms?useUnicode=true&characterEncoding=utf-8","root","mysqlroot");
         //
-    }
-    
-    // TODO: Перенести loadUserList() сюда? 
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT admin_name, admin_fullname, admin_password, admin_register, admin_last FROM admin_tb";
+            
+        ResultSet rs;
+        rs = stmt.executeQuery(sql);
+            
+        while(rs.next()){
+            DbAdminManager user = new DbAdminManager();
+            user.setAdminName(rs.getString("admin_name"));
+            user.setAdminFullname(rs.getString("admin_fullname"));
+            user.setAdminPassword(rs.getString("admin_password"));
+            user.setRegisterDate(rs.getTimestamp("admin_register"));
+            user.setLastDate(rs.getTimestamp("admin_last"));
+            
+            userList.add(user);
+        }   
+		return userList;
+	} 
     
     private String admin_name;
     private String admin_fullname;
