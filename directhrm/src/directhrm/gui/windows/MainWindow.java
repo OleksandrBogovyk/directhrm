@@ -2,6 +2,7 @@ package directhrm.gui.windows;
 
 import directhrm.Application;
 import directhrm.db.DbAdminManager;
+import directhrm.entity.Admin;
 import directhrm.gui.action.ActionDepartmentCreate;
 import directhrm.gui.action.ActionDepartmentDelete;
 import directhrm.gui.action.ActionDepartmentEdit;
@@ -2119,31 +2120,7 @@ public class MainWindow extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    
-    private List<DbAdminManager> loadUserList() throws ClassNotFoundException, SQLException {
-		List<DbAdminManager> userList = new ArrayList<>();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/hrms","root","mysqlroot");
-        Statement stmt = conn.createStatement();
-        String sql = "SELECT * FROM admin_tb";
-            
-        ResultSet rs;
-        rs = stmt.executeQuery(sql);
-            
-        while(rs.next()){
-            DbAdminManager user = new DbAdminManager();
-            user.setId(rs.getInt("id"));
-            user.setAdminName(rs.getString("admin_name"));
-            user.setAdminFullname(rs.getString("admin_fullname"));
-            user.setAdminPassword(rs.getString("admin_password"));
-            user.setRegisterDate(rs.getTimestamp("admin_register"));
-            user.setLastDate(rs.getTimestamp("admin_last"));
-            
-            userList.add(user);
-        }   
-		return userList;
-	}
-    
+        
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
         exitMainWindow();
     }//GEN-LAST:event_jMenuItem25ActionPerformed
@@ -2189,10 +2166,11 @@ public class MainWindow extends javax.swing.JFrame {
             DefaultTableModel tableModel = ((DefaultTableModel)jTable2.getModel());
             tableModel.setRowCount(0);
             
-            List<DbAdminManager> userList = loadUserList();
-		for( DbAdminManager user : userList ) {
-                    tableModel.addRow(user.getDataBack());
-                }
+			DbAdminManager adminManager = application.getDbManager().getAdminManager();
+            List<Admin> userList = adminManager.loadUserList();
+			for( Admin user : userList ) {
+                tableModel.addRow(user.getDataBack());
+            }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);    
         }
