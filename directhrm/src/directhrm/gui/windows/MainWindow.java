@@ -15,7 +15,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,6 +24,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
@@ -265,10 +265,12 @@ public class MainWindow extends javax.swing.JFrame {
 	//public JRadioButton getRbMissionNo() {
 	//	return rbMissionNo;
 	//}
-
 	//public JRadioButton getRbMissionYes() {
 	//	return rbMissionYes;
 	//}
+	public JTable getTableExperience() {
+		return tableExperience;
+	}
 
 	
 	
@@ -443,7 +445,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jSeparator11 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableExperience = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
         jComboBox1 = new javax.swing.JComboBox();
@@ -683,11 +685,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jPasswordField4.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jPasswordField4InputMethodTextChanged(evt);
-            }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 jPasswordField4CaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jPasswordField4InputMethodTextChanged(evt);
             }
         });
         jPasswordField4.addActionListener(new java.awt.event.ActionListener() {
@@ -1686,7 +1688,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setText(bundle.getString("MainWindow.jLabel33.text")); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableExperience.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -1699,7 +1701,7 @@ public class MainWindow extends javax.swing.JFrame {
                 "№", "Предприятие", "Должность", "Дата принятия", "Дата увольнения", "Причина увольнения", "Стаж работы"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tableExperience);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText(bundle.getString("MainWindow.jLabel20.text")); // NOI18N
@@ -2553,7 +2555,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner18;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -2578,6 +2579,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelPersonHolder;
     private javax.swing.JRadioButton rbFemale;
     private javax.swing.JRadioButton rbMale;
+    private javax.swing.JTable tableExperience;
     private javax.swing.JTree treeStruct;
     // End of variables declaration//GEN-END:variables
 }
