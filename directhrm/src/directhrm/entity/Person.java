@@ -195,7 +195,12 @@ public class Person {
 		this.passport = passport;
 	}
 
-	
+	public List<Experience> getListExperience() {
+		return listExperience;
+	}
+	public void addExperience(Experience e) {
+		listExperience.add(e);
+	}
 	
 	private int id;
 	private String name = "";
@@ -222,4 +227,5 @@ public class Person {
 	private PersonPosition position = new PersonPosition();
 	private Diploma diploma = new Diploma();
 	private Passport passport = new Passport();
+	private List<Experience> listExperience = new ArrayList<>();
 }

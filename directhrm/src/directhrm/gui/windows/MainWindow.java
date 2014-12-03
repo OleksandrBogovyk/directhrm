@@ -2,6 +2,7 @@ package directhrm.gui.windows;
 
 import directhrm.Application;
 import directhrm.db.DbAdminManager;
+import directhrm.entity.Admin;
 import directhrm.gui.action.ActionDepartmentCreate;
 import directhrm.gui.action.ActionDepartmentDelete;
 import directhrm.gui.action.ActionDepartmentEdit;
@@ -27,6 +28,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
@@ -267,10 +269,13 @@ public class MainWindow extends javax.swing.JFrame {
 	//public JRadioButton getRbMissionNo() {
 	//	return rbMissionNo;
 	//}
-
 	//public JRadioButton getRbMissionYes() {
 	//	return rbMissionYes;
 	//}
+	
+	public JTable getTableExperience() {
+		return tableExperience;
+	}
 
 	
 	
@@ -445,7 +450,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jSeparator11 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableExperience = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
         buttonStructSave = new javax.swing.JButton();
@@ -1009,7 +1014,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 130, Short.MAX_VALUE))
+                        .addGap(0, 131, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1172,7 +1177,7 @@ public class MainWindow extends javax.swing.JFrame {
                                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox5, 0, 97, Short.MAX_VALUE)
+                                            .addComponent(jComboBox5, 0, 1, Short.MAX_VALUE)
                                             .addComponent(fieldGraduationYear)))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1370,7 +1375,7 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(cmbAddressCity, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldAddressStreet)
+                                    .addComponent(fieldAddressStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel15))))
@@ -1540,7 +1545,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbByContract)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel39)
@@ -1590,7 +1595,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
                     .addComponent(jLabel46))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel38.setText(bundle.getString("MainWindow.jLabel38.text")); // NOI18N
@@ -1723,7 +1728,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setText(bundle.getString("MainWindow.jLabel33.text")); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableExperience.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -1736,7 +1741,7 @@ public class MainWindow extends javax.swing.JFrame {
                 "№", "Предприятие", "Должность", "Дата принятия", "Дата увольнения", "Причина увольнения", "Стаж работы"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tableExperience);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText(bundle.getString("MainWindow.jLabel20.text")); // NOI18N
@@ -1762,10 +1767,10 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(panelPersonHolderLayout.createSequentialGroup()
                         .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 522, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1779,11 +1784,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1796,7 +1801,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -2221,13 +2226,14 @@ public class MainWindow extends javax.swing.JFrame {
             
             DefaultTableModel tableModel = ((DefaultTableModel)jTable2.getModel());
             tableModel.setRowCount(0);
-            
-            DbAdminManager ul = new DbAdminManager();
-            List<DbAdminManager> userList = ul.loadUserList();
+
+            DbAdminManager adminManager = application.getDbManager().getAdminManager();
+            List<Admin> userList = adminManager.loadUserList();
 		
-                for( DbAdminManager user : userList ) {
-                    tableModel.addRow(user.getAdminListTable());
-                }
+            for( Admin user : userList ) {
+                tableModel.addRow(user.getAdminListTable());
+            }
+			
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);    
         }
@@ -2841,7 +2847,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner18;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -2870,6 +2875,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panelPersonHolder;
     private javax.swing.JRadioButton rbFemale;
     private javax.swing.JRadioButton rbMale;
+    private javax.swing.JTable tableExperience;
     private javax.swing.JTree treeStruct;
     // End of variables declaration//GEN-END:variables
 }

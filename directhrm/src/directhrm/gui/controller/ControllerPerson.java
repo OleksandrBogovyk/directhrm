@@ -1,7 +1,10 @@
 package directhrm.gui.controller;
 
 import directhrm.Application;
+import directhrm.db.DbAdminManager;
+import directhrm.entity.Admin;
 import directhrm.entity.Department;
+import directhrm.entity.Experience;
 import directhrm.entity.Organization;
 import directhrm.entity.Person;
 import directhrm.gui.controller.component.ControllerCheckBox;
@@ -15,8 +18,12 @@ import directhrm.gui.controller.component.ControllerTextFieldInteger;
 import directhrm.gui.controller.tree.NodeValue;
 import directhrm.gui.controller.tree.TreeNode;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -94,8 +101,8 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbContactCity = new ControllerComboBox( mainWindow.getCmbAddressCity() );
 		listControllers.add(cmbContactCity);
 
-		fieldZipcode = new ControllerTextField( mainWindow.getFieldAddressIndex() );
-		listControllers.add(fieldZipcode);
+		fieldAddressIndex = new ControllerTextField( mainWindow.getFieldAddressIndex() );
+		listControllers.add(fieldAddressIndex);
 
 		fieldAddress = new ControllerTextField( mainWindow.getFieldAddressStreet() );
 		listControllers.add(fieldAddress);
@@ -178,12 +185,12 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbDriver.setValue( person.getDriver() );
 		
 		cmbContactCity.setValue( person.getContact().getCity() );
-		fieldZipcode.setValue( person.getContact().getZipcode() );
+		fieldAddressIndex.setValue( person.getContact().getZipcode() );
 		fieldAddress.setValue( person.getContact().getAddress() );
 		fieldPhone1.setValue( person.getContact().getPhone() );
 		fieldPhone2.setValue( person.getContact().getPhone2() );
 		fieldEmail1.setValue( person.getContact().getEmail() );
-		fieldSkype.setValue( person.getContact().getSkype() );
+		//fieldSkype.setValue( person.getContact().getSkype() );
 		fieldInternalNum.setValue( person.getContact().getInternalnum() );
 
 		String departmentText = "";
@@ -211,6 +218,22 @@ public class ControllerPerson extends ControllerStructNode {
 		}
  		fieldOrganization.setValue( organizationText );
 		
+		
+		JTable tableExperience = mainWindow.getTableExperience();
+        DefaultTableModel tableModel = ((DefaultTableModel)tableExperience.getModel());
+        tableModel.setRowCount(0);
+		int order = 1;
+		for( Experience e : person.getListExperience() ) {
+			Vector<Object> vector = new Vector<>();
+			vector.add( order++ );
+			vector.add( e.getCompany() );
+			vector.add( e.getPosition());
+			vector.add( dateFormat.format(e.getDateBegin()));
+			vector.add( dateFormat.format(e.getDateEnd()));
+			vector.add( e.getFireReason());
+			vector.add( e.getYears());
+            tableModel.addRow(vector);
+        }
 	}
 	
 //	private void setCmbAgeValue() {
@@ -254,7 +277,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldPassportIssue;
 
 	private ControllerComboBox cmbContactCity;
-	private ControllerTextField fieldZipcode;
+	private ControllerTextField fieldAddressIndex;
 	private ControllerTextField fieldAddress;
 	private ControllerTextField fieldPhone1;
 	private ControllerTextField fieldPhone2;
@@ -264,4 +287,6 @@ public class ControllerPerson extends ControllerStructNode {
 
 	private ControllerTextField fieldOrganization;
 	private ControllerTextField fieldDepartment;
+	
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 }

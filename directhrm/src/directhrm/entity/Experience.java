@@ -56,11 +56,19 @@ public class Experience {
 		this.fireReason = fireReason;
 	}
 
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
+	}
+
 	private int id = 0;
 	private String company = "";
 	private String position = "";
 	private Date dateBegin = null;
 	private Date dateEnd = null;
 	private String fireReason = "";
-	
+	private int years = 0;
 }

@@ -3,6 +3,7 @@ package directhrm.db;
 import directhrm.entity.Contact;
 import directhrm.entity.Contract;
 import directhrm.entity.Diploma;
+import directhrm.entity.Experience;
 import directhrm.entity.Passport;
 import directhrm.entity.Person;
 import directhrm.entity.PersonPosition;
@@ -201,7 +202,30 @@ public class DbPersonManager {
 				rs.close();
 				ps.close();
 			}
+			
+			query = 
+					"SELECT id, experience_company, experience_position, experience_dbegin, "
+					+ "experience_dend, experience_freason, experience_years "
+					+ "FROM experience WHERE person_id = " + p.getId() + " ORDER BY experience_dbegin DESC";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery(query);
+			while( rs.next() ) {
+				Experience e = new Experience();
+				e.setId( rs.getInt("id") );
+				e.setCompany( rs.getString("experience_company") );
+				e.setPosition( rs.getString("experience_position") );
+				e.setDateBegin( DbManager.fetchDate(rs, "experience_dbegin") );
+				e.setDateEnd( DbManager.fetchDate(rs, "experience_dend") );
+				e.setFireReason( rs.getString("experience_freason") );
+				e.setYears( rs.getInt("experience_years") );
+				p.addExperience(e);
+			}
+			rs.close();
+			ps.close();
 
+			rs = null;
+			ps = null;
+			
 			return p;
 		} finally {
 			if( rs != null )

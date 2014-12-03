@@ -63,6 +63,11 @@ public class DbManager {
 	public DbPersonManager getPersonManager() {
 		return personManager;
 	}
+
+	public DbAdminManager getAdminManager() {
+		return adminManager;
+	}
+	
 	
 	
 	public String tryLogin(ConnectProperties prop) 
@@ -98,6 +103,7 @@ public class DbManager {
 			
 			departmentManager = new DbDepartmentManager(this);
 			personManager = new DbPersonManager(this);
+			adminManager = new DbAdminManager(this);
 			
 			return "";
 		}
@@ -132,6 +138,7 @@ public class DbManager {
 	private DataSource dataSource;
 	private DbDepartmentManager departmentManager;
 	private DbPersonManager personManager;
+	private DbAdminManager adminManager;
 	
 	private List<DbEventListener> listeners = new ArrayList<>();
 }
