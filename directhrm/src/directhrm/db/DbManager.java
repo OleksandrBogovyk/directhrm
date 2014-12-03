@@ -55,10 +55,6 @@ public class DbManager {
             } 
             return buf.toString();
         }
-	
-//	public DataSource getDataSource() {
-//		return dataSource;
-//	}
 
 	public DbDepartmentManager getDepartmentManager() {
 		return departmentManager;
@@ -86,17 +82,19 @@ public class DbManager {
 		
 		Connection conn = getConnection();
 		try (Statement stm = conn.createStatement()) {
-			ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name=\"" + prop.getUser() + "\"");
+			ResultSet rst = stm.executeQuery("SELECT admin_name, admin_password FROM admin_tb where admin_name='" + prop.getUser() + "';");
 			while (rst.next()) {
-				String dbadm = rst.getString("admin_name");
-				String dbpwd = rst.getString("admin_password");
-				MessageDigest md = MessageDigest.getInstance("SHA1");
-				// Изменить соль на "D!rect*Hrm_"
-                StringBuilder salt = new StringBuilder("Zxczxc123");
-				String hashpwd = salt.append(prop.getPassword()).toString();
-				md.update(hashpwd.getBytes());
-				byte[] output = md.digest();
-				String outpwd = bytesToHex(output);
+                            String dbadm = rst.getString("admin_name");
+                            String dbpwd = rst.getString("admin_password");
+                            MessageDigest md = MessageDigest.getInstance("SHA1");
+                            
+                    // !!! Изменить соль вместо "Zxczxc123" на "D!rect*Hrm_" позже !!!
+    
+                            StringBuilder salt = new StringBuilder("Zxczxc123");
+                            String hashpwd = salt.append(prop.getPassword()).toString();
+                            md.update(hashpwd.getBytes());
+                            byte[] output = md.digest();
+                            String outpwd = bytesToHex(output);
 
 				if (!dbadm.equals(prop.getPassword()) && !dbpwd.equals(outpwd)) {
 					return "Ошибка авторизации! Пожалуйста, попробуйте ещё раз.";
@@ -122,8 +120,8 @@ public class DbManager {
 		listeners.remove( l );
 	}
 	public void notifyListeners(List<DbEvent> events) {
-		for(DbEvent e : events) {
-			for(DbEventListener l : listeners) {
+		for (DbEvent e : events) {
+			for (DbEventListener l : listeners) {
 				try {
 					l.dbEventHappened(e);
 				} catch (RuntimeException ex) {
