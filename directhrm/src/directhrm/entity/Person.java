@@ -223,8 +223,8 @@ public class Person {
 	private int departmentId;
 	
 	private Contact contact = new Contact();
-	private Contract contract = new Contract();
-	private PersonPosition position = new PersonPosition();
+	private Contract contract;
+	private PersonPosition position;
 	private Diploma diploma = new Diploma();
 	private Passport passport = new Passport();
 	private List<Experience> listExperience = new ArrayList<>();

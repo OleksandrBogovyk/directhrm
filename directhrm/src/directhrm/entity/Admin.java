@@ -37,7 +37,7 @@ public class Admin {
         this.admin_last = admin_last;
     }
 
-    public Vector getDataBack(){
+    public Vector getAdminListTable(){
         Vector<Object> rows = new Vector<>();
         
         rows.add(id);

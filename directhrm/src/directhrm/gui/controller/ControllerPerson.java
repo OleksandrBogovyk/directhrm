@@ -1,12 +1,12 @@
 package directhrm.gui.controller;
 
 import directhrm.Application;
-import directhrm.db.DbAdminManager;
-import directhrm.entity.Admin;
+import directhrm.entity.Contract;
 import directhrm.entity.Department;
 import directhrm.entity.Experience;
 import directhrm.entity.Organization;
 import directhrm.entity.Person;
+import directhrm.entity.PersonPosition;
 import directhrm.gui.controller.component.ControllerCheckBox;
 import directhrm.gui.controller.component.ControllerComboBox;
 import directhrm.gui.controller.component.ControllerComponent;
@@ -20,6 +20,7 @@ import directhrm.gui.controller.tree.TreeNode;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JTable;
@@ -124,6 +125,27 @@ public class ControllerPerson extends ControllerStructNode {
 
 		fieldDepartment = new ControllerTextField( mainWindow.getFieldDepartment());
 		listControllers.add(fieldDepartment);
+
+		fieldPosition = new ControllerTextField( mainWindow.getFieldPosition());
+		listControllers.add(fieldPosition);
+		
+		dcHireDate = new ControllerTextFieldDate( mainWindow.getFieldDateIn() );
+		listControllers.add(dcHireDate);
+		
+		dcFireDate = new ControllerTextFieldDate( mainWindow.getFieldDateOut());
+		listControllers.add(dcFireDate);
+		
+		cbNotByContract = new ControllerCheckBox( mainWindow.getCbNotByContract());
+		listControllers.add(cbNotByContract);
+		
+		cbByContract = new ControllerCheckBox( mainWindow.getCbByContract());
+		listControllers.add(cbByContract);
+
+		fieldContractNumber = new ControllerTextField( mainWindow.getFieldContractNumber());
+		listControllers.add(fieldContractNumber);
+		
+		fieldContractDate = new ControllerTextFieldDate( mainWindow.getFieldContractDate());
+		listControllers.add(fieldContractDate);
 	}
         
 	@Override
@@ -140,18 +162,25 @@ public class ControllerPerson extends ControllerStructNode {
 	}
 
 	public void setValue(TreeNode<NodeValue> node, NodeValue value) {
+
+		for(ControllerComponent cc : listControllers) {
+			cc.clearValue();
+			cc.clearDirty();
+		}
+		{
+			JTable tableExperience = mainWindow.getTableExperience();
+			DefaultTableModel tableModel = ((DefaultTableModel)tableExperience.getModel());
+			tableModel.setRowCount(0);
+		}
+
 		if( value == null ) {
 			person = null;
 			for(ControllerComponent cc : listControllers) {
-				cc.clearValue();
-				cc.clearDirty();
 				cc.setEnabled(false);
 			}
 			return;
 		}
 		for (ControllerComponent cc : listControllers) {
-			cc.clearValue();
-			cc.clearDirty();
 			cc.setEnabled(true);
 		}
 		
@@ -218,6 +247,32 @@ public class ControllerPerson extends ControllerStructNode {
 		}
  		fieldOrganization.setValue( organizationText );
 		
+		PersonPosition position = person.getPosition();
+		String positionText = position == null ? "" : position.getName();
+		fieldPosition.setValue(positionText);
+		if( position == null ) {
+			dcHireDate.setValue((Date)null);
+			dcFireDate.setValue((Date)null);
+		} else {
+			dcHireDate.setValue( position.getHireDate() );
+			dcFireDate.setValue( position.getFireDate() );
+		}
+		if( person.getJobber().equals("Y") && person.getContract() != null ) {
+			cbByContract.setValue(true);
+			cbNotByContract.setValue(false);
+			Contract contract = person.getContract();
+			fieldContractNumber.setValue( contract.getNumber() );
+			fieldContractDate.setValue( contract.getDate() );
+			fieldContractNumber.setEnabled(true);
+			fieldContractDate.setEnabled(true);
+		} else {
+			cbByContract.setValue(false);
+			cbNotByContract.setValue(true);
+			fieldContractNumber.setValue( "" );
+			fieldContractDate.setValue( (Date)null );
+			fieldContractNumber.setEnabled(false);
+			fieldContractDate.setEnabled(false);
+		}
 		
 		JTable tableExperience = mainWindow.getTableExperience();
         DefaultTableModel tableModel = ((DefaultTableModel)tableExperience.getModel());
@@ -287,6 +342,14 @@ public class ControllerPerson extends ControllerStructNode {
 
 	private ControllerTextField fieldOrganization;
 	private ControllerTextField fieldDepartment;
+	private ControllerTextField fieldPosition;
+	private ControllerTextFieldDate dcHireDate;
+	private ControllerTextFieldDate dcFireDate;
+	private ControllerCheckBox cbNotByContract;
+	private ControllerCheckBox cbByContract;
+	private ControllerTextField fieldContractNumber;
+	private ControllerTextFieldDate fieldContractDate;
+	
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 }
