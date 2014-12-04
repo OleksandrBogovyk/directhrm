@@ -89,7 +89,7 @@ public class DbPersonManager {
 			p.setArmy( rs.getString("person_army") );
 			p.setMarital(rs.getString("person_marital") );
 			p.setHighEducation(rs.getString("person_diploma") );
-			p.setJobber(rs.getString("person_driver") );
+			p.setJobber(rs.getString("person_jobber") );
 			p.setTabId(rs.getInt("person_tabno") );
 			p.setDepartmentId(rs.getInt("department_id") );
 			int contactId = rs.getInt("contact_id");
@@ -146,7 +146,7 @@ public class DbPersonManager {
 				ps = conn.prepareStatement(query);
 				rs = ps.executeQuery(query);
 				if( rs.next() ) {
-					Contract contract = p.getContract();
+					Contract contract = new Contract();
 					contract.setId(contractId);
 					contract.setNumber( rs.getString("contract_number") );
 					contract.setDate(DbManager.fetchDate(rs, "contract_date") );
@@ -158,12 +158,13 @@ public class DbPersonManager {
 
 			query = 
 					"SELECT id, position_name, position_hiredate, position_firedate "
-					+ "FROM position WHERE person_id = " + p.getId();
+					+ "FROM position WHERE position_firedate IS NULL AND person_id = " + p.getId();
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery(query);
 			if( rs.next() ) {
-				PersonPosition position = p.getPosition();
+				PersonPosition position = new PersonPosition();
 				position.setId(rs.getInt("id"));
+				position.setName( rs.getString("position_name") );
 				position.setHireDate(DbManager.fetchDate(rs, "position_hiredate") );
 				position.setFireDate(DbManager.fetchDate(rs, "position_firedate") );
 				p.setPosition(position);
