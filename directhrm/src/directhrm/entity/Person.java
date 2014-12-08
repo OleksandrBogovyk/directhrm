@@ -3,6 +3,7 @@ package directhrm.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.Icon;
 
 /**
  *
@@ -201,6 +202,38 @@ public class Person {
 	public void addExperience(Experience e) {
 		listExperience.add(e);
 	}
+
+	public Worktime getWorktime() {
+		return worktime;
+	}
+
+	public void setWorktime(Worktime worktime) {
+		this.worktime = worktime;
+	}
+
+	public Salary getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Salary salary) {
+		this.salary = salary;
+	}
+
+	public Bonus getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(Bonus bonus) {
+		this.bonus = bonus;
+	}
+
+	public Icon getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Icon photo) {
+		this.photo = photo;
+	}
 	
 	private int id;
 	private String name = "";
@@ -228,4 +261,8 @@ public class Person {
 	private Diploma diploma = new Diploma();
 	private Passport passport = new Passport();
 	private List<Experience> listExperience = new ArrayList<>();
+	private Worktime worktime;
+	private Salary salary;
+	private Bonus bonus;
+	private Icon photo = null;
 }

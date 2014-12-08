@@ -95,6 +95,9 @@ public class ControllerStructTree implements DbEventListener {
 		if( event.getType() == DbEvent.DbEventType.DEPARTMENT_UPDATED ) {
 			treeModel.updateDepartment( event.getDepartment() );
 		}
+		if( event.getType() == DbEvent.DbEventType.PERSON_UPDATED ) {
+			treeModel.updatePerson( event.getPerson() );
+		}
 	}
 	
 	private Application application;

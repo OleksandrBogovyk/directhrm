@@ -7,6 +7,7 @@ import directhrm.entity.Experience;
 import directhrm.entity.Organization;
 import directhrm.entity.Person;
 import directhrm.entity.PersonPosition;
+import directhrm.entity.Worktime;
 import directhrm.gui.controller.component.ControllerCheckBox;
 import directhrm.gui.controller.component.ControllerComboBox;
 import directhrm.gui.controller.component.ControllerComponent;
@@ -14,15 +15,19 @@ import directhrm.gui.controller.component.ControllerRadioButtons;
 import directhrm.gui.controller.component.ControllerTextArea;
 import directhrm.gui.controller.component.ControllerTextField;
 import directhrm.gui.controller.component.ControllerTextFieldDate;
+import directhrm.gui.controller.component.ControllerTextFieldDecimal;
 import directhrm.gui.controller.component.ControllerTextFieldInteger;
 import directhrm.gui.controller.tree.NodeValue;
 import directhrm.gui.controller.tree.TreeNode;
+import directhrm.img.icon.Icons;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +40,9 @@ public class ControllerPerson extends ControllerStructNode {
 	public ControllerPerson(Application application) {
 		super(application);
 		initFieldControllers();
+		
+		java.net.URL imgURL = Icons.class.getResource("default_photo.png");
+		iconDefaultPhoto = new ImageIcon(imgURL);
 		
 		setValue( null, (NodeValue)null );
 	}
@@ -117,6 +125,9 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldEmail1 = new ControllerTextField( mainWindow.getFieldEmail() );
 		listControllers.add(fieldEmail1);
 
+		fieldEmail2 = new ControllerTextField( mainWindow.getFieldWorkEmail());
+		listControllers.add(fieldEmail2);
+
 		fieldInternalNum = new ControllerTextField( mainWindow.getFieldInternalNumber() );
 		listControllers.add(fieldInternalNum);
 
@@ -146,10 +157,40 @@ public class ControllerPerson extends ControllerStructNode {
 		
 		fieldContractDate = new ControllerTextFieldDate( mainWindow.getFieldContractDate());
 		listControllers.add(fieldContractDate);
+
+		fieldWorktimeFrom = new ControllerTextField( mainWindow.getFieldWorktimeFrom());
+		listControllers.add(fieldWorktimeFrom);
+
+		fieldWorktimeTo = new ControllerTextField( mainWindow.getFieldWorktimeTo());
+		listControllers.add(fieldWorktimeTo);
+
+		fieldSalary = new ControllerTextFieldDecimal( mainWindow.getFieldSalary());
+		listControllers.add(fieldSalary);
+
+		fieldBonus = new ControllerTextFieldDecimal( mainWindow.getFieldBonus());
+		listControllers.add(fieldBonus);
+
+		fieldPlace1 = new ControllerTextField( mainWindow.getFieldRoom1());
+		listControllers.add(fieldPlace1);
+
+		fieldPlace2 = new ControllerTextField( mainWindow.getFieldRoom2());
+		listControllers.add(fieldPlace2);
 	}
         
 	@Override
 	public boolean saveEditions() throws SQLException {
+		Person p = new Person();
+		p.setId( person.getId() );
+		p.setLastName( fieldLastName.getValue() );
+		p.setName( fieldName.getValue() );
+		p.setMiddleName(fieldMiddleName.getValue() );
+		p.setBirthDate( dcBirthday.getDate() );
+		
+		dbManager.getPersonManager().savePerson(p);
+		person = p;
+		for(ControllerComponent cc : listControllers) {
+			cc.clearDirty();
+		}
 		return true;
 	}
 
@@ -178,6 +219,7 @@ public class ControllerPerson extends ControllerStructNode {
 			for(ControllerComponent cc : listControllers) {
 				cc.setEnabled(false);
 			}
+			mainWindow.getLabelPhoto().setIcon(null);
 			return;
 		}
 		for (ControllerComponent cc : listControllers) {
@@ -219,20 +261,27 @@ public class ControllerPerson extends ControllerStructNode {
 		fieldPhone1.setValue( person.getContact().getPhone() );
 		fieldPhone2.setValue( person.getContact().getPhone2() );
 		fieldEmail1.setValue( person.getContact().getEmail() );
-		//fieldSkype.setValue( person.getContact().getSkype() );
+		fieldEmail2.setValue( person.getContact().getEmail2() );
 		fieldInternalNum.setValue( person.getContact().getInternalnum() );
 
 		String departmentText = "";
+		String place1Text = "";
+		String place2Text = "";
 		TreeNode<NodeValue> nodeDepartment = node.getParent();
 		if( nodeDepartment != null ) {
 			NodeValue valueDepartment = nodeDepartment.getValue();
 			if( valueDepartment != null ) {
 				Department department = valueDepartment.getDepartment();
-				if( department != null )
+				if( department != null ) {
 					departmentText = department.getName();
+					place1Text = department.getPlace();
+					place2Text = department.getPlace2();
+				}
 			}
 		}
 		fieldDepartment.setValue( departmentText );
+		fieldPlace1.setValue(place1Text);
+		fieldPlace2.setValue(place2Text);
 
 		String organizationText = "";
 		TreeNode<NodeValue> nodeOrganization = nodeDepartment == null ? 
@@ -289,23 +338,35 @@ public class ControllerPerson extends ControllerStructNode {
 			vector.add( e.getYears());
             tableModel.addRow(vector);
         }
+		
+		if( person.getPhoto() == null ) {
+			mainWindow.getLabelPhoto().setIcon(iconDefaultPhoto);
+		} else {
+			mainWindow.getLabelPhoto().setIcon(person.getPhoto());
+		}
+
+		Worktime worktime = person.getWorktime();
+		if( worktime == null ) {
+			fieldWorktimeFrom.setValue("");
+			fieldWorktimeTo.setValue("");
+		} else {
+			fieldWorktimeFrom.setValue( worktime.getFrom() );
+			fieldWorktimeTo.setValue( worktime.getTo() );
+		}
+		
+		if( person.getSalary() == null ) {
+			fieldSalary.setValue( (Double)null);
+		} else {
+			fieldSalary.setValue( person.getSalary().getValue() );
+		}
+
+		if( person.getBonus()== null ) {
+			fieldBonus.setValue( (Double)null);
+		} else {
+			fieldBonus.setValue( person.getBonus().getSum());
+		}
+
 	}
-	
-//	private void setCmbAgeValue() {
-//		Date date = dcBirthday.getDate();
-//		if( date == null )
-//			return;
-//		Date now = new Date();
-//		GregorianCalendar calendar = new GregorianCalendar();
-//		calendar.setTime(date);
-//		calendar.add(GregorianCalendar.YEAR, 1);
-//		int age = 0;
-//		while( calendar.getTime().getTime() < now.getTime() ) {
-//			age++;
-//			calendar.add(GregorianCalendar.YEAR, 1);
-//		}
-//		//cmbAge.setSelectedItem( String.valueOf(age) );
-//	}
 	
 	private Person person;
 	
@@ -337,7 +398,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldPhone1;
 	private ControllerTextField fieldPhone2;
 	private ControllerTextField fieldEmail1;
-	private ControllerTextField fieldSkype;
+	private ControllerTextField fieldEmail2;
 	private ControllerTextField fieldInternalNum;
 
 	private ControllerTextField fieldOrganization;
@@ -350,6 +411,13 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerTextField fieldContractNumber;
 	private ControllerTextFieldDate fieldContractDate;
 	
+	private ControllerTextField fieldWorktimeFrom;
+	private ControllerTextField fieldWorktimeTo;
+	private ControllerTextFieldDecimal fieldSalary;
+	private ControllerTextFieldDecimal fieldBonus;
+	private ControllerTextField fieldPlace1;
+	private ControllerTextField fieldPlace2;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+	private Icon iconDefaultPhoto;
 }

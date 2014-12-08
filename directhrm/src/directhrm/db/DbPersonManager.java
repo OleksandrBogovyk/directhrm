@@ -1,12 +1,14 @@
 package directhrm.db;
 
+import directhrm.entity.Bonus;
 import directhrm.entity.Contact;
 import directhrm.entity.Contract;
-import directhrm.entity.Diploma;
 import directhrm.entity.Experience;
 import directhrm.entity.Passport;
 import directhrm.entity.Person;
 import directhrm.entity.PersonPosition;
+import directhrm.entity.Salary;
+import directhrm.entity.Worktime;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,7 +72,8 @@ public class DbPersonManager {
 					+ "person_dob, person_gender, person_citizenship, person_ident, "
 					+ "person_driver, person_marital, person_army, person_diploma, "
 					+ "person_jobber, person_tabno, department_id, "
-					+ "contact_id, contract_id, passport_id, about_id "
+					+ "contact_id, contract_id, passport_id, about_id, "
+					+ "worktime_id, salary_id, bonus_id, photo_id "
 					+ "FROM person WHERE id = " + id;
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery(query);
@@ -96,6 +99,10 @@ public class DbPersonManager {
 			int contractId = rs.getInt("contract_id");
 			int passportId = rs.getInt("passport_id");
 			int aboutId = rs.getInt("about_id");
+			int worktimeId = rs.getInt("worktime_id");
+			int salaryId = rs.getInt("salary_id");
+			int bonusId = rs.getInt("bonus_id");
+			int photoId = rs.getInt("photo_id");
 			
 			rs.close();
 			ps.close();
@@ -117,7 +124,7 @@ public class DbPersonManager {
 				query = 
 						"SELECT contact_city, contact_address, zipcode, contact_phone, "
 						+ "contact_phone2, contact_email, contact_email2, "
-						+ "skype, notes "
+						+ "contact_intnum, notes "
 						+ "FROM contact WHERE id = " + contactId;
 				ps = conn.prepareStatement(query);
 				rs = ps.executeQuery(query);
@@ -131,7 +138,7 @@ public class DbPersonManager {
 					contact.setPhone2(rs.getString("contact_phone2") );
 					contact.setEmail(rs.getString("contact_email") );
 					contact.setEmail2(rs.getString("contact_email2") );
-					contact.setSkype(rs.getString("skype") );
+					contact.setInternalnum(rs.getString("contact_intnum") );
 					contact.setNotes(rs.getString("notes") );
 					p.setContact(contact);
 				}
@@ -156,6 +163,57 @@ public class DbPersonManager {
 				ps.close();
 			}
 
+			if( worktimeId > 0 ) {
+				query = 
+						"SELECT worktime_from, worktime_till "
+						+ "FROM worktime WHERE id = " + worktimeId;
+				ps = conn.prepareStatement(query);
+				rs = ps.executeQuery(query);
+				if( rs.next() ) {
+					Worktime worktime = new Worktime();
+					worktime.setId(worktimeId);
+					worktime.setFrom( DbManager.fetchNotNullString(rs, "worktime_from") );
+					worktime.setTo( DbManager.fetchNotNullString(rs, "worktime_till") );
+					p.setWorktime(worktime);
+				}
+				rs.close();
+				ps.close();
+			}
+			
+			if( salaryId > 0 ) {
+				query = 
+						"SELECT salary_value, salary_date "
+						+ "FROM salary WHERE id = " + salaryId;
+				ps = conn.prepareStatement(query);
+				rs = ps.executeQuery(query);
+				if( rs.next() ) {
+					Salary salary = new Salary();
+					salary.setId(salaryId);
+					salary.setValue( rs.getDouble("salary_value") );
+					salary.setDate(DbManager.fetchDate(rs, "salary_date"));
+					p.setSalary(salary);
+				}
+				rs.close();
+				ps.close();
+			}
+			
+			if( bonusId > 0 ) {
+				query = 
+						"SELECT bonus_sum, bonus_category "
+						+ "FROM bonus WHERE id = " + bonusId;
+				ps = conn.prepareStatement(query);
+				rs = ps.executeQuery(query);
+				if( rs.next() ) {
+					Bonus bonus = new Bonus();
+					bonus.setId(bonusId);
+					bonus.setSum(rs.getDouble("bonus_sum") );
+					bonus.setCategory(DbManager.fetchNotNullString(rs, "bonus_category"));
+					p.setBonus(bonus);
+				}
+				rs.close();
+				ps.close();
+			}
+			
 			query = 
 					"SELECT id, position_name, position_hiredate, position_firedate "
 					+ "FROM position WHERE position_firedate IS NULL AND person_id = " + p.getId();
@@ -237,6 +295,14 @@ public class DbPersonManager {
 		
 	}
 	
+	public void savePerson(Person p) throws SQLException {
+		if( p.getId() > 0 ) {
+			updatePerson(p);
+		} else {
+			insertPerson(p);
+		}
+	}
+	
 	public void updatePerson(Person person) 
 	throws SQLException
 	{
@@ -265,10 +331,10 @@ public class DbPersonManager {
 
 		String command = 
 				"UPDATE person SET "
-				+ "person_lastname = ?, person_name = ?, person_middlename = ?, "
-				+ "person_dob = ?, person_gender = ?, person_citizenship = ?, person_ident = ?, "
-				+ "person_driver = ?, person_army = ?, person_marital = ?, person_diploma = ?, "
-				+ "person_jobber = ?, person_work = ?, person_tabno = ?, department_id = ? "
+				+ "person_lastname = ?, person_name = ?, person_middlename = ? "
+//				+ "person_dob = ?, person_gender = ?, person_citizenship = ?, person_ident = ?, "
+//				+ "person_driver = ?, person_army = ?, person_marital = ?, person_diploma = ?, "
+//				+ "person_jobber = ?, person_work = ?, person_tabno = ?, department_id = ? "
 				+ "WHERE id = ?";
 		try {
 			ps = conn.prepareStatement( command );
@@ -276,18 +342,18 @@ public class DbPersonManager {
 			ps.setString(index++, person.getLastName());
 			ps.setString(index++, person.getName());
 			ps.setString(index++, person.getMiddleName());
-			ps.setDate(index++, DbManager.createSqlDate( person.getBirthDate() ) );
-			ps.setString(index++, person.getGender());
-			ps.setString(index++, person.getCitizenship());
-			ps.setString(index++, person.getIdent());
-			ps.setString(index++, person.getDriver());
-			ps.setString(index++, person.getArmy());
-			ps.setString(index++, person.getMarital());
-			ps.setString(index++, person.getHighEducation());
-			ps.setString(index++, person.getJobber());
-			ps.setString(index++, person.getWork());
-			ps.setInt(index++, person.getTabId());
-			ps.setInt(index++, person.getDepartmentId());
+//			ps.setDate(index++, DbManager.createSqlDate( person.getBirthDate() ) );
+//			ps.setString(index++, person.getGender());
+//			ps.setString(index++, person.getCitizenship());
+//			ps.setString(index++, person.getIdent());
+//			ps.setString(index++, person.getDriver());
+//			ps.setString(index++, person.getArmy());
+//			ps.setString(index++, person.getMarital());
+//			ps.setString(index++, person.getHighEducation());
+//			ps.setString(index++, person.getJobber());
+//			ps.setString(index++, person.getWork());
+//			ps.setInt(index++, person.getTabId());
+//			ps.setInt(index++, person.getDepartmentId());
 			
 			ps.setInt(index++, person.getId());
 			ps.executeUpdate();
@@ -299,5 +365,31 @@ public class DbPersonManager {
 		}
 	}
 	
+	public void insertPerson(Person person) throws SQLException {
+		Connection conn = null;
+		try {
+			List<DbEvent> events = new ArrayList<>();
+			conn = dbManager.getConnection();
+			conn.setAutoCommit(false);
+			insertPerson(conn, person, events);
+			conn.commit();
+			dbManager.notifyListeners(events);
+		} catch (SQLException | RuntimeException e) {
+			if( conn != null )
+				conn.rollback();
+			throw e;
+		} finally {
+			if( conn != null )
+				conn.close();
+		}
+	}
+	public void insertPerson(
+			Connection conn, Person person, List<DbEvent> events) 
+	throws SQLException
+	{
+		
+	}
+	
 	private DbManager dbManager;
+
 }

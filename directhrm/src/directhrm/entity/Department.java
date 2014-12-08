@@ -44,6 +44,14 @@ public class Department {
 		this.place = place;
 	}
 
+	public String getPlace2() {
+		return place2;
+	}
+
+	public void setPlace2(String place2) {
+		this.place2 = place2;
+	}
+
 	public int getOrganizationId() {
 		return organizationId;
 	}
@@ -55,5 +63,6 @@ public class Department {
 	private int id;
 	private String name = "";
 	private String place = "";
+	private String place2 = "";
 	private int organizationId;
 }

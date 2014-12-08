@@ -3,6 +3,7 @@ package directhrm.gui.controller.tree;
 import directhrm.Application;
 import directhrm.entity.Department;
 import directhrm.entity.Organization;
+import directhrm.entity.Person;
 import directhrm.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -227,6 +228,12 @@ public class StructTreeModel implements TreeModel {
 			return;
 		updateNode(node, new NodeValue(d));
 	}
+	public void updatePerson(Person p) {
+		TreeNode<NodeValue> node = findPerson(p.getId());
+		if( node == null )
+			return;
+		updateNode(node, new NodeValue(p));
+	}
 
 	private TreeNode<NodeValue> findOrganization(int id) {
 		List<TreeNode<NodeValue>> descendants = root.getDescendants();
@@ -247,6 +254,18 @@ public class StructTreeModel implements TreeModel {
 			if( value.getDepartment()== null )
 				continue;
 			if( value.getDepartment().getId() != id )
+				continue;
+			return node;
+		}
+		return null;
+	}
+	private TreeNode<NodeValue> findPerson(int id) {
+		List<TreeNode<NodeValue>> descendants = root.getDescendants();
+		for(TreeNode<NodeValue> node : descendants) {
+			NodeValue value = node.getValue();
+			if( value.getPerson()== null )
+				continue;
+			if( value.getPerson().getId() != id )
 				continue;
 			return node;
 		}

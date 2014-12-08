@@ -45,6 +45,10 @@ public class ControllerTextField extends ControllerComponent {
 		ignoreEdition = false;
 	}
 	
+	public String getValue() {
+		return textField.getText();
+	}
+	
 	protected void onTextEdited() {
 		if( ignoreEdition )
 			return;

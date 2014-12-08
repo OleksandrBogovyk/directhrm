@@ -181,13 +181,14 @@ public class DbDepartmentManager {
 			conn = dbManager.getConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(
-					"SELECT id, department_name, department_place, organization_id "
+					"SELECT id, department_name, department_place, department_place2, organization_id "
 							+ "FROM department ORDER BY department_name");
 			while( rs.next() ) {
 				Department d = new Department();
 				d.setId( rs.getInt("id") );
 				d.setName( rs.getString("department_name") );
 				d.setPlace( rs.getString("department_place") );
+				d.setPlace2( rs.getString("department_place2") );
 				d.setOrganizationId(rs.getInt("organization_id") );
 				list.add(d);
 			}
@@ -211,7 +212,7 @@ public class DbDepartmentManager {
 		try {
 			conn = dbManager.getConnection();
 			ps = conn.prepareStatement(
-					"SELECT department_name, department_place, organization_id "
+					"SELECT department_name, department_place, department_place2, organization_id "
 					+ "FROM department WHERE id = ?");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
@@ -221,6 +222,7 @@ public class DbDepartmentManager {
 			d.setId( id );
 			d.setName( DbManager.fetchNotNullString(rs, "department_name") );
 			d.setPlace(DbManager.fetchNotNullString(rs, "department_place") );
+			d.setPlace2(DbManager.fetchNotNullString(rs, "department_place2") );
 			d.setOrganizationId( rs.getInt("organization_id") );
 			
 			return d;

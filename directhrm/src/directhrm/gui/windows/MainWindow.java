@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -97,6 +98,7 @@ public class MainWindow extends javax.swing.JFrame {
 		return cbNotByContract;
 	}
 	
+	
 	public JComboBox getCmbAddressCity() {
 		return cmbAddressCity;
 	}
@@ -117,174 +119,114 @@ public class MainWindow extends javax.swing.JFrame {
 		return cmbMarital;
 	}
 
-	public JTextField getFieldBirthday() {
-		return fieldBirthday;
-	}
-
-	public JTextField getFieldDateIn() {
-		return fieldDateIn;
-	}
-
-	public JTextField getFieldDateOut() {
-		return fieldDateOut;
-	}
-
-	public JTextField getFieldDepartment() {
-		return fieldDepartment;
-	}
-
-	public JTextField getFieldGraduationYear() {
-		return fieldGraduationYear;
-	}
-
-	public JTextField getFieldPassportDate() {
-		return fieldPassportDate;
-	}
-
-	//public JTextField getFieldPhotoLoadDate() {
-	//	return fieldPhotoLoadDate;
-	//}
-
 	
 	public JTextField getFieldAddressIndex() {
 		return fieldAddressIndex;
 	}
-
 	public JTextField getFieldAddressStreet() {
 		return fieldAddressStreet;
 	}
-
-//	public JTextField getFieldContractNum() {
-//		return fieldContractNum;
-//	}
+	public JTextField getFieldBirthday() {
+		return fieldBirthday;
+	}
+	public JTextField getFieldBonus() {
+		return fieldBonus;
+	}
 	public JTextField getFieldContractDate() {
 		return fieldContractDate;
 	}
-
 	public JTextField getFieldContractNumber() {
 		return fieldContractNumber;
 	}
-
-	
-	
+	public JTextField getFieldDateIn() {
+		return fieldDateIn;
+	}
+	public JTextField getFieldDateOut() {
+		return fieldDateOut;
+	}
+	public JTextField getFieldDepartment() {
+		return fieldDepartment;
+	}
 	public JTextField getFieldEmail() {
 		return fieldEmail;
 	}
-
+	public JTextField getFieldGraduationYear() {
+		return fieldGraduationYear;
+	}
 	public JTextField getFieldIdent() {
 		return fieldIdent;
 	}
-
 	public JTextField getFieldInternalNumber() {
 		return fieldInternalNumber;
 	}
-
 	public JTextField getFieldLastName() {
 		return fieldLastName;
 	}
-
 	public JTextField getFieldMiddleName() {
 		return fieldMiddleName;
 	}
-
 	public JTextField getFieldName() {
 		return fieldName;
 	}
-
 	public JTextField getFieldOrganization() {
 		return fieldOrganization;
 	}
-
+	public JTextField getFieldPassportDate() {
+		return fieldPassportDate;
+	}
 	public JTextField getFieldPassportGiven() {
 		return fieldPassportGiven;
 	}
-
 	public JTextField getFieldPassportNum() {
 		return fieldPassportNum;
 	}
-
 	public JTextField getFieldPhoneHome() {
 		return fieldPhoneHome;
 	}
-
 	public JTextField getFieldPhoneMobile() {
 		return fieldPhoneMobile;
 	}
-
 	public JTextField getFieldPosition() {
 		return fieldPosition;
 	}
-
-//	public JTextField getFieldRate() {
-//		return fieldRate;
-//	}
-
+	public JTextField getFieldRoom1() {
+		return fieldRoom1;
+	}
+	public JTextField getFieldRoom2() {
+		return fieldRoom2;
+	}
+	public JTextField getFieldSalary() {
+		return fieldSalary;
+	}
 	public JTextField getFieldSpeciality() {
 		return fieldSpeciality;
 	}
-
 	public JTextField getFieldTableId() {
 		return fieldTableId;
 	}
+	public JTextField getFieldWorkEmail() {
+		return fieldWorkEmail;
+	}
+	public JTextField getFieldWorktimeFrom() {
+		return fieldWorktimeFrom;
+	}
+	public JTextField getFieldWorktimeTo() {
+		return fieldWorktimeTo;
+	}
 
-//	public JTextField getFieldWorkDayEnd() {
-//		return fieldWorkDayEnd;
-//	}
-//
-//	public JTextField getFieldWorkDayStart() {
-//		return fieldWorkDayStart;
-//	}
-//
-//	public JTextField getFieldWorkEmail() {
-//		return fieldWorkEmail;
-//	}
+	
+	public JLabel getLabelPhoto() {
+		return labelPhoto;
+	}
 
-//	public JTextField getFieldWorkPlace() {
-//		return fieldWorkPlace;
-//	}
-        
-//	public JLabel getLabelPhoto() {
-//		return labelPhoto;
-//	}
-
-//	public JRadioButton getRbArmyNo() {
-//		return rbArmyNo;
-//	}
-//
-//	public JRadioButton getRbArmyYes() {
-//		return rbArmyYes;
-//	}
         
 	public JRadioButton getRbFemale() {
 		return rbFemale;
 	}
-
-	//public JRadioButton getRbHighEducationNo() {
-	//	return rbHighEducationNo;
-	//}
-
-	//public JRadioButton getRbHighEducationYes() {
-	//	return rbHighEducationYes;
-	//}
-
-	//public JRadioButton getRbJobberNo() {
-	//	return rbJobberNo;
-	//}
-
-	//public JRadioButton getRbJobberYes() {
-	//	return rbJobberYes;
-	//}
-
 	public JRadioButton getRbMale() {
 		return rbMale;
 	}
 
-	//public JRadioButton getRbMissionNo() {
-	//	return rbMissionNo;
-	//}
-	//public JRadioButton getRbMissionYes() {
-	//	return rbMissionYes;
-	//}
 	
 	public JTable getTableExperience() {
 		return tableExperience;
@@ -358,6 +300,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelPersonHolder = new javax.swing.JPanel();
         panelPhoto = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        labelPhoto = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         panelAbout = new javax.swing.JPanel();
@@ -444,21 +387,21 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         fieldInternalNumber = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        fieldRoom1 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jComboBox6 = new javax.swing.JComboBox();
         jLabel48 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        fieldWorktimeFrom = new javax.swing.JTextField();
         jLabel65 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        fieldWorkEmail = new javax.swing.JTextField();
         jLabel66 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        fieldRoom2 = new javax.swing.JTextField();
+        fieldSalary = new javax.swing.JTextField();
+        fieldBonus = new javax.swing.JTextField();
+        fieldWorktimeTo = new javax.swing.JTextField();
         jLabel67 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jSeparator11 = new javax.swing.JSeparator();
@@ -990,15 +933,18 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        labelPhoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPhoto.setText(bundle.getString("MainWindow.labelPhoto.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 121, Short.MAX_VALUE)
+            .addComponent(labelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(labelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel2.setText(bundle.getString("MainWindow.jLabel2.text")); // NOI18N
@@ -1027,7 +973,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(panelPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 131, Short.MAX_VALUE))
+                        .addGap(0, 133, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1062,7 +1008,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1190,7 +1136,7 @@ public class MainWindow extends javax.swing.JFrame {
                                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(panelFIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox5, 0, 1, Short.MAX_VALUE)
+                                            .addComponent(jComboBox5, 0, 97, Short.MAX_VALUE)
                                             .addComponent(fieldGraduationYear)))
                                     .addGroup(panelFIOLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1563,7 +1509,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbByContract)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fieldContractNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(fieldContractNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPositionLayout.createSequentialGroup()
                                 .addGroup(panelPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel39)
@@ -1613,7 +1559,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(panelPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
                     .addComponent(jLabel46))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jLabel38.setText(bundle.getString("MainWindow.jLabel38.text")); // NOI18N
@@ -1627,7 +1573,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jTextField10.setText(bundle.getString("MainWindow.jTextField10.text")); // NOI18N
+        fieldRoom1.setEditable(false);
+        fieldRoom1.setText(bundle.getString("MainWindow.fieldRoom1.text")); // NOI18N
 
         jLabel42.setText(bundle.getString("MainWindow.jLabel42.text")); // NOI18N
 
@@ -1642,7 +1589,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel37.setText(bundle.getString("MainWindow.jLabel37.text")); // NOI18N
 
-        jTextField6.setText(bundle.getString("MainWindow.jTextField6.text")); // NOI18N
+        fieldWorktimeFrom.setEditable(false);
+        fieldWorktimeFrom.setText(bundle.getString("MainWindow.fieldWorktimeFrom.text")); // NOI18N
 
         jLabel65.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel65.setText(bundle.getString("MainWindow.jLabel65.text")); // NOI18N
@@ -1650,18 +1598,22 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel66.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel66.setText(bundle.getString("MainWindow.jLabel66.text")); // NOI18N
 
-        jTextField13.setText(bundle.getString("MainWindow.jTextField13.text")); // NOI18N
+        fieldRoom2.setEditable(false);
+        fieldRoom2.setText(bundle.getString("MainWindow.fieldRoom2.text")); // NOI18N
 
-        jTextField2.setText(bundle.getString("MainWindow.jTextField2.text")); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        fieldSalary.setEditable(false);
+        fieldSalary.setText(bundle.getString("MainWindow.fieldSalary.text")); // NOI18N
+        fieldSalary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                fieldSalaryActionPerformed(evt);
             }
         });
 
-        jTextField5.setText(bundle.getString("MainWindow.jTextField5.text")); // NOI18N
+        fieldBonus.setEditable(false);
+        fieldBonus.setText(bundle.getString("MainWindow.fieldBonus.text")); // NOI18N
 
-        jTextField7.setText(bundle.getString("MainWindow.jTextField7.text")); // NOI18N
+        fieldWorktimeTo.setEditable(false);
+        fieldWorktimeTo.setText(bundle.getString("MainWindow.fieldWorktimeTo.text")); // NOI18N
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel67.setText(bundle.getString("MainWindow.jLabel67.text")); // NOI18N
@@ -1684,24 +1636,24 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(fieldInternalNumber, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel65)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField18, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fieldSalary, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                        .addComponent(fieldWorktimeFrom, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fieldWorkEmail, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelWorkLayout.createSequentialGroup()
                         .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fieldRoom1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel67)
                     .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fieldWorktimeTo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelWorkLayout.createSequentialGroup()
                         .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField13)))
+                        .addComponent(fieldRoom2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelWorkLayout.setVerticalGroup(
@@ -1710,13 +1662,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldWorktimeFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldWorktimeTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel41)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldBonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel65)
@@ -1732,14 +1684,14 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldRoom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel48)
                     .addComponent(jLabel66)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldRoom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldWorkEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -2648,9 +2600,9 @@ public class MainWindow extends javax.swing.JFrame {
         }     
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void fieldSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSalaryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_fieldSalaryActionPerformed
     
 	private Application application;
 	private PanelPerson panelPerson;
@@ -2683,6 +2635,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField fieldAddressIndex;
     private javax.swing.JTextField fieldAddressStreet;
     private javax.swing.JTextField fieldBirthday;
+    private javax.swing.JTextField fieldBonus;
     private javax.swing.JTextField fieldContractDate;
     private javax.swing.JTextField fieldContractNumber;
     private javax.swing.JTextField fieldDateIn;
@@ -2702,8 +2655,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField fieldPhoneHome;
     private javax.swing.JTextField fieldPhoneMobile;
     private javax.swing.JTextField fieldPosition;
+    private javax.swing.JTextField fieldRoom1;
+    private javax.swing.JTextField fieldRoom2;
+    private javax.swing.JTextField fieldSalary;
     private javax.swing.JTextField fieldSpeciality;
     private javax.swing.JTextField fieldTableId;
+    private javax.swing.JTextField fieldWorkEmail;
+    private javax.swing.JTextField fieldWorktimeFrom;
+    private javax.swing.JTextField fieldWorktimeTo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2863,19 +2822,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel labelPhoto;
     private javax.swing.JDialog licenseWindow;
     private javax.swing.JDialog manualWindow;
     private javax.swing.JMenuItem menuItemCreateDepartment;
