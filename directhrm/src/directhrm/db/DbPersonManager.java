@@ -334,8 +334,8 @@ public class DbPersonManager {
 				"UPDATE person SET "
 				+ "person_lastname = ?, person_name = ?, person_middlename = ?, "
 				+ "person_dob = ?, person_gender = ?, person_citizenship = ?, person_ident = ?, "
-				+ "person_marital = ?, person_tabno = ?, "
-//				+ "person_driver = ?, person_army = ?, person_diploma = ?, "
+				+ "person_marital = ?, person_tabno = ?, person_driver = ?, person_army = ?, "
+//				+ "person_diploma = ?, "
 //				+ "person_jobber = ?, person_work = ?, department_id = ? "
 				+ "about_id = ?, passport_id = ?, contact_id = ? "
 				+ "WHERE id = ?";
@@ -355,8 +355,8 @@ public class DbPersonManager {
 			ps.setString(index++, person.getIdent());
 			ps.setString(index++, person.getMarital());
 			ps.setInt(index++, person.getTabId());
-//			ps.setString(index++, person.getDriver());
-//			ps.setString(index++, person.getArmy());
+			ps.setString(index++, person.getDriver());
+			ps.setString(index++, person.getArmy());
 //			ps.setString(index++, person.getHighEducation());
 //			ps.setString(index++, person.getJobber());
 //			ps.setString(index++, person.getWork());

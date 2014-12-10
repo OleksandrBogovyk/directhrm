@@ -22,6 +22,7 @@ import directhrm.gui.controller.component.ControllerTextFieldInteger;
 import directhrm.gui.controller.tree.NodeValue;
 import directhrm.gui.controller.tree.TreeNode;
 import directhrm.img.icon.Icons;
+import directhrm.util.Property;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,7 +96,20 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbArmy = new ControllerComboBox( mainWindow.getCmbArmy() );
 		listControllers.add( cmbArmy );
 		
+		fieldArmyOther = new ControllerTextField( mainWindow.getFieldArmyOther());
+		listControllers.add(fieldArmyOther);
+		
 		cmbDriver = new ControllerComboBox( mainWindow.getCmbDriver() );
+		{
+			List<Property> items = new ArrayList<>();
+			items.add( new Property("A", "Категория (A)") );
+			items.add( new Property("B", "Категория (B)") );
+			items.add( new Property("C", "Категория (C)") );
+			items.add( new Property("D", "Категория (D)") );
+			items.add( new Property("E", "Категория (E)") );
+			items.add( new Property("N", "Нет") );
+			cmbDriver.setItems(items);
+		}
 		listControllers.add( cmbDriver );
 		
 		fieldIdent = new ControllerTextField( mainWindow.getFieldIdent() );
@@ -191,6 +206,13 @@ public class ControllerPerson extends ControllerStructNode {
 		p.setBirthDate( dcBirthday.getDate() );
 		p.setGender( rbGender.getValue() );
 		p.setCitizenship( cmbCitizenship.getValue() );
+		p.setDriver( cmbDriver.getValue() );
+		String army = cmbArmy.getValue();
+		if( army.equals("Другое") ) {
+			p.setArmy( fieldArmyOther.getValue() );
+		} else {
+			p.setArmy(army);
+		}
 		
 		if( cbMarital.getValue() ) {
 			p.setMarital("N");
@@ -297,7 +319,17 @@ public class ControllerPerson extends ControllerStructNode {
 			cmbMarital.setValue( marital );
 		}
 		
-		cmbArmy.setValue( person.getArmy() );
+		{
+			String army = person.getArmy();
+			if( cmbArmy.hasValue(army) ) {
+				cmbArmy.setValue(army);
+				fieldArmyOther.setEnabled(false);
+			} else {
+				cmbArmy.setValue("Другое");
+				fieldArmyOther.setValue(army);
+				fieldArmyOther.setEnabled(true);
+			}
+		}
 		cmbDriver.setValue( person.getDriver() );
 		
 		cmbContactCity.setValue( person.getContact().getCity() );
@@ -428,6 +460,7 @@ public class ControllerPerson extends ControllerStructNode {
 	private ControllerRadioButtons rbHighEducation;
 	private ControllerTextField fieldDiplomaName;
 	private ControllerComboBox cmbArmy;
+	private ControllerTextField fieldArmyOther;
 	private ControllerComboBox cmbDriver;
 	private ControllerComboBox cmbMarital;
 	private ControllerCheckBox cbMarital;

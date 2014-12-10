@@ -126,6 +126,10 @@ public class MainWindow extends javax.swing.JFrame {
 	public JTextField getFieldAddressStreet() {
 		return fieldAddressStreet;
 	}
+
+	public JTextField getFieldArmyOther() {
+		return fieldArmyOther;
+	}
 	public JTextField getFieldBirthday() {
 		return fieldBirthday;
 	}
@@ -347,7 +351,7 @@ public class MainWindow extends javax.swing.JFrame {
         fieldIdent = new javax.swing.JTextField();
         cmbArmy = new javax.swing.JComboBox();
         cmbDriver = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        fieldArmyOther = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         cmbAddressCity = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
@@ -973,7 +977,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(panelPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 133, Short.MAX_VALUE))
+                        .addGap(0, 134, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1136,7 +1140,7 @@ public class MainWindow extends javax.swing.JFrame {
                                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(panelFIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox5, 0, 97, Short.MAX_VALUE)
+                                            .addComponent(jComboBox5, 0, 1, Short.MAX_VALUE)
                                             .addComponent(fieldGraduationYear)))
                                     .addGroup(panelFIOLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1236,7 +1240,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         cmbDriver.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Категория (A)", "Категория (B)", "Категория (C)", "Категория (D)", "Категория (E)", "Нет" }));
 
-        jTextField1.setEnabled(false);
+        fieldArmyOther.setEnabled(false);
 
         jLabel23.setText(bundle.getString("MainWindow.jLabel23.text")); // NOI18N
 
@@ -1313,7 +1317,7 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(fieldIdent, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbArmy, javax.swing.GroupLayout.Alignment.LEADING, 0, 119, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1))))
+                                .addComponent(fieldArmyOther))))
                     .addGroup(panelPassportLayout.createSequentialGroup()
                         .addGroup(panelPassportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel23)
@@ -1379,7 +1383,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(panelPassportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbArmy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldArmyOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPassportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -1509,7 +1513,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbByContract)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fieldContractNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                                .addComponent(fieldContractNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPositionLayout.createSequentialGroup()
                                 .addGroup(panelPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel39)
@@ -1559,7 +1563,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(panelPositionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
                     .addComponent(jLabel46))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel38.setText(bundle.getString("MainWindow.jLabel38.text")); // NOI18N
@@ -1737,10 +1741,10 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(panelPersonHolderLayout.createSequentialGroup()
                         .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                            .addComponent(panelFIO, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                            .addComponent(panelFIO, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelPassport, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                            .addComponent(panelPassport, javax.swing.GroupLayout.PREFERRED_SIZE, 522, Short.MAX_VALUE)
                             .addComponent(panelAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1754,11 +1758,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelPassport, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelFIO, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
+                    .addComponent(panelFIO, javax.swing.GroupLayout.PREFERRED_SIZE, 293, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2252,9 +2256,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void cmbArmyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbArmyItemStateChanged
         if (cmbArmy.getSelectedIndex() == 4){
-            jTextField1.setEnabled(true);
+            fieldArmyOther.setEnabled(true);
         } else {
-            jTextField1.setEnabled(false);
+            fieldArmyOther.setEnabled(false);
         }
     }//GEN-LAST:event_cmbArmyItemStateChanged
 
@@ -2634,6 +2638,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbMarital;
     private javax.swing.JTextField fieldAddressIndex;
     private javax.swing.JTextField fieldAddressStreet;
+    private javax.swing.JTextField fieldArmyOther;
     private javax.swing.JTextField fieldBirthday;
     private javax.swing.JTextField fieldBonus;
     private javax.swing.JTextField fieldContractDate;
@@ -2821,7 +2826,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField16;

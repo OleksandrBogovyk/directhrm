@@ -1,8 +1,11 @@
 package directhrm.gui.controller.component;
 
+import directhrm.util.Property;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -44,7 +47,25 @@ public class ControllerComboBox  extends ControllerComponent {
 			}
 		}
 	}
+	public void setItems(List<Property> list) {
+		this.items = new ArrayList<>( list );
+		ignoreEdition = true;
+		cmb.removeAllItems();
+		for(Property p : items) {
+			cmb.addItem(p);
+		}
+		ignoreEdition = false;
+	}
 
+	public boolean hasValue(Object value) {
+		for(int i=0, count=cmb.getItemCount(); i < count; i++) {
+			Object o = cmb.getItemAt(i);
+			if( o.equals(value) )
+				return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public void setEnabled(boolean enabled) {
 		cmb.setEnabled(enabled);
@@ -61,7 +82,14 @@ public class ControllerComboBox  extends ControllerComponent {
 			textField.setText( (String)value );
 			textField.setCaretPosition(0);
 		} else {
-			cmb.setSelectedItem(value);
+			if( items == null )
+				cmb.setSelectedItem(value);
+			else {
+				String key = (String)value;
+				int index = Property.indexOf(items, key);
+				if( index >= 0 )
+					cmb.setSelectedIndex(index);
+			}
 		}
 		ignoreEdition = false;
 	}
@@ -69,7 +97,10 @@ public class ControllerComboBox  extends ControllerComponent {
 	public String getValue() {
 		if( editable && textField != null )
 			return textField.getText();
-		return (String)cmb.getSelectedItem();
+		Object value = cmb.getSelectedItem();
+		if( value instanceof Property)
+			return ((Property)value).getKey();
+		return (String)value;
 	}
 	
 	protected void onValueSelected() {
@@ -81,5 +112,6 @@ public class ControllerComboBox  extends ControllerComponent {
 	private JComboBox cmb;
 	private boolean editable;
 	private JTextField textField;
+	private List<Property> items;
 	private boolean ignoreEdition = false;
 }

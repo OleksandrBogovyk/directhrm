@@ -1259,7 +1259,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="panelAbout" linkSize="29" min="-2" max="-2" attributes="0"/>
-                                  <Component id="panelPhoto" linkSize="29" min="-2" pref="175" max="-2" attributes="0"/>
+                                  <Component id="panelPhoto" linkSize="29" min="-2" pref="178" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1318,7 +1318,7 @@
                                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="133" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel4" max="32767" attributes="0"/>
                                   </Group>
@@ -1519,7 +1519,7 @@
                                                           </Group>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="jComboBox5" pref="97" max="32767" attributes="0"/>
+                                                              <Component id="jComboBox5" pref="0" max="32767" attributes="0"/>
                                                               <Component id="fieldGraduationYear" max="32767" attributes="0"/>
                                                           </Group>
                                                       </Group>
@@ -1849,7 +1849,7 @@
                                                       <Component id="cmbArmy" alignment="0" pref="119" max="32767" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextField1" max="32767" attributes="0"/>
+                                                  <Component id="fieldArmyOther" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1938,7 +1938,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cmbArmy" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fieldArmyOther" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -2100,7 +2100,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField1">
+                        <Component class="javax.swing.JTextField" name="fieldArmyOther">
                           <Properties>
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
@@ -2309,7 +2309,7 @@
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="cbByContract" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="fieldContractNumber" pref="104" max="32767" attributes="0"/>
+                                                  <Component id="fieldContractNumber" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -2375,7 +2375,7 @@
                                       <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                                  <EmptySpace pref="21" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
