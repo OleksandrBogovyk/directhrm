@@ -148,6 +148,14 @@ public class Person {
 		this.about = about;
 	}
 
+	public int getAboutId() {
+		return aboutId;
+	}
+
+	public void setAboutId(int aboutId) {
+		this.aboutId = aboutId;
+	}
+
 	public int getDepartmentId() {
 		return departmentId;
 	}
@@ -252,6 +260,7 @@ public class Person {
 	private Integer tabId;
 	
 	private String about = "";
+	private int aboutId = 0;
 	
 	private int departmentId;
 	

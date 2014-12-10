@@ -2262,7 +2262,7 @@ public class MainWindow extends javax.swing.JFrame {
         if (!cbMarital.isSelected()) {
             cmbMarital.setEnabled(true);
         } else {
-            cbMarital.setEnabled(false);
+            cmbMarital.setEnabled(false);
         }
     }//GEN-LAST:event_cbMaritalActionPerformed
 

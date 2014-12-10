@@ -46,6 +46,10 @@ public class ControllerTextArea extends ControllerComponent {
 		ignoreEdition = false;
 	}
 	
+	public String getValue() {
+		return textArea.getText();
+	}
+	
 	protected void onTextEdited() {
 		if( ignoreEdition )
 			return;

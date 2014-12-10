@@ -1,10 +1,12 @@
 package directhrm.gui.controller;
 
 import directhrm.Application;
+import directhrm.entity.Contact;
 import directhrm.entity.Contract;
 import directhrm.entity.Department;
 import directhrm.entity.Experience;
 import directhrm.entity.Organization;
+import directhrm.entity.Passport;
 import directhrm.entity.Person;
 import directhrm.entity.PersonPosition;
 import directhrm.entity.Worktime;
@@ -181,10 +183,53 @@ public class ControllerPerson extends ControllerStructNode {
 	public boolean saveEditions() throws SQLException {
 		Person p = new Person();
 		p.setId( person.getId() );
+		p.setAboutId( person.getAboutId() );
+		p.setAbout( areaAbout.getValue() );
 		p.setLastName( fieldLastName.getValue() );
 		p.setName( fieldName.getValue() );
 		p.setMiddleName(fieldMiddleName.getValue() );
 		p.setBirthDate( dcBirthday.getDate() );
+		p.setGender( rbGender.getValue() );
+		p.setCitizenship( cmbCitizenship.getValue() );
+		
+		if( cbMarital.getValue() ) {
+			p.setMarital("N");
+		} else {
+			String s = cmbMarital.getValue();
+			if( "Замужем".equals(s) )
+				p.setMarital("H");
+			else if( "Женат".equals(s) )
+				p.setMarital("W");
+			else
+				p.setMarital( person.getMarital() );
+		}
+		
+		Passport passport = new Passport();
+		passport.setId( person.getPassport().getId() );
+		passport.setSnum( fieldPassportSnum.getValue() );
+		passport.setIssue(fieldPassportIssue.getValue() );
+		passport.setDate( dcPassportDate.getDate() );
+		p.setPassport(passport);
+		
+		p.setIdent( fieldIdent.getValue() );
+
+		Integer tableId = fieldTableId.getIntValue();
+		if( tableId == null )
+			p.setTabId( person.getTabId() );
+		else
+			p.setTabId(tableId);
+
+		Contact contact = new Contact();
+		contact.setId( person.getContact().getId() );
+		contact.setCity( cmbContactCity.getValue() );
+		contact.setAddress( fieldAddress.getValue() );
+		contact.setZipcode( fieldAddressIndex.getValue() );
+		contact.setPhone( fieldPhone1.getValue() );
+		contact.setPhone2( fieldPhone2.getValue() );
+		contact.setEmail( fieldEmail1.getValue() );
+		contact.setEmail2( fieldEmail2.getValue() );
+		contact.setInternalnum( fieldInternalNum.getValue() );
+		p.setContact(contact);
 		
 		dbManager.getPersonManager().savePerson(p);
 		person = p;

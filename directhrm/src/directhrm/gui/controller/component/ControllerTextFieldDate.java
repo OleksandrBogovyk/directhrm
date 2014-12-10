@@ -43,7 +43,8 @@ public class ControllerTextFieldDate extends ControllerTextField {
 		} catch (ParseException exception) {
 			textField.setForeground(Color.red);
 		}
-		dateChangeListener.dateChanged();
+		if( dateChangeListener != null )
+			dateChangeListener.dateChanged();
 	}
 	
 	public Date getDate() {

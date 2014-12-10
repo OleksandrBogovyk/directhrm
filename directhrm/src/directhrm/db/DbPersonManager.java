@@ -119,6 +119,7 @@ public class DbPersonManager {
 				rs.close();
 				ps.close();
 			}
+			p.setAboutId(aboutId);
 
 			if( contactId > 0 ) {
 				query = 
@@ -252,7 +253,7 @@ public class DbPersonManager {
 				rs = ps.executeQuery(query);
 				if( rs.next() ) {
 					Passport passport = p.getPassport();
-					passport.setId(contractId);
+					passport.setId(passportId);
 					passport.setSnum(rs.getString("passport_snum") );
 					passport.setDate(DbManager.fetchDate(rs, "passport_date") );
 					passport.setIssue(rs.getString("passport_issue") );
@@ -331,29 +332,38 @@ public class DbPersonManager {
 
 		String command = 
 				"UPDATE person SET "
-				+ "person_lastname = ?, person_name = ?, person_middlename = ? "
-//				+ "person_dob = ?, person_gender = ?, person_citizenship = ?, person_ident = ?, "
-//				+ "person_driver = ?, person_army = ?, person_marital = ?, person_diploma = ?, "
-//				+ "person_jobber = ?, person_work = ?, person_tabno = ?, department_id = ? "
+				+ "person_lastname = ?, person_name = ?, person_middlename = ?, "
+				+ "person_dob = ?, person_gender = ?, person_citizenship = ?, person_ident = ?, "
+				+ "person_marital = ?, person_tabno = ?, "
+//				+ "person_driver = ?, person_army = ?, person_diploma = ?, "
+//				+ "person_jobber = ?, person_work = ?, department_id = ? "
+				+ "about_id = ?, passport_id = ?, contact_id = ? "
 				+ "WHERE id = ?";
 		try {
+			savePersonAbout(conn, person);
+			savePersonPassport(conn, person);
+			savePersonContact(conn, person);
+			
 			ps = conn.prepareStatement( command );
 			int index = 1;
 			ps.setString(index++, person.getLastName());
 			ps.setString(index++, person.getName());
 			ps.setString(index++, person.getMiddleName());
-//			ps.setDate(index++, DbManager.createSqlDate( person.getBirthDate() ) );
-//			ps.setString(index++, person.getGender());
-//			ps.setString(index++, person.getCitizenship());
-//			ps.setString(index++, person.getIdent());
+			ps.setDate(index++, DbManager.createSqlDate( person.getBirthDate() ) );
+			ps.setString(index++, person.getGender());
+			ps.setString(index++, person.getCitizenship());
+			ps.setString(index++, person.getIdent());
+			ps.setString(index++, person.getMarital());
+			ps.setInt(index++, person.getTabId());
 //			ps.setString(index++, person.getDriver());
 //			ps.setString(index++, person.getArmy());
-//			ps.setString(index++, person.getMarital());
 //			ps.setString(index++, person.getHighEducation());
 //			ps.setString(index++, person.getJobber());
 //			ps.setString(index++, person.getWork());
-//			ps.setInt(index++, person.getTabId());
 //			ps.setInt(index++, person.getDepartmentId());
+			ps.setInt(index++, person.getAboutId());
+			ps.setInt(index++, person.getPassport().getId());
+			ps.setInt(index++, person.getContact().getId());
 			
 			ps.setInt(index++, person.getId());
 			ps.executeUpdate();
@@ -388,6 +398,95 @@ public class DbPersonManager {
 	throws SQLException
 	{
 		
+	}
+	
+	private void savePersonAbout(Connection conn, Person person)
+	throws SQLException
+	{
+		if( person.getAboutId() == 0 ) {
+			PreparedStatement ps = conn.prepareStatement(
+					"INSERT into about (about_text) VALUES (?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, person.getAbout());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int aboutId = rs.getInt(1);
+			person.setAboutId(aboutId);
+		} else {
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE about SET about_text = ? WHERE id = " + person.getAboutId());
+			ps.setString(1, person.getAbout());
+			ps.executeUpdate();
+		}
+	}
+	
+	private void savePersonPassport(Connection conn, Person person)
+	throws SQLException
+	{
+		Passport passport = person.getPassport();
+		if( passport.getId() == 0 ) {
+			PreparedStatement ps = conn.prepareStatement(
+					"INSERT into passport (passport_snum, passport_date, passport_issue) VALUES (?,?,?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, passport.getSnum());
+			ps.setDate(2, DbManager.createSqlDate(passport.getDate()));
+			ps.setString(3, passport.getIssue());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			passport.setId(id);
+		} else {
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE passport SET passport_snum = ?, passport_date = ?, passport_issue = ? "
+					+ "WHERE id = " + passport.getId());
+			ps.setString(1, passport.getSnum());
+			ps.setDate(2, DbManager.createSqlDate(passport.getDate()));
+			ps.setString(3, passport.getIssue());
+			ps.executeUpdate();
+		}
+	}
+	private void savePersonContact(Connection conn, Person person)
+	throws SQLException
+	{
+		Contact contact = person.getContact();
+		if( contact.getId() == 0 ) {
+			PreparedStatement ps = conn.prepareStatement(
+					"INSERT into contact (contact_city, contact_address, zipcode, "
+					+ "contact_phone, contact_phone2, contact_email, contact_email2, contact_intnum) "
+					+ "VALUES (?,?,?,?,?,?,?,?)", 
+					Statement.RETURN_GENERATED_KEYS);
+			int index = 1;
+			ps.setString(index++, contact.getCity());
+			ps.setString(index++, contact.getAddress());
+			ps.setString(index++, contact.getZipcode());
+			ps.setString(index++, contact.getPhone());
+			ps.setString(index++, contact.getPhone2());
+			ps.setString(index++, contact.getEmail());
+			ps.setString(index++, contact.getEmail2());
+			ps.setString(index++, contact.getInternalnum());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			contact.setId(id);
+		} else {
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE contact SET contact_city = ?, contact_address = ?, zipcode = ?, "
+					+ "contact_phone = ?, contact_phone2 = ?, contact_email = ?, contact_email2 = ?, contact_intnum = ? "
+					+ "WHERE id = " + contact.getId());
+			int index = 1;
+			ps.setString(index++, contact.getCity());
+			ps.setString(index++, contact.getAddress());
+			ps.setString(index++, contact.getZipcode());
+			ps.setString(index++, contact.getPhone());
+			ps.setString(index++, contact.getPhone2());
+			ps.setString(index++, contact.getEmail());
+			ps.setString(index++, contact.getEmail2());
+			ps.setString(index++, contact.getInternalnum());
+			ps.executeUpdate();
+		}
 	}
 	
 	private DbManager dbManager;

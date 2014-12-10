@@ -21,6 +21,16 @@ public class ControllerTextFieldInteger extends ControllerTextField {
 		setValue( value.toString() );
 	}
 	
+	public Integer getIntValue() {
+		try {
+			String text = textField.getText();
+			Integer i = Integer.parseInt(text);
+			return i;
+		} catch (NumberFormatException numberFormatException) {
+			return null;
+		}
+	}
+	
 	@Override
 	protected void onTextEdited() {
 		super.onTextEdited();

@@ -66,6 +66,12 @@ public class ControllerComboBox  extends ControllerComponent {
 		ignoreEdition = false;
 	}
 	
+	public String getValue() {
+		if( editable && textField != null )
+			return textField.getText();
+		return (String)cmb.getSelectedItem();
+	}
+	
 	protected void onValueSelected() {
 		if( ignoreEdition )
 			return;

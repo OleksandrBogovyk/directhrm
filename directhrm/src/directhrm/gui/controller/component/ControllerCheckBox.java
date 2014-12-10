@@ -37,6 +37,10 @@ public class ControllerCheckBox extends ControllerComponent {
 		ignoreEdition = false;
 	}
 	
+	public boolean getValue() {
+		return checkBox.isSelected();
+	}
+	
 	protected void onValueSelected() {
 		if( ignoreEdition )
 			return;
