@@ -75,7 +75,7 @@ public class DbManager {
             SQLException, NoSuchAlgorithmException {
             Class.forName("com.mysql.jdbc.Driver");
 
-		url = String.format("jdbc:mysql://%s:%s/%s", 
+		url = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=utf-8", 
 				prop.getServer(), prop.getPort(), prop.getDatabase());
 		dbUser = prop.getDbUser();
 		dbPassword = prop.getDbPassword();
