@@ -391,6 +391,7 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/directhrm/img/icon/LoginWindowLogo.png"))); // NOI18N
         jLabel5.setText(bundle.getString("LoginWindow.jLabel5.text")); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel4.setText(bundle.getString("LoginWindow.jLabel4.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

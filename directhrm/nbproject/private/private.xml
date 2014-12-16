@@ -3,8 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/db/DbAdminManager.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/Application.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/controller/ControllerDepartment.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/db/DbPersonManager.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/db/DbManager.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/controller/ControllerOrganization.java</file>
             <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/windows/MainWindow.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionDepartmentDelete.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/controller/ControllerPerson.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/util/StringCyrComparator.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionDepartmentCreate.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionOrganizationEdit.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/db/DbAdminManager.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/windows/LoginWindow.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionDepartmentEdit.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/util/Property.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/windows/PanelPerson.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionOrganizationCreate.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/util/Util.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/db/DbDepartmentManager.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/controller/ControllerStruct.java</file>
+            <file>file:/D:/Work/gitrepo-directhrm/directhrm/src/directhrm/gui/action/ActionOrganizationDelete.java</file>
         </group>
     </open-files>
 </project-private>
