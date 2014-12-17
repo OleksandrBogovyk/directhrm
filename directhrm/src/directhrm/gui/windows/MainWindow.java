@@ -1096,6 +1096,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel36.setText(bundle.getString("MainWindow.jLabel36.text")); // NOI18N
 
         fieldInternalNumber.setText(bundle.getString("MainWindow.fieldInternalNumber.text")); // NOI18N
+        fieldInternalNumber.setEnabled(false);
         fieldInternalNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldInternalNumberActionPerformed(evt);
@@ -1213,7 +1214,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setText(bundle.getString("MainWindow.jLabel33.text")); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel1.border.title"))); // NOI18N
@@ -1615,6 +1615,11 @@ public class MainWindow extends javax.swing.JFrame {
         fieldPassportDate.setText(bundle.getString("MainWindow.fieldPassportDate.text")); // NOI18N
 
         jCheckBox2.setText(bundle.getString("MainWindow.jCheckBox2.text")); // NOI18N
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(102, 102, 102));
@@ -1855,6 +1860,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel5.border.title"))); // NOI18N
 
+        jLabel66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/directhrm/img/jfreechart/user_demo1.png"))); // NOI18N
         jLabel66.setText(bundle.getString("MainWindow.jLabel66.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1870,6 +1876,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel6.border.title"))); // NOI18N
 
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/directhrm/img/jfreechart/user_demo2.png"))); // NOI18N
         jLabel48.setText(bundle.getString("MainWindow.jLabel48.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1888,6 +1895,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel7.border.title"))); // NOI18N
 
+        jLabel68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/directhrm/img/jfreechart/user_demo3.png"))); // NOI18N
         jLabel68.setText(bundle.getString("MainWindow.jLabel68.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1897,7 +1905,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel68)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1952,7 +1960,6 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelPersonHolderLayout.createSequentialGroup()
                             .addComponent(jButton15)
                             .addGap(18, 18, 18)
@@ -1962,19 +1969,20 @@ public class MainWindow extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel71)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelPersonHolderLayout.createSequentialGroup()
-                            .addComponent(jButton16)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel69)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelPersonHolderLayout.createSequentialGroup()
                         .addComponent(jButton18)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelPersonHolderLayout.createSequentialGroup()
+                        .addComponent(jButton16)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel69)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelPersonHolderLayout.setVerticalGroup(
@@ -2000,12 +2008,11 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelPersonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton18)
                             .addComponent(jLabel70)
-                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelPersonHolderLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2854,6 +2861,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void fieldDateOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDateOutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldDateOutActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        if (jCheckBox2.isSelected()) {
+            cmbDriver.setEnabled(false);
+        } else {
+            jCheckBox2.setSelected(false);
+        }
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
     
 	private Application application;
 	private PanelPerson panelPerson;

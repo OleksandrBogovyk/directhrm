@@ -110,12 +110,11 @@ public class ControllerPerson extends ControllerStructNode {
 		cmbDriver = new ControllerComboBox( mainWindow.getCmbDriver() );
 		{
 			List<Property> items = new ArrayList<>();
-			items.add( new Property("A", "Категория (A)") );
-			items.add( new Property("B", "Категория (B)") );
-			items.add( new Property("C", "Категория (C)") );
-			items.add( new Property("D", "Категория (D)") );
-			items.add( new Property("E", "Категория (E)") );
-			items.add( new Property("N", "Нет") );
+			items.add( new Property("A", "A") );
+			items.add( new Property("B", "B") );
+			items.add( new Property("C", "C") );
+			items.add( new Property("D", "D") );
+			items.add( new Property("E", "E") );
 			cmbDriver.setItems(items);
 		}
 		listControllers.add( cmbDriver );
