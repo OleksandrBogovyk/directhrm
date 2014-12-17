@@ -102,6 +102,10 @@ public class MainWindow extends javax.swing.JFrame {
 		return cmbAddressCity;
 	}
 
+	public JComboBox getCmbAge() {
+		return cmbAge;
+	}
+
 	public JComboBox getCmbArmy() {
 		return cmbArmy;
 	}
@@ -374,7 +378,7 @@ public class MainWindow extends javax.swing.JFrame {
         fieldGraduationYear = new javax.swing.JTextField();
         fieldBirthday = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        cmbAge = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         rbMale = new javax.swing.JRadioButton();
         rbFemale = new javax.swing.JRadioButton();
@@ -1414,10 +1418,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel40.setText(bundle.getString("MainWindow.jLabel40.text")); // NOI18N
 
-        jComboBox3.setEditable(true);
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
-        jComboBox3.setSelectedIndex(5);
-        jComboBox3.setEnabled(false);
+        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
+        cmbAge.setSelectedIndex(5);
 
         jLabel7.setText(bundle.getString("MainWindow.jLabel7.text")); // NOI18N
 
@@ -1494,7 +1496,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(rbMale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbFemale))
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(74, 74, 74))))
         );
         panelFIOLayout.setVerticalGroup(
@@ -1517,7 +1519,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(fieldBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelFIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
@@ -1853,7 +1855,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel5.border.title"))); // NOI18N
 
-        jLabel66.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alexandr\\Desktop\\user_demo1.png")); // NOI18N
         jLabel66.setText(bundle.getString("MainWindow.jLabel66.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1869,7 +1870,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel6.border.title"))); // NOI18N
 
-        jLabel48.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alexandr\\Desktop\\user_groups.jpg")); // NOI18N
         jLabel48.setText(bundle.getString("MainWindow.jLabel48.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1888,7 +1888,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("MainWindow.jPanel7.border.title"))); // NOI18N
 
-        jLabel68.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alexandr\\Desktop\\user_demo3.png")); // NOI18N
         jLabel68.setText(bundle.getString("MainWindow.jLabel68.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -2880,6 +2879,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbMarital;
     private javax.swing.JCheckBox cbNotByContract;
     private javax.swing.JComboBox cmbAddressCity;
+    private javax.swing.JComboBox cmbAge;
     private javax.swing.JComboBox cmbArmy;
     private javax.swing.JComboBox cmbCitizenship;
     private javax.swing.JComboBox cmbDriver;
@@ -2939,7 +2939,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox10;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JComboBox jComboBox7;

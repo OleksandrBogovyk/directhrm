@@ -19,6 +19,7 @@ import directhrm.gui.controller.component.ControllerTextField;
 import directhrm.gui.controller.component.ControllerTextFieldDate;
 import directhrm.gui.controller.component.ControllerTextFieldDecimal;
 import directhrm.gui.controller.component.ControllerTextFieldInteger;
+import directhrm.gui.controller.component.DateChangeListener;
 import directhrm.gui.controller.tree.NodeValue;
 import directhrm.gui.controller.tree.TreeNode;
 import directhrm.img.icon.Icons;
@@ -27,6 +28,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.Icon;
@@ -69,6 +71,12 @@ public class ControllerPerson extends ControllerStructNode {
 		listControllers.add(fieldTableId);
 		
 		dcBirthday = new ControllerTextFieldDate( mainWindow.getFieldBirthday() );
+		dcBirthday.setDateChangeListener( new DateChangeListener() {
+			@Override
+			public void dateChanged() {
+				setCmbAgeValue();
+			}
+		} );
 		listControllers.add( dcBirthday );
 		
 		rbGender = new ControllerRadioButtons();
@@ -196,6 +204,8 @@ public class ControllerPerson extends ControllerStructNode {
         
 	@Override
 	public boolean saveEditions() throws SQLException {
+		if( person == null )
+			return true;
 		Person p = new Person();
 		p.setId( person.getId() );
 		p.setAboutId( person.getAboutId() );
@@ -281,11 +291,14 @@ public class ControllerPerson extends ControllerStructNode {
 			tableModel.setRowCount(0);
 		}
 
+		mainWindow.getButtonStructSave().setEnabled( value != null );
+		mainWindow.getButtonStructDiscard().setEnabled( value != null );
+		
 		if( value == null ) {
 			person = null;
-			for(ControllerComponent cc : listControllers) {
-				cc.setEnabled(false);
-			}
+//			for(ControllerComponent cc : listControllers) {
+//				cc.setEnabled(false);
+//			}
 			mainWindow.getLabelPhoto().setIcon(null);
 			return;
 		}
@@ -443,8 +456,24 @@ public class ControllerPerson extends ControllerStructNode {
 			fieldBonus.setValue( person.getBonus().getSum());
 		}
 
+		setCmbAgeValue();		
 	}
-	
+
+	private void setCmbAgeValue() {
+		Date date = dcBirthday.getDate();
+		if( date == null )
+			return;
+		Date now = new Date();
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		calendar.add(GregorianCalendar.YEAR, 1);
+		int age = 0;
+		while( calendar.getTime().getTime() < now.getTime() ) {
+			age++;
+			calendar.add(GregorianCalendar.YEAR, 1);
+		}
+		cmbAge.setSelectedItem( String.valueOf(age) );
+	}	
 	private Person person;
 	
 	// Field controllers
@@ -498,4 +527,6 @@ public class ControllerPerson extends ControllerStructNode {
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	private Icon iconDefaultPhoto;
+
+	private JComboBox<String> cmbAge = mainWindow.getCmbAge();
 }
