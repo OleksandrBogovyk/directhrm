@@ -34,6 +34,7 @@ import java.util.Vector;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -471,7 +472,7 @@ public class ControllerPerson extends ControllerStructNode {
 			age++;
 			calendar.add(GregorianCalendar.YEAR, 1);
 		}
-		cmbAge.setSelectedItem( String.valueOf(age) );
+		cmbAge.setValue(age);
 	}	
 	private Person person;
 	
@@ -527,5 +528,5 @@ public class ControllerPerson extends ControllerStructNode {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	private Icon iconDefaultPhoto;
 
-	private JComboBox<String> cmbAge = mainWindow.getCmbAge();
+	private JSpinner cmbAge = mainWindow.getCmbAge();
 }
