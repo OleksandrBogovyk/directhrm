@@ -7,5 +7,5 @@ DirectHRM is a an open source Human Resources Management and Information softwar
 
 ---------
 Authors:
-Bogovyk Oleksandr (obogovyk@gmail.com)
+Bogovyk Oleksandr (obogovyk@gmail.com), 
 Andre Yakivchuk (yakandre@gmail.com)
