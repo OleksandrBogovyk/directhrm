@@ -9,8 +9,8 @@
     <meta name="author" content="Oleksandr Bogovyk (obogovyk@gmail.com)">
         <title>DHRM Dashboard</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 <body>
     
