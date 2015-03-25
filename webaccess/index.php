@@ -1,30 +1,21 @@
 <?php
-session_start();
-
-ini_set('display_errors', '0');
-error_reporting(E_ALL);
-
-if(isset($_SESSION['user_ip']) && isset($_SESSION['user_agent'])) {
-  // show this page
-  } else {
-  //redirect to login.php
-  }
-
-// --- LOGOUT SCHEME ---
-//  if(isset($_GET['ac']) && $_GET['ac'] == 'logout'){
-//	$_SESSION['user_info'],$_SESSION['user_ip'],$_SESSION['user_agent'] = null;
-//	unset($_SESSION['user_info']... etc);
-//	}
+  session_start();
   
-// Include HTML headers
-include('templates/header.php');
-include('templates/menu.php')
-?>
+  ini_set('display_errors', '0');
+  error_reporting(E_ALL);
+  
+  //<?php if(isset($_SESSION['user_ip']) && isset($_SESSION['user_agent'])) : ?>
+  
+  <?php
+  // Include HTML headers
+  include('templates/header.php');
+  include('templates/menu.php');
+  ?>
 
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="page-header"><em>Dashboard</em></h2>
+        <h2 class="page-header"><span class="glyphicon glyphicon-scale"></span> <em>Dashboard<em></h2>
       </div>
     </div>
     
@@ -41,8 +32,29 @@ include('templates/menu.php')
     </div>
   </div>
 
-<?php
+  <?php
 
-// Include HTML footer
-include('templates/footer.php');
-?> 
+  // Include HTML footer
+  include('templates/footer.php');
+  
+  // Logout via GET
+  if(isset($_GET['do']) && $_GET['do'] == 'logout'){
+    $_SESSION['user_ip'] = null;
+    $_SESSION['user_agent'] = null;
+      unset($_SESSION['user_ip']);
+      unset($_SESSION['user_agent']);
+      
+      header('Location: auth.php');
+      }
+  
+  
+  ?>
+  
+  <?php //else: ?>
+  
+  <?php
+  //redirect to login.php
+  //header('Location: auth.php');
+  
+  //endif;
+  ?>

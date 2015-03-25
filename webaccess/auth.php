@@ -7,24 +7,20 @@ require_once('db_connector.php');
 include('templates/header.php');
 
 // Debug options //
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+//error_reporting(E_ALL);
 
-  if(isset($_POST['submit'])){
-    if(!empty($_POST['login']) && !empty($_POST['password'])){
+
+// 
+if(!isset($_POST['login']) && !isset($_POST['password'])){
     $login = htmlspecialchars($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
-    }
-        
-    // CHECK USER CREDENTIALS  
-    $obj_db = new db_connector(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-    echo $obj_db->is_connection();
-    
-       // if ($obj_db->is_connection() == true) {
-            //echo "Success connect to DB";
-            
-    // CHECK USER IN DB // => ...
-            
+  
+  $obj_db = new db_connector(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+      if($obj_db->is_connection() == true) {
+          $error_message = '';
+          
+    // CHECK USER IN DB => ...
     //$sql = "SELECT * FROM ".$SETTINGS["USERS"]." WHERE `email` = '".mysql_real_escape_string($_POST['email'])."' AND `password` = '".mysql_real_escape_string($_POST['password'])."'";
     //	$sql_result = mysql_query ($sql, $connection ) or die ('request "Could not execute SQL query" '.$sql);
     //	$user = mysql_fetch_assoc($sql_result);
@@ -36,16 +32,18 @@ error_reporting(E_ALL);
           //header("Location: http://127.0.0.1/webaccess/auth.php"); #.$_SERVER['PHP_SELF']
           //header('Location: '.$_SERVER['PHP_SELF'].'');
        // }
-    
-        
-        $error_message = "";
-    } else {
+          
+          
+      } else {
+          $error_message = '<div class="alert alert-warning" role="alert">';
+          $error_message .= 'Ошибка соединения с базой данных.';
+          $error_message .= '</div>';
+            }
+  } else {
         $error_message = '<div class="alert alert-warning" role="alert">';
-        $error_message .= 'Ошибка авторизации. Пожалуйста, попробуйте ещё раз.';
+        $error_message .= 'Введите данные для авторизации.';
         $error_message .= '</div>';
-      
   }
-    
         
     // THEN SECURE YOUR SESSION //
     
@@ -59,9 +57,10 @@ error_reporting(E_ALL);
     
     <div class="container">
         <div class="row">
-            <?php echo $login.'<br>'.$password; ?>
+            <!-- <?php //echo $login.'<br>'.$password; ?> -->
             <div class="col-md-offset-4 col-md-4">
                 <div class="panel panel-default login-panel">
+                  <?php echo $error_message; ?>
                         <div class="panel-heading"><span class="glyphicon glyphicon-eye-close"></span> Авторизация</div>
                     <div class="panel-body">
                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -78,7 +77,7 @@ error_reporting(E_ALL);
                                     <input type="checkbox"> Запомнить меня
                                 </label>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-success"><em>Войти</em></button>
+                            <button type="submit" name="submit" class="btn btn-primary"><em>Войти</em></button>
                             <button type="reset" class="btn btn-link">Очистить</button>
                         </form>
                     </div>

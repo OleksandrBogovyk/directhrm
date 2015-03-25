@@ -19,7 +19,7 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="">
             </div>
-            <button type="submit" class="btn btn-default"><em>Поиск</em></button>
+            <button type="submit" class="btn btn-primary"><em>Поиск</em></button>
           </form>
               
           <li class="dropdown">
