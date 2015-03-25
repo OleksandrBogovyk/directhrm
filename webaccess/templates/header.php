@@ -9,6 +9,7 @@
     <meta name="author" content="Softuse HRMS">
     <title>Softuse HRMS Dashboard</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/hrms.min.css">
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Chart.min.js"></script>

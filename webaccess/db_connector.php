@@ -2,9 +2,7 @@
 
 class db_connector {
   
-  private $err_status;
-  private $host,$user,$password,$dbname,$port;
-  
+  private $host,$user,$password,$dbname;
     
   public function __construct($host,$user,$password,$dbname){
     $this->host = $host;
@@ -13,26 +11,22 @@ class db_connector {
     $this->dbname = $dbname;
   }
   
-  public function check_connection(){
-    if(!mysqli_connect($host,$user,$password,$dbname)){
-      $err_status = mysqli_connect_error();
-      return false;
-    } else {
+  public function is_connection(){
+    if( mysqli_connect($this->host,$this->user,$this->password,$this->dbname) ){
       return true;
-    }
-  }
-  
-  public function get_userinfo(){
-    if($this->check_connection() != false){
-      // create user_panel_data.
     } else {
-      header('Location: /404');
+      return mysqli_connect_error();
     }
-    
   }
   
-  public function get_usertimetable(){
-    
+  public function is_user(){
+    mysqli_connect($this->host,$this->user,$this->password,$this->dbname) or die("Error ".mysqli_connect_error());
+    //
+  }
+  
+  
+  public function get_userprofile(){
+    //
   }
 
   
