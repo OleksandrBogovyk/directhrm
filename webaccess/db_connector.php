@@ -26,12 +26,15 @@ class db_connector {
   public function is_logintrue($login, $password){
     $mysqli = new mysqli($this->host,$this->user,$this->password,$this->dbname);
     $sql = $mysqli->query('select login, password from '.$this->dbname.'.webaccess where login = '.$login.' and password = '.$password.';');
-      $row_count = mysqli_num_rows($sql);
+      $row_count = $sql->num_rows;
       if ($row_count != 0) {
         return true;
+      $sql->close();
       } else {
         return false;
       }
+      $sql->close();
+    $mysqli->close();  
   }
   
   public function get_userprofile(){
