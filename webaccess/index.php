@@ -4,7 +4,9 @@
   ini_set('display_errors', '0');
   error_reporting(E_ALL);
   
-  //<?php if(isset($_SESSION['user_ip']) && isset($_SESSION['user_agent'])) : ?>
+  ?>
+  
+  <?php if(isset($_SESSION['user_ip']) && isset($_SESSION['user_agent'])) : ?>
   
   <?php
   // Include HTML headers
@@ -46,15 +48,14 @@
       
       header('Location: auth.php');
       }
-  
-  
+      
   ?>
   
-  <?php //else: ?>
+  <?php else: ?>
   
   <?php
-  //redirect to login.php
-  //header('Location: auth.php');
+  // REDIRECT TO login.php
+  header('Location: auth.php');
   
-  //endif;
+  endif;
   ?>

@@ -6,58 +6,43 @@ require_once('db_connector.php');
 
 include('templates/header.php');
 
-// Debug options //
+// Debug options
 //ini_set('display_errors', '1');
 //error_reporting(E_ALL);
 
+$error_message = "";
 
-// 
-if(!isset($_POST['login']) && !isset($_POST['password'])){
-    $login = htmlspecialchars($_POST['login']);
-    $password = htmlspecialchars($_POST['password']);
-  
+if(isset($_POST['login']) && isset($_POST['password'])){
+    
+  // CREATE CLASS OBJECT  
   $obj_db = new db_connector(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-      if($obj_db->is_connection() == true) {
-          $error_message = '';
+    if($obj_db->is_connection() != false) {
+      
+      $login = htmlspecialchars($_POST['login']);
+      $password = htmlspecialchars($_POST['password']);
           
-    // CHECK USER IN DB => ...
-    //$sql = "SELECT * FROM ".$SETTINGS["USERS"]." WHERE `email` = '".mysql_real_escape_string($_POST['email'])."' AND `password` = '".mysql_real_escape_string($_POST['password'])."'";
-    //	$sql_result = mysql_query ($sql, $connection ) or die ('request "Could not execute SQL query" '.$sql);
-    //	$user = mysql_fetch_assoc($sql_result);
-    //	if(!empty($user)){
-            
-    //header("Location: http://127.0.0.1/webaccess/auth.php");  
-        //} else {
-          //echo "Error connect to DB";
-          //header("Location: http://127.0.0.1/webaccess/auth.php"); #.$_SERVER['PHP_SELF']
-          //header('Location: '.$_SERVER['PHP_SELF'].'');
-       // }
-          
-          
+    // SECURE YOUR SESSION IF LOGIN TRUE
+    if ($obj_db->is_logintrue($login, $password) != false){
+      $_SESSION['user_ip'] = md5($_SERVER['REMOTE_ADDR'].'softuse');
+      $_SESSION['user_agent'] = md5($_SERVER['REMOTE_ADDR'].'softuse');
+      
+      // REDIRECT TO INDEX.php
+      header('Location: index.php');
       } else {
-          $error_message = '<div class="alert alert-warning" role="alert">';
+        $error_message = '<div class="alert alert-warning">';
+        $error_message .= 'Ошибка аторизации.';
+        $error_message .= '</div>';
+        }              
+      } else {
+          $error_message = '<div class="alert alert-warning">';
           $error_message .= 'Ошибка соединения с базой данных.';
           $error_message .= '</div>';
-            }
-  } else {
-        $error_message = '<div class="alert alert-warning" role="alert">';
-        $error_message .= 'Введите данные для авторизации.';
-        $error_message .= '</div>';
+        }
   }
-        
-    // THEN SECURE YOUR SESSION //
-    
-    // $user_ip = md5($_SERVER['REMOTE_ADDR'].'salt');
-    // $user_agent = md5($_SERVER['HTTP_USER_AGENT'].'salt');
-    
-    // then redirect with SESSION DATA => index.php
-
 
 ?>
-    
     <div class="container">
         <div class="row">
-            <!-- <?php //echo $login.'<br>'.$password; ?> -->
             <div class="col-md-offset-4 col-md-4">
                 <div class="panel panel-default login-panel">
                   <?php echo $error_message; ?>
@@ -83,7 +68,7 @@ if(!isset($_POST['login']) && !isset($_POST['password'])){
                     </div>
                 </div>
                 <hr>
-                <center>Copyright(c) 2014-2015 <em><a href="https://github.com/orgs/Softuse/" target="_blank">Softuse HRMS</a></em> Dashboard<br>Версия 1.09.1</center>
+                <center>Copyright(c) 2014-2015 <em><a href="https://github.com/orgs/Softuse/" target="_blank">Softuse HRMS</a></em> Dashboard<br>Версия 1.09.12</center>
             </div>
         </div>
     </div>
