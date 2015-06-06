@@ -289,6 +289,21 @@ public class MainWindow extends javax.swing.JFrame {
         licenseWindow = new javax.swing.JDialog();
         aboutWindow = new javax.swing.JDialog();
         manualWindow = new javax.swing.JDialog();
+        addNewOrganization = new javax.swing.JDialog();
+        jLabel23 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jButton14 = new javax.swing.JButton();
+        jSpinner3 = new javax.swing.JSpinner();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -500,7 +515,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Логин", "Полное имя", "Пароль (SHA-1)", "Дата регистрации", "Последний вход"
+                "Логин", "Полное имя", "Пароль", "Дата регистрации", "Последний вход"
             }
         ));
         jScrollPane5.setViewportView(jTable2);
@@ -833,6 +848,106 @@ public class MainWindow extends javax.swing.JFrame {
         manualWindowLayout.setVerticalGroup(
             manualWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jLabel23.setText(bundle.getString("MainWindow.jLabel23.text")); // NOI18N
+
+        jTextField2.setText(bundle.getString("MainWindow.jTextField2.text")); // NOI18N
+
+        jButton13.setText(bundle.getString("MainWindow.jButton13.text")); // NOI18N
+
+        jLabel1.setText(bundle.getString("MainWindow.jLabel1.text")); // NOI18N
+
+        jLabel33.setText(bundle.getString("MainWindow.jLabel33.text")); // NOI18N
+
+        jLabel45.setText(bundle.getString("MainWindow.jLabel45.text")); // NOI18N
+
+        jLabel48.setText(bundle.getString("MainWindow.jLabel48.text")); // NOI18N
+
+        jLabel66.setText(bundle.getString("MainWindow.jLabel66.text")); // NOI18N
+
+        jTextField3.setText(bundle.getString("MainWindow.jTextField3.text")); // NOI18N
+
+        jTextField4.setText(bundle.getString("MainWindow.jTextField4.text")); // NOI18N
+
+        jTextField6.setText(bundle.getString("MainWindow.jTextField6.text")); // NOI18N
+
+        jTextField7.setText(bundle.getString("MainWindow.jTextField7.text")); // NOI18N
+
+        jButton14.setText(bundle.getString("MainWindow.jButton14.text")); // NOI18N
+
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(49000, 10000, 50000, 1));
+
+        javax.swing.GroupLayout addNewOrganizationLayout = new javax.swing.GroupLayout(addNewOrganization.getContentPane());
+        addNewOrganization.getContentPane().setLayout(addNewOrganizationLayout);
+        addNewOrganizationLayout.setHorizontalGroup(
+            addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewOrganizationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewOrganizationLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton13))
+                    .addGroup(addNewOrganizationLayout.createSequentialGroup()
+                        .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel48)
+                            .addComponent(jLabel45)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel66))
+                        .addGap(18, 18, 18)
+                        .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2)
+                            .addGroup(addNewOrganizationLayout.createSequentialGroup()
+                                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+
+        addNewOrganizationLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4, jTextField6, jTextField7});
+
+        addNewOrganizationLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton13, jButton14});
+
+        addNewOrganizationLayout.setVerticalGroup(
+            addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewOrganizationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45)
+                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel48)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel66)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewOrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2067,6 +2182,11 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu10.setText(bundle.getString("MainWindow.jMenu10.text")); // NOI18N
 
         jMenuItem22.setText(bundle.getString("MainWindow.jMenuItem22.text")); // NOI18N
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem22);
         jMenu10.add(jSeparator8);
 
@@ -2347,7 +2467,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void menuItemCreateOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCreateOrganizationActionPerformed
-        // TODO add your handling code here:
+        addNewOrganization.pack();
+        addNewOrganization.setLocationRelativeTo(null);
+        addNewOrganization.setVisible(true);
     }//GEN-LAST:event_menuItemCreateOrganizationActionPerformed
 
     private void jComboBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox10ActionPerformed
@@ -2711,6 +2833,10 @@ public class MainWindow extends javax.swing.JFrame {
             gradeFormSpinner.setEnabled(false);
         }
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
     
 	private Application application;
 	private PanelPerson panelPerson;
@@ -2725,6 +2851,7 @@ public class MainWindow extends javax.swing.JFrame {
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog aboutWindow;
+    private javax.swing.JDialog addNewOrganization;
     private javax.swing.JDialog adminAddWindow;
     private javax.swing.JDialog adminDelRmWindow;
     private javax.swing.JDialog adminListWindow;
@@ -2778,6 +2905,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2791,6 +2920,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox10;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2805,6 +2935,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -2815,6 +2946,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -2827,8 +2959,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
@@ -2848,6 +2982,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel72;
@@ -2930,6 +3065,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner17;
     private javax.swing.JSpinner jSpinner18;
     private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
@@ -2937,6 +3073,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel labelPhoto;

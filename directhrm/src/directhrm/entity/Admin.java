@@ -13,10 +13,7 @@ import java.util.Vector;
  * @author Александр
  */
 public class Admin {
-    public void setId(int id){
-        this.id = id;
-    }
-    
+   
     public void setAdminName(String admin_name){
         this.admin_name = admin_name;
     }
@@ -39,8 +36,7 @@ public class Admin {
 
     public Vector getAdminListTable(){
         Vector<Object> rows = new Vector<>();
-        
-        rows.add(id);
+
         rows.add(admin_name);
         rows.add(admin_fullname);
         rows.add(admin_password);
@@ -49,7 +45,6 @@ public class Admin {
         return rows;  
     }
     
-    private int id;
     private String admin_name;
     private String admin_fullname;
     private String admin_password;

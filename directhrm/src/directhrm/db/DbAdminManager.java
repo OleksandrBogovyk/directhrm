@@ -8,10 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author andre
- */
 public class DbAdminManager {
 
 	public DbAdminManager(DbManager dbManager) {
@@ -29,7 +25,7 @@ public class DbAdminManager {
             
         while(rs.next()){
             Admin user = new Admin();
-            user.setId(rs.getInt("id"));
+            
             user.setAdminName(rs.getString("admin_name"));
             user.setAdminFullname(rs.getString("admin_fullname"));
             user.setAdminPassword(rs.getString("admin_password"));
