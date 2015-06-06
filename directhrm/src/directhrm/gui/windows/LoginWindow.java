@@ -140,9 +140,11 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText(bundle.getString("LoginWindow.jLabel10.text")); // NOI18N
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTextField1.setText(bundle.getString("LoginWindow.jTextField1.text")); // NOI18N
         jTextField1.setEnabled(false);
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTextField2.setText(bundle.getString("LoginWindow.jTextField2.text")); // NOI18N
         jTextField2.setEnabled(false);
 
@@ -165,12 +167,15 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel15.setText(bundle.getString("LoginWindow.jLabel15.text")); // NOI18N
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTextField3.setText(bundle.getString("LoginWindow.jTextField3.text")); // NOI18N
         jTextField3.setEnabled(false);
 
+        jTextField4.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTextField4.setText(bundle.getString("LoginWindow.jTextField4.text")); // NOI18N
         jTextField4.setEnabled(false);
 
+        jTextField5.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTextField5.setText(bundle.getString("LoginWindow.jTextField5.text")); // NOI18N
         jTextField5.setEnabled(false);
 
@@ -229,25 +234,21 @@ public class LoginWindow extends javax.swing.JFrame {
                         .addGroup(enterHelpWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterHelpWindowLayout.createSequentialGroup()
                                 .addGroup(enterHelpWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterHelpWindowLayout.createSequentialGroup()
-                                        .addGroup(enterHelpWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(enterHelpWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterHelpWindowLayout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addContainerGap())))))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(enterHelpWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterHelpWindowLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22)
@@ -525,13 +526,14 @@ public class LoginWindow extends javax.swing.JFrame {
 		String password = new String( passwordField.getPassword() );
 		if (login.isEmpty() && password.isEmpty()) {
 			JOptionPane.showMessageDialog(frame,
-					"Поля не могут быть пустыми! Пожалуйста, попробуйте ещё раз.",
+					"Поля не могут быть пустыми! Пожалуйста, повторите попытку.",
 					"Ошибка",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		String database = "hrms";
-		ConnectProperties cp = new ConnectProperties();
+		final String database = "hrms";
+		
+                ConnectProperties cp = new ConnectProperties();
 		cp.setServer( dbServerField.getSelectedItem().toString() );
 		cp.setDatabase(database);
 		cp.setUser( login );

@@ -2,6 +2,11 @@
 
 class db_connector {
   
+  protected static $DB_HOST = 'localhost';
+  define('DB_USER','root');
+  define('DB_PASS','mysqlroot');
+  define('DB_NAME','hrms');
+  
   private $host,$user,$password,$dbname;
   private $db_error_message;
   

@@ -1,9 +1,9 @@
-CREATE DATABASE  IF NOT EXISTS `hrms` CHARACTER SET 'utf8';
+﻿CREATE DATABASE  IF NOT EXISTS `hrms` CHARACTER SET 'utf8';
 USE `hrms`;
 
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: hrms
+-- Host: 127.0.0.1    Database: hrms
 -- ------------------------------------------------------
 -- Server version	5.6.15-log
 
@@ -29,7 +29,7 @@ CREATE TABLE `about` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `about_text` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `about` (
 
 LOCK TABLES `about` WRITE;
 /*!40000 ALTER TABLE `about` DISABLE KEYS */;
-INSERT INTO `about` VALUES (1,'Кузьменко Александр Викторович, 1988 года рождения является сотрудником  ООО «Моя компания» с 2013 года по настоящее время. Трудолюбие и высокая работоспособность так же являются отличительными чертами Александра Викторовича. ');
+INSERT INTO `about` VALUES (1,'Кузьменко Александр Викторович, 1988 года рождения является сотрудником  ООО «Моя компания» с 2013 года по настоящее время. Трудолюбие и высокая работоспособность так же являются отличительными чертами Александра Викторовича. '),(3,'qwerty'),(4,'asdf');
 /*!40000 ALTER TABLE `about` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `admin_tb` (
   `admin_name` varchar(45) NOT NULL,
   `admin_fullname` varchar(45) NOT NULL,
   `admin_password` char(40) NOT NULL,
-  `admin_register` datetime DEFAULT CURRENT_TIMESTAMP,
+  `admin_register` datetime DEFAULT NULL,
   `admin_last` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -124,7 +124,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'Днепропетровск','ул. Олеся Гончара 19','49000','(0562) 39-57-00','(067) 399-14-21','',NULL,'4024',NULL,'ООО \"Софт-Медиа\"'),(2,'Днепропетровск','пр. Карла Маркса 49','49001','(095) 372-16-57',NULL,'',NULL,'4025',NULL,'ООО \"Символ-Плюс\"'),(3,'Днепропетровск','ул. Комсомольская 16','49008','(095) 372-10-11','(093) 472-21-10','',NULL,'4026',NULL,NULL),(4,'Днепропетровск','ул. Ленина 24','49000','(095) 372-10-12','(093) 472-21-11','',NULL,'4027',NULL,NULL),(5,'Днепропетровск','ул. Артема 121/2','49000','(095) 372-10-13','(093) 472-21-12','',NULL,'4028',NULL,NULL),(6,'Днепропетровск','ул. Строителей 19/27','49000','(095) 372-10-14',NULL,'',NULL,'4024',NULL,NULL),(7,'Днепропетровск','ул. Карла Либкнехта 178/39','49000','(095) 372-10-15','(093) 472-21-14','',NULL,'4029',NULL,NULL),(8,'Днепропетровск','пр. Карла Маркса 124/77','49000','(095) 372-10-16','(093) 472-21-15','',NULL,'4030',NULL,NULL),(9,'Днепропетровск','ул. Юрия Савченко 76/23','49000','(095) 372-10-17',NULL,'',NULL,'4031',NULL,NULL),(10,'Днепропетровск','пр. Пушкина 56/12','49000','(095) 372-10-18','(093) 472-21-17','',NULL,'4032',NULL,NULL),(11,'Днепропетровск','ул. Рабочая 17/260','49000','(095) 372-10-19','(093) 472-21-18','',NULL,'4033',NULL,NULL),(12,'Днепропетровск','пр. Мира 230/179','49000','(095) 372-10-20','(093) 472-21-19','',NULL,'4034',NULL,NULL);
+INSERT INTO `contact` VALUES (1,'Днепропетровск','ул. Олеся Гончара 19','49000','(0562) 39-57-00','(067) 399-14-21','',NULL,'4024',NULL,'ООО \"Софт-Медиа\"'),(2,'Днепропетровск','пр. Карла Маркса 49','49001','(095) 372-16-57',NULL,'',NULL,'4025',NULL,'ООО \"Символ-Плюс\"'),(3,'Днепропетровск','ул. Комсомольская 16','49008','(095) 372-10-11','(093) 472-21-10','',NULL,'4026',NULL,NULL),(4,'Днепропетровск','ул. Ленина 24','49000','(095) 372-10-12','(093) 472-21-11','',NULL,'4027',NULL,NULL),(5,'Днепропетровск','ул. Артема 121/2','49000','(095) 372-10-13','(093) 472-21-12','',NULL,'4028',NULL,NULL),(6,'Днепропетровск','ул. Строителей 19/27','49000','(095) 372-10-14',NULL,'',NULL,'4024',NULL,NULL),(7,'Днепропетровск','ул. Карла Либкнехта 178/39','49000','(095) 372-10-15','(093) 472-21-14','',NULL,'4029',NULL,NULL),(8,'Днепропетровск','пр. Карла Маркса 124/77','49000','(095) 372-10-16','(093) 472-21-15','',NULL,'4030',NULL,NULL),(9,'Днепропетровск','ул. Юрия Савченко 76/23','49000','(095) 372-10-17',NULL,'',NULL,'4031',NULL,NULL),(10,'Днепропетровск','пр. Пушкина 56/12','49000','(095) 372-10-18','(093) 472-21-17','',NULL,'4032',NULL,NULL),(11,'Днепропетровск','ул. Рабочая 17/260','49000','(095) 372-10-19','(093) 472-21-18','bogovik@gmail.com','bogovik.work@gmail.com','4033',NULL,NULL),(12,'Днепропетровск','пр. Мира 230/179','49000','(095) 372-10-20','(093) 472-21-19','',NULL,'4034',NULL,NULL);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +178,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'','2/28',NULL,NULL),(2,'','2/21',NULL,NULL),(3,'','1/14',NULL,NULL),(4,'','3/24',NULL,NULL),(5,'','1/12',NULL,NULL),(6,'','1/10',NULL,NULL),(7,'','1/19',NULL,NULL);
+INSERT INTO `department` VALUES (1,'Сектор ИТ','2/28',NULL,1),(2,'Бухгалтерия','2/21',NULL,1),(3,'Отдел кадров','1/14',NULL,1),(4,'Отдел менеджмента','3/24',NULL,1),(5,'Управление делами','1/12',NULL,1),(6,'Секретариат','1/10',NULL,1),(7,'Транспортный отдел','1/19',NULL,NULL);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +258,7 @@ CREATE TABLE `experience` (
   PRIMARY KEY (`id`),
   KEY `fk_experience_person1_idx` (`person_id`),
   CONSTRAINT `fk_experience_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,6 +267,7 @@ CREATE TABLE `experience` (
 
 LOCK TABLES `experience` WRITE;
 /*!40000 ALTER TABLE `experience` DISABLE KEYS */;
+INSERT INTO `experience` VALUES (1,'Університет','Студент','2006-09-01','2012-05-31','Закінчення навчання',5,9),(2,'Компанія','Співробітник','2012-07-02','2014-12-03','Закінчення стажування',3,9);
 /*!40000 ALTER TABLE `experience` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +354,7 @@ CREATE TABLE `passport` (
 
 LOCK TABLES `passport` WRITE;
 /*!40000 ALTER TABLE `passport` DISABLE KEYS */;
-INSERT INTO `passport` VALUES (1,'АН061552','1981-01-10','Ленинским РО УМВС в Днепропетровской обл.'),(2,'АН061553','1981-01-11','Бабушкинским РО УМВС в Днепропетровской обл.'),(3,'АН061554','1981-01-12','Красногвардейским РО УМВС в Днепропетровской обл.'),(4,'АН061555','1981-01-13','Кировским РО УМВС в Днепропетровской обл.'),(5,'АН061556','1981-01-14','Днепровским РО УМВС в Днепропетровской обл.'),(6,'АН061557','1981-01-15','Бабушкинским РО УМВС в Днепропетровской обл.'),(7,'АН061558','1981-01-16','Кировским РО УМВС в Днепропетровской обл.'),(8,'АН061559','1981-01-17','Ленинским РО УМВС в Днепропетровской обл.'),(9,'АН061560','1981-01-18','Красногвардейским РО УМВС в Днепропетровской обл.'),(10,'АН061561','1981-01-19','Ленинским РО УМВС в Днепропетровской обл.');
+INSERT INTO `passport` VALUES (1,'АН061552','1981-01-10','Ленинским РО УМВС в Днепропетровской обл.'),(2,'АН061553','1981-01-11','Бабушкинским РО УМВС в Днепропетровской обл.'),(3,'АН061554','1981-01-12','Красногвардейским РО УМВС в Днепропетровской обл.'),(4,'АН061555','1981-01-13','Кировским РО УМВС в Днепропетровской обл.'),(5,'АН061556','1981-01-14','Днепровским РО УМВС в Днепропетровской обл.'),(6,'АН061557','1981-01-15','Бабушкинским РО УМВС в Днепропетровской обл.'),(7,'АН061558','1981-01-16','Кировским РО УМВС в Днепропетровской обл.'),(8,'АН061559','1981-01-17','Ленинским РО УМВС в Днепропетровской обл.'),(9,'АН061560','1981-01-18','Красногвардейским РО УМВС в Днепропетровской обл.'),(10,'АН061562','1982-01-19','(x)Ленинским РО УМВС в Днепропетровской обл.');
 /*!40000 ALTER TABLE `passport` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,17 +400,7 @@ CREATE TABLE `person` (
   KEY `fk_person_contract1_idx` (`contract_id`),
   KEY `fk_person_organization1_idx` (`organization_id`),
   KEY `fk_person_salary1_idx` (`salary_id`),
-  KEY `fk_person_about1_idx` (`about_id`),
-  CONSTRAINT `fk_person_about1` FOREIGN KEY (`about_id`) REFERENCES `about` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_bonus1` FOREIGN KEY (`bonus_id`) REFERENCES `bonus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_contact1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_contract1` FOREIGN KEY (`contract_id`) REFERENCES `contract` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_department1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_organization1` FOREIGN KEY (`organization_id`) REFERENCES `organization` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_passport1` FOREIGN KEY (`passport_id`) REFERENCES `passport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_photo1` FOREIGN KEY (`photo_id`) REFERENCES `photo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_salary1` FOREIGN KEY (`salary_id`) REFERENCES `salary` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_worktime1` FOREIGN KEY (`worktime_id`) REFERENCES `worktime` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_person_about1_idx` (`about_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -419,7 +410,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01','M','Украина','W','Служил','D','Y','1234567891','N','41201',2,1,0,NULL,1,2,1,NULL,3,NULL),(2,'Калинина','Анна','Павловна','1978-12-10','F','Россия','H','Не военнообязанный(ая)','B','Y','1234567892','Y','41202',5,1,0,NULL,2,2,3,2,5,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15','F','Украина','N','Не военнообязанный(ая)','B','Y','1234567893','N','41203',4,1,0,NULL,1,2,1,NULL,4,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03','M','Молдова','W','Освобожден (по здоровью)','B','Y','1234567894','N','41204',3,2,0,NULL,1,1,2,NULL,6,NULL),(5,'Куличенко','Алена','Павловна','1982-11-12','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567895','N','41205',1,2,0,NULL,3,3,3,NULL,9,NULL),(6,'Кузьменко','Алексей','Викторович','1987-10-15','M','Россия','N','Военная кафдра','C','N','1234567896','Y','41206',6,2,0,NULL,3,4,4,1,8,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02','M','Украина','W','По возрасту (не служил)','C','Y','1234567897','N','41207',8,2,0,NULL,2,3,1,NULL,7,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567898','N','41208',7,1,0,NULL,3,2,3,NULL,10,NULL),(9,'Боговик','Александр','Александрович','1986-07-06','M','Украина','W','Освобожден (по здоровью)','B','Y','1234567899','N','41209',10,2,0,NULL,3,4,4,NULL,11,NULL),(10,'Шульга','Екатерина','Сергеевна','1987-03-04','F','Украина','H','Не военнообязанный(ая)','B','Y','1234567810','N','41210',9,1,0,NULL,1,3,3,NULL,12,NULL);
+INSERT INTO `person` VALUES (1,'Дерябин','Александр','Сергеевич','1969-02-01','M','Украина','W','Служил','D','Y','1234567891','N','41201',2,1,0,1,1,2,1,NULL,3,NULL),(2,'Калинина','Анна','Павловна','1978-12-10','F','Россия','H','Не военнообязанный(ая)','B','Y','1234567892','Y','41202',5,1,0,1,2,2,3,2,5,NULL),(3,'Иноземцева','Евгения','Анатольевна','1981-10-15','F','Украина','N','Не военнообязанный(ая)','B','Y','1234567893','N','41203',4,1,0,1,1,2,1,NULL,4,NULL),(4,'Казарновский','Максим','Семенович','1981-08-03','M','Молдова','W','Освобожден (по здоровью)','B','Y','1234567894','N','41204',3,2,0,1,1,1,2,NULL,6,NULL),(5,'Куличенко','Алена','Павловна','1982-11-12','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567895','N','41205',1,2,0,2,3,3,3,NULL,9,NULL),(6,'Кузьменко','Алексей','Викторович','1987-10-15','M','Россия','N','Военная кафедра','C','N','1234567896','Y','41206',6,2,1,2,3,4,4,1,8,NULL),(7,'Борисенко','Виктор','Петрович','1980-03-02','M','Украина','W','По возрасту (не служил)','C','Y','1234567897','N','41207',8,2,4,2,2,3,1,NULL,7,NULL),(8,'Гурская','Екатерина','Юрьевна','1983-11-09','F','Украина','H','Не военнообязанный(ая)','N','Y','1234567898','N','41208',7,1,0,2,3,2,3,NULL,10,NULL),(9,'Боговик','Александр','Александрович','1986-07-06','M','Украина','W','Освобожден (по здоровью)','B','Y','0987654321','N','41209',10,2,3,2,3,4,4,NULL,11,NULL),(10,'Шульга','Екатерина','Сергеевна','1987-03-04','F','Украина','H','Не военнообязанный(ая)','B','Y','1234567810','N','41210',9,1,0,2,1,3,3,NULL,12,NULL);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,8 +453,7 @@ CREATE TABLE `position` (
   `position_head` char(1) DEFAULT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_position_person1_idx` (`person_id`),
-  CONSTRAINT `fk_position_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_position_person1_idx` (`person_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -515,8 +505,7 @@ CREATE TABLE `sicklist` (
   `sicklist_till` date NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_sicklist_person1_idx` (`person_id`),
-  CONSTRAINT `fk_sicklist_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_sicklist_person1_idx` (`person_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -541,8 +530,7 @@ CREATE TABLE `vacation` (
   `vacation_date` date NOT NULL,
   `person_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_vacation_person1_idx` (`person_id`),
-  CONSTRAINT `fk_vacation_person1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_vacation_person1_idx` (`person_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -589,4 +577,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-16  0:40:45
+-- Dump completed on 2015-06-06 12:50:17
