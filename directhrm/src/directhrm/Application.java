@@ -71,7 +71,7 @@ public class Application {
 	
 	public void showErrorMessage() {
 		JOptionPane.showMessageDialog(
-				mainWindow, "Возникла ошибка во время выполнения операции", 
+				mainWindow, "Возникла ошибка во время выполнения операции.", 
 				"Ошибка", JOptionPane.ERROR_MESSAGE);
 	}
 	

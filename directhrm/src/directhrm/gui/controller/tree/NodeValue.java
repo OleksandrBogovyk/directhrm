@@ -29,7 +29,7 @@ public class NodeValue {
 	@Override
 	public String toString() {
 		if( organization != null ) {
-			return organization.getName();
+			return organization.getOrganizationName();
 		}
 		if( department != null ) {
 			return department.getName();

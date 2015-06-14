@@ -381,7 +381,7 @@ public class ControllerPerson extends ControllerStructNode {
 			if( valueOrganization != null ) {
 				Organization organization = valueOrganization.getOrganization();
 				if( organization != null )
-					organizationText = organization.getName();
+					organizationText = organization.getOrganizationName();
 			}
 		}
  		fieldOrganization.setValue( organizationText );

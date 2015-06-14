@@ -35,7 +35,7 @@ public class DbDepartmentManager {
 			while( rs.next() ) {
 				Organization o = new Organization();
 				o.setId( rs.getInt("id") );
-				o.setName( DbManager.fetchNotNullString(rs, "organization_name") );
+				o.setOrganizationName( DbManager.fetchNotNullString(rs, "organization_name") );
 				list.add(o);
 			}
 			
@@ -64,7 +64,7 @@ public class DbDepartmentManager {
 				return null;
 			Organization o = new Organization();
 			o.setId( id );
-			o.setName( DbManager.fetchNotNullString(rs, "organization_name") );
+			o.setOrganizationName( DbManager.fetchNotNullString(rs, "organization_name") );
 			
 			return o;
 		} finally {
@@ -116,7 +116,7 @@ public class DbDepartmentManager {
 			ps = conn.prepareStatement(
 					"INSERT INTO organization (organization_name) VALUES (?)", 
 					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, organization.getName());
+			ps.setString(1, organization.getOrganizationName());
 			ps.executeUpdate();
 		    ResultSet rs = ps.getGeneratedKeys();
 		    if (rs.next()) {
@@ -160,7 +160,7 @@ public class DbDepartmentManager {
 		try {
 			ps = conn.prepareStatement(
 					"UPDATE organization SET organization_name = ? WHERE id = ?");
-			ps.setString(1, organization.getName());
+			ps.setString(1, organization.getOrganizationName());
 			ps.setInt(2, organization.getId());
 			ps.executeUpdate();
 			DbEvent event = DbEvent.createOrganizationUpdated(organization);

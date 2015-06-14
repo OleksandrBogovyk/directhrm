@@ -57,7 +57,7 @@ public class ControllerOrganization extends ControllerStructNode {
 		}
 		Organization o = new Organization();
 		o.setId( organization.getId() );
-		o.setName( fieldName.getText() );
+		o.setOrganizationName( fieldName.getText() );
 		dbManager.getDepartmentManager().updateOrganization( o );
 		this.organization = o;
 		setDirty(false);
@@ -71,7 +71,7 @@ public class ControllerOrganization extends ControllerStructNode {
 	}
 
 	private void fillComponentsValues() {
-		fieldName.setText( organization.getName() );
+		fieldName.setText( organization.getOrganizationName() );
 	}
 	
 	private Organization organization;

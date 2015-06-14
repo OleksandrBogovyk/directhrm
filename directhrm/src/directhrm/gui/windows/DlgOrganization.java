@@ -54,7 +54,7 @@ public class DlgOrganization extends javax.swing.JDialog {
 
 	public void setOrganization(Organization o) {
 		this.organization = o;
-		fieldName.setText( organization.getName() );
+		fieldName.setText( organization.getOrganizationName() );
 	}
 
 	public void actionSave() {
@@ -68,7 +68,7 @@ public class DlgOrganization extends javax.swing.JDialog {
 		}
 		Organization o = new Organization();
 		o.setId( organization.getId() );
-		o.setName( fieldName.getText() );
+		o.setOrganizationName( fieldName.getText() );
 		try {
 			DbDepartmentManager departmentManager = 
 					application.getDbManager().getDepartmentManager();
