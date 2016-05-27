@@ -4,7 +4,7 @@ class db_connector {
   
   protected static $DB_HOST = 'localhost';
   define('DB_USER','root');
-  define('DB_PASS','mysqlroot');
+  define('DB_PASS','*****');
   define('DB_NAME','hrms');
   
   private $host,$user,$password,$dbname;
@@ -17,7 +17,7 @@ class db_connector {
     $this->dbname = $dbname;
   }
   
-  public function is_connection(){
+  public function is_connectied(){
     if(mysqli_connect($this->host,$this->user,$this->password,$this->dbname)){
       return true;
     mysqli_close();
